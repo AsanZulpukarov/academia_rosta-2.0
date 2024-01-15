@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_info.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -13,7 +14,10 @@ class GroupScreen extends StatelessWidget {
       itemCount: 5,
       itemBuilder: (context, index) {
         return GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => GroupInfo()));
+          },
           child: Container(
             height: 140,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),

@@ -36,11 +36,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 6,
-          child: Container(
+    return SingleChildScrollView(
+      physics: const ScrollPhysics(),
+      child: Column(
+        children: [
+          Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -98,11 +98,10 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
             ),
           ),
-        ),
-        Expanded(
-          flex: 5,
-          child: ListView.builder(
+          Gap(10),
+          ListView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: 10,
             itemBuilder: (context, index) {
               return Container(
@@ -164,9 +163,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
               );
             },
           ),
-        ),
-        Gap(20),
-      ],
+          Gap(20),
+        ],
+      ),
     );
   }
 }

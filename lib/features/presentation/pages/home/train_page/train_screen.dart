@@ -1,17 +1,23 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/choose_theme_dialog.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/show_train_number.dart';
 import 'package:flutter/material.dart';
-import 'dart:math';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../app_theme.dart';
+import '../../../../../app_theme.dart';
 
-class TrainScreen extends StatelessWidget {
+class TrainScreen extends StatefulWidget {
   const TrainScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TrainScreen> createState() => _TrainScreenState();
+}
+
+class _TrainScreenState extends State<TrainScreen> {
   @override
   Widget build(BuildContext context) {
-    String number = "123";
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -34,6 +40,34 @@ class TrainScreen extends StatelessWidget {
                       Gap(20),
                       Flexible(
                         child: GestureDetector(
+                          onTap: () => showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20.0)),
+                              ),
+                              contentPadding: const EdgeInsets.all(20),
+                              scrollable: true,
+                              title: const Text(
+                                'Выберите тему',
+                                style: AppTextStyles.black20,
+                              ),
+                              content: ChooseThemeDialog(),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(context, 'Выбрать'),
+                                  child: Text(
+                                    'Выбрать',
+                                    style: AppTextStyles.black16
+                                        .copyWith(color: AppColors.main),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           child: DecoratedBox(
                             decoration: ShapeDecoration(
                               gradient: LinearGradient(
@@ -67,20 +101,7 @@ class TrainScreen extends StatelessWidget {
               ),
             ),
             Gap(30),
-            Container(
-              alignment: Alignment.center,
-              width: double.infinity,
-              height: 360,
-              decoration: BoxDecoration(
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Text(
-                number,
-                style: AppTextStyles.black20Bold
-                    .copyWith(fontSize: (46 - number.length).sp),
-              ),
-            ),
+            ShowTrainNumber(),
             Gap(30),
             GestureDetector(
               onTap: () {},
@@ -110,7 +131,7 @@ class TrainScreen extends StatelessWidget {
     return Flexible(
       child: DecoratedBox(
         decoration: ShapeDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [AppColors.mainGradientColor, AppColors.white],

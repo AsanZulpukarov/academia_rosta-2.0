@@ -56,11 +56,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
       centerTitle: false,
       elevation: 0,
-      titleTextStyle: AppTextStyles.black18Semibold.copyWith(
-        fontSize: 24,
-        color: AppColors.black,
-        fontWeight: FontWeight.w800,
-      ),
+      titleTextStyle: AppTextStyles.black18Semibold,
       titleSpacing: 0,
       backgroundColor: Colors.transparent,
       iconTheme: const IconThemeData(
@@ -86,11 +82,6 @@ class AppTheme {
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.all(Radius.circular(8)),
       ),
-
-      // constraints: BoxConstraints(
-      //   maxHeight: 50,
-      //   minHeight: 49,
-      // ),
       contentPadding: EdgeInsets.symmetric(
         vertical: 16,
         horizontal: 20,

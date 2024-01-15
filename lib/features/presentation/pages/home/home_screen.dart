@@ -1,11 +1,10 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/calendar_screen.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/home/group_screen.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/profile_screen.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/home/train_screen.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/train_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_bar.dart';
-import 'package:academia_rosta_diplom/main.dart';
 import 'package:flutter/material.dart';
 
 class NavBarItem {
@@ -58,12 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.only(bottom: 40),
-        child: _navBarOptions.elementAt(_selectedIndex).screen,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Container(
+      body: _navBarOptions.elementAt(_selectedIndex).screen,
+      bottomNavigationBar: Container(
         height: 56,
         decoration: BoxDecoration(
           color: AppColors.white,
