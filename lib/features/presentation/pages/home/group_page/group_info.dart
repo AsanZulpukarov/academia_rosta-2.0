@@ -45,13 +45,7 @@ class GroupInfo extends StatelessWidget {
                   ],
                 ),
                 boxShadow: const [
-                  BoxShadow(
-                    color: Color.fromRGBO(30, 32, 37, 0.08),
-                    offset: Offset(1, 2),
-                    blurRadius: 0,
-                    spreadRadius: 0,
-                    blurStyle: BlurStyle.inner,
-                  ),
+                  AppTheme.boxShadow,
                 ],
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -83,13 +77,7 @@ class GroupInfo extends StatelessWidget {
                       ],
                     ),
                     boxShadow: const [
-                      BoxShadow(
-                        color: Color.fromRGBO(30, 32, 37, 0.08),
-                        offset: Offset(1, 2),
-                        blurRadius: 0,
-                        spreadRadius: 0,
-                        blurStyle: BlurStyle.inner,
-                      ),
+                      AppTheme.boxShadow,
                     ],
                     borderRadius: BorderRadius.circular(20),
                   ),

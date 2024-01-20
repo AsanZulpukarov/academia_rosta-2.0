@@ -1,8 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../app_theme.dart';
-
 class ChooseThemeDialog extends StatefulWidget {
   const ChooseThemeDialog({Key? key}) : super(key: key);
 

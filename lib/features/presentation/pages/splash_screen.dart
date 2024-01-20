@@ -2,7 +2,6 @@ import 'package:academia_rosta_diplom/features/presentation/pages/learn_app_scre
 import 'package:flutter/material.dart';
 
 import '../../../app_text_styles.dart';
-import 'auth/sign_in/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

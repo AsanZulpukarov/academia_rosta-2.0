@@ -22,6 +22,9 @@ class GroupScreen extends StatelessWidget {
             height: 140,
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             decoration: ShapeDecoration(
+              shadows: [
+                AppTheme.boxShadow,
+              ],
               gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

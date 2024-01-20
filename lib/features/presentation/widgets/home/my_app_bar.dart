@@ -2,6 +2,8 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
 
+import '../../pages/home/notification_page/notification_screen.dart';
+
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({Key? key}) : super(key: key);
 
@@ -41,9 +43,38 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ],
       ),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.notifications_outlined),
-          onPressed: () {},
+        Stack(
+          children: [
+            Align(
+              alignment: Alignment.center,
+              child: IconButton(
+                splashRadius: 20,
+                icon: Icon(
+                  Icons.notifications_outlined,
+                  color: AppColors.blackOpacity65,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationScreen(),
+                      ));
+                },
+              ),
+            ),
+            Positioned(
+              right: 13,
+              top: 17,
+              child: Container(
+                width: 10,
+                height: 10,
+                decoration: const BoxDecoration(
+                  color: AppColors.secondaryColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );

@@ -1,6 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -146,13 +145,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                             ],
                           ),
                           boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromRGBO(30, 32, 37, 0.08),
-                              offset: Offset(0, -1),
-                              blurRadius: 0,
-                              spreadRadius: 0,
-                              blurStyle: BlurStyle.inner,
-                            ),
+                            AppTheme.boxShadow,
                           ],
                           borderRadius: BorderRadius.circular(20),
                         ),

@@ -37,6 +37,13 @@ class AppColors {
 }
 
 class AppTheme {
+  static const BoxShadow boxShadow = BoxShadow(
+    color: Color.fromRGBO(30, 32, 37, 0.08),
+    offset: Offset(0, 1.5),
+    blurRadius: 0,
+    spreadRadius: 0,
+    blurStyle: BlurStyle.inner,
+  );
   static ThemeData themeData = ThemeData(
     primaryColor: AppColors.mainColor,
     scaffoldBackgroundColor: AppColors.bgColor,

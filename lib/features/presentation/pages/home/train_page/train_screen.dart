@@ -70,7 +70,7 @@ class _TrainScreenState extends State<TrainScreen> {
                           ),
                           child: DecoratedBox(
                             decoration: ShapeDecoration(
-                              gradient: LinearGradient(
+                              gradient: const LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 colors: [
@@ -81,15 +81,20 @@ class _TrainScreenState extends State<TrainScreen> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
+                              shadows: [
+                                AppTheme.boxShadow,
+                              ],
                             ),
                             child: ListTile(
                               title: Text(
                                 "Выбрать тему",
-                                style: AppTextStyles.black14Medium,
+                                style: AppTextStyles.black12Medium.copyWith(
+                                  fontSize: 12.sp,
+                                ),
                               ),
                               trailing: Icon(
                                 Icons.touch_app,
-                                color: AppColors.borderColor,
+                                color: AppColors.blackOpacity65,
                               ),
                             ),
                           ),
@@ -134,16 +139,24 @@ class _TrainScreenState extends State<TrainScreen> {
           gradient: const LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [AppColors.mainGradientColor, AppColors.white],
+            colors: [
+              AppColors.mainGradientColor,
+              AppColors.white,
+            ],
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
+          shadows: [
+            AppTheme.boxShadow,
+          ],
         ),
         child: ListTile(
           title: Text(
             title,
-            style: AppTextStyles.black14Medium,
+            style: AppTextStyles.black12Medium.copyWith(
+              fontSize: 12.sp,
+            ),
           ),
           trailing: Container(
             width: 30.w,
