@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../pages/home/notification_page/notification_screen.dart';
 
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({Key? key}) : super(key: key);
+class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
+  const MyAppBarMain({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

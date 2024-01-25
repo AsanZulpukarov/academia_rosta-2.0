@@ -5,7 +5,7 @@ class ProfileNavItem extends StatelessWidget {
   const ProfileNavItem(
       {Key? key, required this.icon, required this.title, required this.onTap})
       : super(key: key);
-  final String icon;
+  final IconData icon;
   final String title;
   final Function()? onTap;
   @override
@@ -29,11 +29,11 @@ class ProfileNavItem extends StatelessWidget {
         ),
         child: ListTile(
           leading: CircleAvatar(
+            backgroundColor: AppColors.greySoftContainer,
             child: Icon(
-              Icons.person_outline,
+              icon,
               color: AppColors.black,
             ),
-            backgroundColor: AppColors.greySoftContainer,
           ),
           title: Text(title),
           trailing: Icon(

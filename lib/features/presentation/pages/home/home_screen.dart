@@ -2,9 +2,9 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/calendar_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_screen.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/home/profile_screen.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/profile_page/profile_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/train_screen.dart';
-import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_bar.dart';
+import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:flutter/material.dart';
 
 class NavBarItem {
@@ -56,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(),
+      appBar: MyAppBarMain(),
       body: _navBarOptions.elementAt(_selectedIndex).screen,
       bottomNavigationBar: Container(
         height: 56,

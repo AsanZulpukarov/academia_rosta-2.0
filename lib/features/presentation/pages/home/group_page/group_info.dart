@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../app_text_styles.dart';
+import '../../../widgets/home/my_app_bar_second.dart';
 
 class GroupInfo extends StatelessWidget {
   const GroupInfo({Key? key}) : super(key: key);
@@ -10,17 +11,8 @@ class GroupInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Group name"),
-        centerTitle: true,
-        leading: IconButton(
-          splashRadius: 20,
-          alignment: Alignment.center,
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+      appBar: MyAppBarSecond(
+        title: "Название группы",
       ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),

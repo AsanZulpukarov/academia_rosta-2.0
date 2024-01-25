@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -18,24 +19,16 @@ class _NotificationScreenState extends State<NotificationScreen> {
   Widget build(BuildContext context) {
     bool isEmpty = true;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Уведомления"),
-        centerTitle: true,
-        leading: IconButton(
+      appBar: MyAppBarSecond(
+        title: "Уведомления",
+        action: IconButton(
           splashRadius: 20,
-          alignment: Alignment.center,
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        actions: [
-          IconButton(
-            splashRadius: 20,
-            onPressed: () {},
-            icon: Icon(Icons.done),
+          onPressed: () {},
+          icon: const Icon(
+            Icons.check_circle_outline,
+            color: AppColors.black,
           ),
-        ],
+        ),
       ),
       body: isEmpty
           ? ListView.separated(
@@ -54,7 +47,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       Align(
                         alignment: Alignment.center,
                         child: Container(
-                          padding: const EdgeInsets.all(12),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 12),
                           height: 76.h,
                           decoration: ShapeDecoration(
                             color: AppColors.white,
@@ -73,10 +67,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             ],
                           ),
                           child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Expanded(
                                     flex: 2,
@@ -86,7 +79,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                           AppTextStyles.black18Medium.copyWith(
                                         color: isEven
                                             ? AppColors.black
-                                            : AppColors.black.withOpacity(0.8),
+                                            : AppColors.black.withOpacity(0.6),
                                       ),
                                       overflow: TextOverflow.ellipsis,
                                       maxLines: 1,
@@ -100,12 +93,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                       style: AppTextStyles.black14.copyWith(
                                         color: isEven
                                             ? AppColors.black
-                                            : AppColors.black.withOpacity(0.8),
+                                            : AppColors.black.withOpacity(0.6),
                                       ),
                                     ),
                                   ),
                                 ],
                               ),
+                              Gap(10),
                               Row(
                                 children: [
                                   Expanded(
@@ -117,7 +111,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                       style: AppTextStyles.black14.copyWith(
                                         color: isEven
                                             ? AppColors.black
-                                            : AppColors.black.withOpacity(0.8),
+                                            : AppColors.black.withOpacity(0.6),
                                       ),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,

@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/features/presentation/pages/auth/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../app_text_styles.dart';
@@ -39,6 +40,9 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Stack(
@@ -47,7 +51,8 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 500,
+                  height: 360.h,
+                  alignment: Alignment.topCenter,
                   child: IndexedStack(
                     index: _currentIndex,
                     children: [
