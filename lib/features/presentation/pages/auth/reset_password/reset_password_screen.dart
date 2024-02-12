@@ -1,19 +1,17 @@
-import 'package:academia_rosta_diplom/app_text_styles.dart';
-import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../learn_app_screen.dart';
-import '../reset_password/reset_password_screen.dart';
+import '../../../../../app_text_styles.dart';
+import '../../../../../app_theme.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _loginController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -64,36 +62,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   const Gap(60),
                   Form(
                     key: _formKey,
-                    child: Column(
-                      children: [_login(), const Gap(30), _password()],
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResetPasswordScreen()));
-                        },
-                        child: Text(
-                          "Забыл пароль?",
-                          style: AppTextStyles.black14
-                              .copyWith(color: AppColors.main),
-                        ),
-                      ),
-                    ],
+                    child: _login(),
                   ),
                   const Gap(30),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LearnAppScreen()));
-                    },
+                    onTap: () {},
                     child: Container(
                       width: double.infinity,
                       padding: const EdgeInsets.all(10),
@@ -103,11 +76,21 @@ class _SignInScreenState extends State<SignInScreen> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
-                        'Войти',
+                        'Отправить',
                         style: AppTextStyles.black16.copyWith(
                           color: AppColors.white,
                         ),
                       ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Вернуться в войти",
+                      style:
+                          AppTextStyles.black14.copyWith(color: AppColors.main),
                     ),
                   ),
                 ],

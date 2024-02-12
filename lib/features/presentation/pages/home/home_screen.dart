@@ -3,7 +3,7 @@ import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/calendar_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/pages/home/profile_page/profile_screen.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/train_screen.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/train_page/train_%20screen.dart';
 import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:flutter/material.dart';
 

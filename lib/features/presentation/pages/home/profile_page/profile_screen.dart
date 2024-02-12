@@ -3,6 +3,8 @@ import 'package:academia_rosta_diplom/features/presentation/pages/home/profile_p
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../../app_theme.dart';
+import '../../../widgets/home/profile_avatar.dart';
 import '../../../widgets/home/profile_nav_item.dart';
 import 'about_app_screen.dart';
 import 'edit_profile_screen.dart';
@@ -14,25 +16,35 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double gap = 20;
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Asan Zulpukarov",
-            style: AppTextStyles.black26,
+          Center(
+            child: Column(
+              children: [
+                ProfileAvatarItem(
+                  image: 'man_3',
+                  radius: 60,
+                  backgroundColor: AppColors.white,
+                ),
+                Gap(10),
+                Text(
+                  "Asan Zulpukarov",
+                  style: AppTextStyles.black20,
+                ),
+                Text(
+                  "asanzulpukarov@gmail.com",
+                  style: AppTextStyles.black14,
+                ),
+                Text(
+                  "+996 990 551 380",
+                  style: AppTextStyles.black14,
+                ),
+              ],
+            ),
           ),
-          Gap(10),
-          Text(
-            "asanzulpukarov@gmail.com",
-            style: AppTextStyles.black16Regular,
-          ),
-          Gap(10),
-          Text(
-            "+996 990 551 380",
-            style: AppTextStyles.black16Regular,
-          ),
-          Gap(40),
+          Gap(30),
           ProfileNavItem(
             icon: Icons.person_outline,
             title: 'Редактировать профиль',
@@ -73,11 +85,53 @@ class ProfileScreen extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => AboutAppScreen()));
             },
           ),
-          Gap(40),
+          Gap(gap),
           ProfileNavItem(
             icon: Icons.exit_to_app,
             title: 'Выйти',
-            onTap: () {},
+            onTap: () async {
+              await showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  title: Text(
+                    'Выйти из аккаунта?',
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Text(
+                    'Вы действительно хотите выйти?',
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: [
+                    Row(
+                      children: [
+                        Gap(10),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () => Navigator.of(context).pop(true),
+                            child: Text('Выйти'),
+                          ),
+                        ),
+                        Gap(20),
+                        Expanded(
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStatePropertyAll(AppColors.grey),
+                            ),
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: Text(
+                              'Остаться',
+                              style: AppTextStyles.black14,
+                            ),
+                          ),
+                        ),
+                        Gap(10),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ],
       ),

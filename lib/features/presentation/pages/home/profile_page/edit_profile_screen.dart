@@ -1,13 +1,15 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/presentation/widgets/home/profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../app_theme.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({Key? key}) : super(key: key);
-
+  EditProfileScreen({Key? key}) : super(key: key);
+  int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +23,68 @@ class EditProfileScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Center(
+                child: Column(
+                  children: [
+                    ProfileAvatarItem(
+                      image: "boy_1",
+                      radius: 60,
+                      backgroundColor: AppColors.white,
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Выберите фото:"),
+                            content: Container(
+                              width: MediaQuery.sizeOf(context).width.w,
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                itemCount: ProfileAvatar.listAvatars.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 10,
+                                  crossAxisSpacing: 10,
+                                ),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      _currentIndex = index;
+                                    },
+                                    child: ProfileAvatarItem(
+                                      image: ProfileAvatar.listAvatars
+                                          .elementAt(index),
+                                      radius: 60,
+                                      backgroundColor: _currentIndex == index
+                                          ? AppColors.main
+                                          : AppColors.white,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Выбрать"))
+                            ],
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Изменить фото",
+                        style: AppTextStyles.black14.copyWith(
+                          color: AppColors.main,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               _titleAndField(title: "Фамилия"),
               Gap(10),
               _titleAndField(title: "Имя"),
@@ -30,7 +94,7 @@ class EditProfileScreen extends StatelessWidget {
               _titleAndField(title: "Email"),
               Gap(10),
               _titleAndField(title: "Телефон номер"),
-              Gap(40),
+              Gap(30),
               Align(
                 alignment: Alignment.center,
                 child: GestureDetector(

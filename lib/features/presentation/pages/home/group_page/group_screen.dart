@@ -1,6 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_info.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/group_page/group_info_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -15,8 +15,8 @@ class GroupScreen extends StatelessWidget {
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => GroupInfo()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => GroupInfoScreen()));
           },
           child: Container(
             height: 140,
@@ -25,10 +25,13 @@ class GroupScreen extends StatelessWidget {
               shadows: [
                 AppTheme.boxShadow,
               ],
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [AppColors.mainGradientColor, AppColors.white],
+                colors: [
+                  AppColors.mainGradientColor,
+                  AppColors.mainGradientColor.withOpacity(0.3)
+                ],
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
@@ -44,6 +47,7 @@ class GroupScreen extends StatelessWidget {
                     color: AppColors.blackOpacity65,
                   ),
                 ),
+                Gap(10),
                 _groupInfoRow('Предмет', 'Математика'),
                 _groupInfoRow('Учитель', 'Асан Зулпукаров'),
               ],
@@ -74,7 +78,9 @@ class GroupScreen extends StatelessWidget {
           child: Text(
             text2,
             style: AppTextStyles.black16.copyWith(
-                color: AppColors.blackOpacity65, fontWeight: FontWeight.w500),
+              color: AppColors.blackOpacity65,
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
       ],
