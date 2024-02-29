@@ -7,7 +7,9 @@ import '../../../../../app_theme.dart';
 import '../../../widgets/home/profile_avatar.dart';
 import '../../../widgets/home/profile_nav_item.dart';
 import 'about_app_screen.dart';
+import 'contact_screen.dart';
 import 'edit_profile_screen.dart';
+import 'my_statistic_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -68,13 +70,19 @@ class ProfileScreen extends StatelessWidget {
           ProfileNavItem(
             icon: Icons.bar_chart_outlined,
             title: 'Моя статистика',
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MyStatisticScreen()));
+            },
           ),
           Gap(gap),
           ProfileNavItem(
             icon: Icons.email_outlined,
             title: 'Связаться с нами',
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ContactScreen()));
+            },
           ),
           Gap(gap),
           ProfileNavItem(
