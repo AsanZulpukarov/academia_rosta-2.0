@@ -1,5 +1,5 @@
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/features/presentation/pages/splash_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
