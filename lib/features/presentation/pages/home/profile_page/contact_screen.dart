@@ -4,6 +4,7 @@ import 'package:academia_rosta_diplom/features/presentation/widgets/home/my_app_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({Key? key}) : super(key: key);
@@ -47,10 +48,53 @@ class ContactScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _contactItem(name: "Whatsapp"),
-                _contactItem(name: "Instagram"),
-                _contactItem(name: "Facebook"),
-                _contactItem(name: "Web"),
+                _contactItem(
+                  name: "Whatsapp",
+                  function: () async {
+                    String phone = "+996990551380";
+                    String message = "Здравствуйте, у меня есть вопросы.";
+                    final url =
+                        'https://wa.me/$phone?text=${Uri.parse(message)}';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      return await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
+                _contactItem(
+                  name: "Instagram",
+                  function: () async {
+                    const url = 'https://www.instagram.com/akademia.rosta/';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      return await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
+                _contactItem(
+                  name: "Facebook",
+                  function: () async {
+                    const url = 'https://www.facebook.com/rost.kg/';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      return await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
+                _contactItem(
+                  name: "Web",
+                  function: () async {
+                    const url = 'https://rost.kg/';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      return await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                ),
               ],
             ),
           ],
@@ -59,9 +103,9 @@ class ContactScreen extends StatelessWidget {
     );
   }
 
-  Widget _contactItem({required String name}) {
+  Widget _contactItem({required String name, required Function()? function}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: function,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,

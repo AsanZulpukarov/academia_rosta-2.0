@@ -27,28 +27,39 @@ class GroupInfoScreen extends StatelessWidget {
             ),
             Gap(30),
             Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppColors.secondaryColor.withOpacity(0.5),
-                    AppColors.white,
-                  ],
-                ),
-                boxShadow: const [
-                  AppTheme.boxShadow,
+              decoration: ShapeDecoration(
+                shadows: [
+                  BoxShadow(
+                    color: AppColors.black.withOpacity(0.5),
+                    offset: Offset(4, 4),
+                    blurRadius: 8,
+                  ),
                 ],
-                borderRadius: BorderRadius.circular(20),
+                color: AppColors.secondaryColor,
+                // gradient: LinearGradient(
+                //   begin: Alignment.bottomRight,
+                //   end: Alignment.topLeft,
+                //   colors: [
+                //     AppColors.secondaryColor,
+                //     AppColors.secondaryColor,
+                //   ],
+                // ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
               child: ListTile(
                 title: Text(
                   "Студенты",
-                  style: AppTextStyles.black16Regular,
+                  style: AppTextStyles.black16Regular.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
                 leading: Text(
                   "№",
-                  style: AppTextStyles.black16Regular,
+                  style: AppTextStyles.black16Regular.copyWith(
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
@@ -66,34 +77,42 @@ class GroupInfoScreen extends StatelessWidget {
                             builder: (context) => StudentInfoScreen()));
                   },
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: ShapeDecoration(
+                      shadows: [
+                        BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(4, 4),
+                          blurRadius: 8,
+                        ),
+                      ],
                       gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
+                        begin: Alignment.bottomRight,
+                        end: Alignment.topLeft,
                         colors: [
-                          AppColors.main.withOpacity(0.5),
-                          AppColors.white,
+                          AppColors.main.withOpacity(0.9),
+                          AppColors.main,
                         ],
                       ),
-                      boxShadow: const [
-                        AppTheme.boxShadow,
-                      ],
-                      borderRadius: BorderRadius.circular(20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                     child: ListTile(
                       title: Text(
                         "Asan Zulpukarov",
-                        style: AppTextStyles.black16Regular
-                            .copyWith(color: AppColors.blackOpacity65),
+                        style: AppTextStyles.black16Regular.copyWith(
+                          color: AppColors.white,
+                        ),
                       ),
                       leading: Text(
                         (index + 1).toString(),
-                        style: AppTextStyles.black16Regular
-                            .copyWith(color: AppColors.blackOpacity65),
+                        style: AppTextStyles.black16Regular.copyWith(
+                          color: AppColors.white,
+                        ),
                       ),
                       trailing: Icon(
                         Icons.arrow_forward_ios,
-                        color: AppColors.blackOpacity65,
+                        color: AppColors.white,
                       ),
                     ),
                   ),
@@ -130,14 +149,18 @@ class GroupInfoScreen extends StatelessWidget {
           flex: 2,
           child: Text(
             title,
-            style: AppTextStyles.black16,
+            style: AppTextStyles.black16.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
           ),
         ),
         Expanded(
           flex: 3,
           child: Text(
             subtitle,
-            style: AppTextStyles.black14,
+            style: AppTextStyles.black16.copyWith(
+              fontWeight: FontWeight.normal,
+            ),
           ),
         ),
       ],
@@ -148,26 +171,28 @@ class GroupInfoScreen extends StatelessWidget {
     return Row(
       children: [
         _actionButtonAndName(
-          nameIcon: 'attendance_icon.png',
-          nameButton: 'Посещае-\nмость',
+          // nameIcon: 'attendance_icon.png',
+          nameIcon: 'dates.png',
+          // nameButton: 'Посещае-\nмость',
+          nameButton: 'Посещения',
           function: () {},
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'history_lesson_icon.png',
-          nameButton: 'История\nзанятий',
+          nameButton: 'Занятия',
           function: () {},
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'home_work_icon.png',
-          nameButton: 'Домашнее\nзадание',
+          nameButton: 'Д/З',
           function: () {},
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'grade_icon.png',
-          nameButton: 'Оценка\n',
+          nameButton: 'Оценки',
           function: () {},
         ),
       ],
@@ -183,26 +208,34 @@ class GroupInfoScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: AppColors.main.withOpacity(0.2),
-          borderRadius: BorderRadius.circular(20),
-        ),
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.black.withOpacity(0.25),
+                offset: Offset(2, 2),
+                blurRadius: 2,
+              ),
+            ]),
         child: GestureDetector(
           onTap: function,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Gap(8),
               Container(
                 width: 40,
                 height: 40,
                 child: Image.asset("assets/icons/$nameIcon"),
               ),
-              Gap(4),
+              Gap(8),
               Text(
                 nameButton,
                 textAlign: TextAlign.center,
                 style: AppTextStyles.black14,
               ),
+              Gap(8),
             ],
           ),
         ),

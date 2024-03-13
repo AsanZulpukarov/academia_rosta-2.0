@@ -1,5 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/data/api_source.dart';
+import 'package:academia_rosta_diplom/features/presentation/pages/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -88,11 +90,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   const Gap(30),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LearnAppScreen()));
+                    onTap: () async {
+                      if (_formKey.currentState!.validate()) {
+                        bool isSuccess = await ApiSource.postSignIn(
+                          username: _loginController.text,
+                          password: _passwordController.text,
+                        );
+                        if (isSuccess == true) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()));
+                        } else {}
+                      }
                     },
                     child: Container(
                       width: double.infinity,

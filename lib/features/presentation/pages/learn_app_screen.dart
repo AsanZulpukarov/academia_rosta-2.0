@@ -51,7 +51,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 360.h,
+                  height: 400.h,
                   alignment: Alignment.topCenter,
                   child: IndexedStack(
                     index: _currentIndex,
@@ -134,8 +134,8 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
       children: [
         Image.asset(
           _appInfo.elementAt(index).image,
-          height: 300,
-          width: 300,
+          height: 240.h,
+          width: 240.w,
         ),
         const Gap(10),
         Text(
@@ -143,7 +143,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.black.withOpacity(0.800000011920929),
-            fontSize: 22,
+            fontSize: 20.sp,
           ),
         ),
       ],

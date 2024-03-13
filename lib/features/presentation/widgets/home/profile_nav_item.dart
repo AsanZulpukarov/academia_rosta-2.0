@@ -20,10 +20,9 @@ class ProfileNavItem extends StatelessWidget {
           ),
           shadows: [
             BoxShadow(
-              color: AppColors.main.withOpacity(0.46),
-              blurRadius: 6,
-              offset: Offset(0, 0),
-              spreadRadius: 2,
+              color: AppColors.main.withOpacity(0.4),
+              blurRadius: 8,
+              offset: const Offset(4, 4),
             )
           ],
         ),
@@ -39,6 +38,7 @@ class ProfileNavItem extends StatelessWidget {
           trailing: Icon(
             Icons.arrow_forward_ios,
             color: AppColors.black,
+            size: 20,
           ),
         ),
       ),
