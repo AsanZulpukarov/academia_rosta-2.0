@@ -3,7 +3,7 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_
 
 import 'package:dartz/dartz.dart';
 
-import '../../domain/repositories/app_repository.dart';
+import '../../domain/repositories/group_repository.dart';
 
 class GroupRepositoryImpl extends GroupRepository {
   GroupRepositoryImpl();

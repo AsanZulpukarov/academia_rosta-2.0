@@ -1,7 +1,7 @@
-import 'package:academia_rosta_diplom/features/home/data/models/group/student_model.dart';
-import 'package:academia_rosta_diplom/features/home/data/models/group/subject_model.dart';
-import 'package:academia_rosta_diplom/features/home/data/models/group/teacher_model.dart';
-import 'package:academia_rosta_diplom/features/home/data/models/group/timetable_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/student_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/timetable_model.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 
 class GroupInfoByIdModel extends GroupInfoByIdEntity {

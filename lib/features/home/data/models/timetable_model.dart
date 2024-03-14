@@ -1,4 +1,4 @@
-import '../../../domain/entities/group/timetable_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/timetable_entity.dart';
 
 class TimetableModel extends TimetableEntity {
   TimetableModel({

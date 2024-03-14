@@ -1,48 +1,18 @@
 import 'dart:io';
 
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class ApiSource {
-  static const String ip = "192.168.130.93";
-  static const String host = "http";
-  static const String port = "8080";
   static String token = "";
-
-  /*
-  static Future<bool> postSignUp(
-    String name,
-    String password,
-  ) async {
-    var headers = {
-      'Content-Type': 'application/json',
-    };
-    var data = UserEntity(name: name, password: password);
-    var dio = Dio();
-    var response = await dio.request(
-      '$host://$ip:$port/api/register',
-      options: Options(
-        method: 'POST',
-        headers: headers,
-      ),
-      data: data.toJson(),
-    );
-
-    if (response.statusCode == 200) {
-      userId = int.parse(response.data["user_id"]);
-      return true;
-    } else {
-      return false;
-    }
-  }
-*/
 
   static Future<bool> postSignIn({
     required String username,
     required String password,
   }) async {
     try {
-      final url = Uri.parse('$host://$ip:$port/auth/sign-in');
+      final url = Uri.parse('${Constants.baseUrl}auth/sign-in');
       final headers = <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptCharsetHeader: 'utf-8',
@@ -74,7 +44,7 @@ class ApiSource {
 
   static Future<bool> getGroups() async {
     try {
-      final url = Uri.parse('$host://$ip:$port/api/groups');
+      final url = Uri.parse('${Constants.baseUrl}api/groups');
       final headers = <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptCharsetHeader: 'utf-8',
@@ -101,7 +71,7 @@ class ApiSource {
   static Future<bool> getGroupById({required String id}) async {
     try {
       final url =
-          Uri.parse('$host://$ip:$port/api/groups/group-details?groupId=$id');
+          Uri.parse('${Constants.baseUrl}api/groups/group-details?groupId=$id');
       final headers = <String, String>{
         HttpHeaders.contentTypeHeader: 'application/json',
         HttpHeaders.acceptCharsetHeader: 'utf-8',
