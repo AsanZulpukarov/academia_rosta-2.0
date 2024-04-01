@@ -1,10 +1,18 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/home_work_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
+import 'history_lesson_screen.dart';
 
 class GroupInfoScreen extends StatelessWidget {
   const GroupInfoScreen({Key? key}) : super(key: key);
@@ -20,9 +28,42 @@ class GroupInfoScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.center,
-              child: _groupInfo(),
+            Column(
+              children: [
+                _row2Text(
+                  title: "Предмет:",
+                  subtitle: "Ментальная арифметика",
+                  function: () {
+                    showBottomWindowSubject(
+                      context,
+                      SubjectModel(
+                        id: 1,
+                        name: "Менталька",
+                        cost: 200,
+                      ),
+                    );
+                  },
+                ),
+                Gap(10),
+                _row2Text(
+                  title: "Учитель:",
+                  subtitle: "Маданбеков Марсел",
+                  function: () {
+                    showBottomWindowTeacher(
+                      context,
+                      TeacherModel(
+                          id: 1,
+                          firstname: "Марсел",
+                          lastname: "Маданбеков",
+                          phoneNumber: "+996990551380"),
+                    );
+                  },
+                ),
+                Gap(30),
+                _actionButton(context),
+                Gap(30),
+                _groupCalendar(),
+              ],
             ),
             Gap(30),
             Container(
@@ -127,21 +168,10 @@ class GroupInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _groupInfo() {
-    return Column(
-      children: [
-        _row2Text(title: "Предмет:", subtitle: "Ментальная арифметика"),
-        Gap(10),
-        _row2Text(title: "Учитель:", subtitle: "Маданбеков Марсел"),
-        Gap(30),
-        _actionButton(),
-        Gap(30),
-        _groupCalendar(),
-      ],
-    );
-  }
-
-  Widget _row2Text({required String title, required String subtitle}) {
+  Widget _row2Text(
+      {required String title,
+      required String subtitle,
+      required Function function}) {
     return Row(
       children: [
         Expanded(
@@ -155,10 +185,18 @@ class GroupInfoScreen extends StatelessWidget {
         ),
         Expanded(
           flex: 3,
-          child: Text(
-            subtitle,
-            style: AppTextStyles.black16.copyWith(
-              fontWeight: FontWeight.normal,
+          child: TextButton(
+            onPressed: () {
+              function();
+            },
+            style: const ButtonStyle(
+              alignment: Alignment.centerLeft,
+            ),
+            child: Text(
+              subtitle,
+              style: AppTextStyles.black16.copyWith(
+                fontWeight: FontWeight.normal,
+              ),
             ),
           ),
         ),
@@ -166,33 +204,43 @@ class GroupInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _actionButton() {
+  Widget _actionButton(BuildContext context) {
     return Row(
       children: [
         _actionButtonAndName(
-          // nameIcon: 'attendance_icon.png',
-          nameIcon: 'dates.png',
-          // nameButton: 'Посещае-\nмость',
+          nameIcon: 'attendance_icon.png',
           nameButton: 'Посещения',
-          function: () {},
+          function: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AttendanceScreen()));
+          },
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'history_lesson_icon.png',
           nameButton: 'Занятия',
-          function: () {},
+          function: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HistoryLessonScreen()));
+          },
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'home_work_icon.png',
           nameButton: 'Д/З',
-          function: () {},
+          function: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => HomeWorkScreen()));
+          },
         ),
         Gap(10),
         _actionButtonAndName(
           nameIcon: 'grade_icon.png',
           nameButton: 'Оценки',
-          function: () {},
+          function: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => GradeScreen()));
+          },
         ),
       ],
     );
@@ -204,39 +252,29 @@ class GroupInfoScreen extends StatelessWidget {
     required Function()? function,
   }) {
     return Expanded(
-      child: Container(
+      child: ContainerFrameWidget(
+        onTap: function,
+        offset: const Offset(2, 2),
+        blurRadius: 2.0,
         padding: const EdgeInsets.all(4),
-        decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.black.withOpacity(0.25),
-                offset: Offset(2, 2),
-                blurRadius: 2,
-              ),
-            ]),
-        child: GestureDetector(
-          onTap: function,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Gap(8),
-              Container(
-                width: 40,
-                height: 40,
-                child: Image.asset("assets/icons/$nameIcon"),
-              ),
-              Gap(8),
-              Text(
-                nameButton,
-                textAlign: TextAlign.center,
-                style: AppTextStyles.black14,
-              ),
-              Gap(8),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Gap(8),
+            Container(
+              width: 40,
+              height: 40,
+              child: Image.asset("assets/icons/$nameIcon"),
+            ),
+            Gap(8),
+            Text(
+              nameButton,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.black14,
+            ),
+            Gap(8),
+          ],
         ),
       ),
     );

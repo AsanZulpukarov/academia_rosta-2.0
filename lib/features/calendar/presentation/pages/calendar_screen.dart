@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -15,16 +16,6 @@ class CalendarScreen extends StatefulWidget {
 class _CalendarScreenState extends State<CalendarScreen> {
   late DateTime _selectedDay;
   late DateTime _focusedDay;
-
-  final List<Color> _randomColors = [
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.deepPurple,
-    Colors.deepOrangeAccent,
-    Colors.yellowAccent,
-    Colors.indigo,
-  ];
 
   @override
   void initState() {
@@ -102,59 +93,49 @@ class _CalendarScreenState extends State<CalendarScreen> {
             physics: const NeverScrollableScrollPhysics(),
             itemCount: 5,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                child: Container(
-                  height: 60.h,
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.black.withOpacity(0.25),
-                          blurRadius: 4,
-                          offset: Offset(4, 4),
-                        ),
-                      ]),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "25",
-                              style: AppTextStyles.black20Bold.copyWith(
-                                color: AppColors.main,
-                              ),
+              return ContainerFrameWidget(
+                height: 60.h,
+                offset: const Offset(4, 4),
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "25",
+                            style: AppTextStyles.black20Bold.copyWith(
+                              color: AppColors.main,
                             ),
-                            Text(
-                              "Март",
-                              style: AppTextStyles.black16.copyWith(
-                                color: AppColors.main,
-                                fontWeight: FontWeight.normal,
-                              ),
+                          ),
+                          Text(
+                            "Март",
+                            style: AppTextStyles.black16.copyWith(
+                              color: AppColors.main,
+                              fontWeight: FontWeight.normal,
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      const VerticalDivider(
-                        color: AppColors.main,
-                        thickness: 3,
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                      Expanded(
-                          flex: 3,
-                          child: ListTile(
-                            title: Text("Ментальная арифметика"),
-                            subtitle: Text("Описание"),
-                          )),
-                    ],
-                  ),
+                    ),
+                    const VerticalDivider(
+                      color: AppColors.main,
+                      thickness: 3,
+                      indent: 10,
+                      endIndent: 10,
+                    ),
+                    Expanded(
+                        flex: 3,
+                        child: ListTile(
+                          title: Text("Ментальная арифметика"),
+                          subtitle: Text("Описание"),
+                        )),
+                  ],
                 ),
               );
             },

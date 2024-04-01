@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/change_password_screen.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_nav_item.dart';
@@ -114,22 +115,26 @@ class ProfileScreen extends StatelessWidget {
                       children: [
                         Gap(10),
                         Expanded(
-                          child: ElevatedButton(
+                          child: MainButtonWidget(
+                            borderRadius: BorderRadius.circular(20),
                             onPressed: () => Navigator.of(context).pop(true),
-                            child: Text('Выйти'),
+                            child: Text(
+                              'Выйти',
+                              style: AppTextStyles.black16.copyWith(
+                                color: AppColors.white,
+                              ),
+                            ),
                           ),
                         ),
                         Gap(20),
                         Expanded(
-                          child: ElevatedButton(
-                            style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStatePropertyAll(AppColors.grey),
-                            ),
+                          child: MainButtonWidget(
+                            borderRadius: BorderRadius.circular(20),
                             onPressed: () => Navigator.of(context).pop(false),
-                            child: Text(
+                            backgroundColor: AppColors.grey,
+                            child: const Text(
                               'Остаться',
-                              style: AppTextStyles.black14,
+                              style: AppTextStyles.black16,
                             ),
                           ),
                         ),

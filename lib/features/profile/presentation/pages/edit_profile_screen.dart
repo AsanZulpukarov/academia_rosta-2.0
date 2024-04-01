@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/material.dart';
@@ -95,23 +96,13 @@ class EditProfileScreen extends StatelessWidget {
               Gap(10),
               _titleAndField(title: "Телефон номер"),
               Gap(30),
-              Align(
-                alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.main,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      'Сохранить',
-                      style: AppTextStyles.black16.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
+              MainButtonWidget(
+                onPressed: (){},
+                borderRadius: BorderRadius.circular(20),
+                child: Text(
+                  'Сохранить',
+                  style: AppTextStyles.black16.copyWith(
+                    color: AppColors.white,
                   ),
                 ),
               ),

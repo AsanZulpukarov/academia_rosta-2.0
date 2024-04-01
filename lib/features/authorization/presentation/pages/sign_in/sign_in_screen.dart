@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_up/sign_up_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import '../../../../home/data/api_source.dart';
@@ -88,8 +89,8 @@ class _SignInScreenState extends State<SignInScreen> {
                     ],
                   ),
                   const Gap(30),
-                  GestureDetector(
-                    onTap: () async {
+                  MainButtonWidget(
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         bool isSuccess = await ApiSource.postSignIn(
                           username: _loginController.text,
@@ -103,43 +104,28 @@ class _SignInScreenState extends State<SignInScreen> {
                         } else {}
                       }
                     },
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(10),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.main,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'Войти',
-                        style: AppTextStyles.black16.copyWith(
-                          color: AppColors.white,
-                        ),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Text(
+                      'Войти',
+                      style: AppTextStyles.black16.copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ),
                   Gap(20),
-                  GestureDetector(
-                    onTap: () {
+                  MainButtonWidget(
+                    onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const SignUpScreen()));
                     },
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(10),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.grey,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'Подать заявку',
-                        style: AppTextStyles.black16.copyWith(
-                          color: AppColors.main,
-                        ),
+                    backgroundColor: AppColors.grey,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Text(
+                      'Подать заявку',
+                      style: AppTextStyles.black16.copyWith(
+                        color: AppColors.main,
                       ),
                     ),
                   ),

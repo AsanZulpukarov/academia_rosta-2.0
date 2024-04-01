@@ -25,14 +25,12 @@ class _ChooseThemeDialogState extends State<ChooseThemeDialog> {
                 selectIndex = index;
               });
             },
-            child: RadioMenuButton(
-              value: 1,
-              groupValue: 1,
-              onChanged: (index) {},
-              child: Text(
-                "Помощь друга +1",
+            child: ListTile(
+              title: Text(
+                "ФИО",
                 style: AppTextStyles.black16,
               ),
+              trailing: Icon(Icons.check_circle),
             ),
           );
         },

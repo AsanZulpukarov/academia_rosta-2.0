@@ -1,3 +1,4 @@
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -62,8 +63,8 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                     ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: () {
+                MainButtonWidget(
+                  onPressed: () {
                     setState(() {
                       if (_currentIndex < _appInfo.length - 1) {
                         _currentIndex++;
@@ -75,42 +76,27 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                       }
                     });
                   },
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: AppColors.main,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      'Следующий',
-                      style: AppTextStyles.black16.copyWith(
-                        color: AppColors.white,
-                      ),
+                  borderRadius: BorderRadius.circular(20.0),
+                  child: Text(
+                    'Следующий',
+                    style: AppTextStyles.black16.copyWith(
+                      color: AppColors.white,
                     ),
                   ),
                 ),
                 const Gap(10),
-                GestureDetector(
-                  onTap: () {
+                MainButtonWidget(
+                  onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => HomeScreen()));
                   },
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border:
-                          Border.all(color: AppColors.blackOpacity65, width: 2),
-                    ),
-                    child: Text(
-                      'Пропустить',
-                      style: AppTextStyles.black16.copyWith(
-                        color: AppColors.blackOpacity65,
-                      ),
+                  backgroundColor: AppColors.transparent,
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: AppColors.blackOpacity65, width: 2),
+                  child: Text(
+                    'Пропустить',
+                    style: AppTextStyles.black16.copyWith(
+                      color: AppColors.blackOpacity65,
                     ),
                   ),
                 ),

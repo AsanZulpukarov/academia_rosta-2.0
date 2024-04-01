@@ -14,10 +14,11 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color blue = Color(0xFF3D8BFF);
   static const Color black = Colors.black;
+  static const Color yellow = Colors.yellow;
   static Color blackOpacity65 = AppColors.black.withOpacity(0.65);
   static const Color pink = Colors.pink;
   static const Color bgColor = Color(0xFFFFFFFF);
-  static const Color mainBlack = Color(0xFF444444);
+  static const Color mainBlack = Colors.black;
   static const Color secondBlack = Color(0xFF1C1C1C);
   static const Color mainRed = Color(0xFFFF0000);
   static const Color grey = Color(0xFFE0E0E0);
@@ -34,6 +35,8 @@ class AppColors {
   static const Color pinkBorder = Color(0xFfFF8B8B);
   static const Color borderColor = Color.fromRGBO(89, 88, 88, 1);
   static const Color mainGradientColor = Color(0xE84B8EDC);
+  static const Color transparent = Colors.transparent;
+  static const Color green = Colors.green;
 }
 
 class AppTheme {
@@ -60,6 +63,9 @@ class AppTheme {
       unselectedLabelStyle: AppTextStyles.black18Semibold
           .copyWith(fontSize: 16.sp, color: AppColors.grey),
     ),
+    dialogTheme: const DialogTheme(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)))),
     appBarTheme: AppBarTheme(
       centerTitle: false,
       elevation: 0,

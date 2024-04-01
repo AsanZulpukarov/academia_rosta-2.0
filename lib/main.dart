@@ -3,6 +3,7 @@ import 'package:academia_rosta_diplom/features/home/presentation/pages/splash_sc
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +17,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(builder: (context, child) {
       return MaterialApp(
+        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+        supportedLocales: const [
+          Locale('en'),
+          Locale('ru'),
+        ],
         debugShowCheckedModeBanner: false,
         theme: AppTheme.themeData,
         home: const SplashScreen(),

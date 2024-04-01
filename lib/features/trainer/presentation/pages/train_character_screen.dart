@@ -246,6 +246,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
       ),
     );
   }
+  /*
 
   Widget _characterGradient() {
     return Container(
@@ -326,4 +327,6 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
       ),
     );
   }
+
+  */
 }

@@ -1,3 +1,4 @@
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -65,21 +66,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     child: _login(),
                   ),
                   const Gap(30),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(10),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: AppColors.main,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'Отправить',
-                        style: AppTextStyles.black16.copyWith(
-                          color: AppColors.white,
-                        ),
+                  MainButtonWidget(
+                    onPressed: () {},
+                    borderRadius: BorderRadius.circular(20),
+                    child: Text(
+                      'Отправить',
+                      style: AppTextStyles.black16.copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ),

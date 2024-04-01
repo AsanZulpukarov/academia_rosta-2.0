@@ -16,11 +16,11 @@ class ProfileNavItem extends StatelessWidget {
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(20),
           ),
           shadows: [
             BoxShadow(
-              color: AppColors.main.withOpacity(0.4),
+              color: AppColors.main.withOpacity(0.25),
               blurRadius: 8,
               offset: const Offset(4, 4),
             )
@@ -35,7 +35,7 @@ class ProfileNavItem extends StatelessWidget {
             ),
           ),
           title: Text(title),
-          trailing: Icon(
+          trailing: const Icon(
             Icons.arrow_forward_ios,
             color: AppColors.black,
             size: 20,

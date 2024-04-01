@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -116,8 +117,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: GestureDetector(
-                          onTap: () {
+                        child: MainButtonWidget(
+                          onPressed: () {
                             _firstnameController.clear();
                             _lastnameController.clear();
                             _phoneController.clear();
@@ -127,27 +128,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             _confirmPasswordController.clear();
                             _branchController.clear();
                           },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(10),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: AppColors.grey,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              'Сбросить',
-                              style: AppTextStyles.black16.copyWith(
-                                color: AppColors.black,
-                              ),
+                          backgroundColor: AppColors.grey,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Text(
+                            'Сбросить',
+                            style: AppTextStyles.black16.copyWith(
+                              color: AppColors.black,
                             ),
                           ),
                         ),
                       ),
                       Gap(20),
                       Expanded(
-                        child: GestureDetector(
-                          onTap: () async {
+                        child: MainButtonWidget(
+                          onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               bool isSuccess = await ApiSource.postSignIn(
                                 username: _loginController.text,
@@ -162,19 +156,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               } else {}
                             }
                           },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(10),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: AppColors.main,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Text(
-                              'Создать',
-                              style: AppTextStyles.black16.copyWith(
-                                color: AppColors.white,
-                              ),
+                          borderRadius: BorderRadius.circular(20),
+                          child: Text(
+                            'Создать',
+                            style: AppTextStyles.black16.copyWith(
+                              color: AppColors.white,
                             ),
                           ),
                         ),

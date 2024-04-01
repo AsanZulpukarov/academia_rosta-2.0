@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -101,19 +102,9 @@ class MyStatisticScreen extends StatelessWidget {
     required int percent,
     Widget? progressIndicator,
   }) {
-    return Container(
+    return ContainerFrameWidget(
       padding: EdgeInsets.symmetric(horizontal: 14, vertical: 20),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.grey,
-            blurStyle: BlurStyle.normal,
-            blurRadius: 8,
-          ),
-        ],
-      ),
+      blurRadius: 8,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,

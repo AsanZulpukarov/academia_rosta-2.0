@@ -1,6 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/calendar_screen.dart';
+import 'package:academia_rosta_diplom/features/calendar/presentation/pages/calendar_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/group_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/profile_screen.dart';

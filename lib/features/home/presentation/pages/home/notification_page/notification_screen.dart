@@ -22,11 +22,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
       appBar: MyAppBarSecond(
         title: "Уведомления",
         action: IconButton(
+          iconSize: 30,
           splashRadius: 20,
           onPressed: () {},
           icon: const Icon(
-            Icons.check_circle_outline,
-            color: AppColors.black,
+            Icons.check_circle,
+            color: AppColors.secondaryColor,
           ),
         ),
       ),
