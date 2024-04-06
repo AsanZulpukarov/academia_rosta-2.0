@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_up/sign_up_screen.dart';
+import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -131,13 +132,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ],
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  'АКАДЕМИЯ РОСТА',
-                  style: AppTextStyles.black16Medium,
-                ),
-              ),
+              BottomAppName(),
             ],
           ),
         ),

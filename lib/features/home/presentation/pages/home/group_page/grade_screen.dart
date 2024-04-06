@@ -1,12 +1,13 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-import '../../../../../trainer/presentation/pages/choose_theme_dialog.dart';
+import 'choose_student_dialog.dart';
 
 enum GradeType { homeWork, classWork, selfWork }
 
@@ -65,6 +66,7 @@ class _GradeScreenState extends State<GradeScreen> {
                     groupValue: typeGrade,
                     onChanged: (String? value) {
                       setState(() {
+                        typeGrade = value!;
                         selectGradeType = GradeType.homeWork;
                       });
                     },
@@ -78,6 +80,7 @@ class _GradeScreenState extends State<GradeScreen> {
                     groupValue: typeGrade,
                     onChanged: (String? value) {
                       setState(() {
+                        typeGrade = value!;
                         selectGradeType = GradeType.classWork;
                       });
                     },
@@ -91,6 +94,7 @@ class _GradeScreenState extends State<GradeScreen> {
                     groupValue: typeGrade,
                     onChanged: (String? value) {
                       setState(() {
+                        typeGrade = value!;
                         selectGradeType = GradeType.selfWork;
                       });
                     },
@@ -103,8 +107,9 @@ class _GradeScreenState extends State<GradeScreen> {
               ),
             ),
             Gap(20),
-            GestureDetector(
-              onTap: () {
+            MainButtonWidget(
+              borderRadius: BorderRadius.circular(20.0),
+              onPressed: () {
                 showDialog(
                   barrierDismissible: false,
                   context: context,
@@ -112,10 +117,10 @@ class _GradeScreenState extends State<GradeScreen> {
                     contentPadding: const EdgeInsets.all(20),
                     scrollable: true,
                     title: const Text(
-                      'Выберите тему',
+                      'Выберите студентов',
                       style: AppTextStyles.black20,
                     ),
-                    content: ChooseThemeDialog(),
+                    content: ChooseStudentsDialog(),
                     actionsAlignment: MainAxisAlignment.spaceAround,
                     actions: [
                       TextButton(
@@ -127,7 +132,7 @@ class _GradeScreenState extends State<GradeScreen> {
                         ),
                       ),
                       TextButton(
-                        onPressed: () => Navigator.pop(context, 'Выбрать'),
+                        onPressed: () => Navigator.pop(context, 'Выбрать: 2'),
                         child: Text(
                           'Выбрать',
                           style: AppTextStyles.black16
@@ -138,19 +143,10 @@ class _GradeScreenState extends State<GradeScreen> {
                   ),
                 );
               },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: AppColors.main,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'Выбрать студентов',
-                  style: AppTextStyles.black16.copyWith(
-                    color: AppColors.white,
-                  ),
+              child: Text(
+                'Выбрать студентов',
+                style: AppTextStyles.black16.copyWith(
+                  color: AppColors.white,
                 ),
               ),
             ),

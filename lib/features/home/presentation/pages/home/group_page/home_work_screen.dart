@@ -67,7 +67,9 @@ class HomeWorkScreen extends StatelessWidget {
                 children: [
                   Text(
                     "ФИО",
-                    style: AppTextStyles.black18Medium,
+                    style: AppTextStyles.black18Medium.copyWith(
+                      color: AppColors.main,
+                    ),
                   ),
                   Gap(20),
                   ListView.separated(

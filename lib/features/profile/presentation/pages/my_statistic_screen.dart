@@ -2,6 +2,8 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/widgets/statistic_card_info_widget.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/widgets/statistic_theme_progressIndicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -13,45 +15,46 @@ class MyStatisticScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarSecond(
+      appBar: const MyAppBarSecond(
         title: "Моя статистика",
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
-        children: [
-          _cardInfoTheme(
+        children: const [
+          StatisticCardInfoWidget(
             theme: "Простое сложение и вычитание (ПСВ)",
             level: "Junior 1, Senior 1",
             percent: 91,
+            progressIndicator: null,
           ),
           Gap(40),
-          _cardInfoTheme(
+          StatisticCardInfoWidget(
             theme: "Помощь брата",
             level: "Junior 1, Senior 1",
             percent: 100,
-            progressIndicator: _themeProgressIndicator(
+            progressIndicator: StatisticThemeProgressIndicatorWidget(
               theme: '+1',
               correct: 0,
               total: 0,
             ),
           ),
           Gap(40),
-          _cardInfoTheme(
+          StatisticCardInfoWidget(
             theme: "Помощь друга",
             level: "Junior 2, Senior 2",
             percent: 20,
-            progressIndicator: _themeProgressIndicator(
+            progressIndicator: StatisticThemeProgressIndicatorWidget(
               theme: '-1',
               correct: 30,
               total: 30,
             ),
           ),
           Gap(40),
-          _cardInfoTheme(
+          StatisticCardInfoWidget(
             theme: "Помощь друга",
             level: "Junior 3, Senior 3",
             percent: 50,
-            progressIndicator: _themeProgressIndicator(
+            progressIndicator: StatisticThemeProgressIndicatorWidget(
               theme: '+1',
               correct: 15,
               total: 30,
@@ -103,7 +106,7 @@ class MyStatisticScreen extends StatelessWidget {
     Widget? progressIndicator,
   }) {
     return ContainerFrameWidget(
-      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
       blurRadius: 8,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

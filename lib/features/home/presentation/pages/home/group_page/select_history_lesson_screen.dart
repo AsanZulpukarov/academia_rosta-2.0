@@ -25,47 +25,52 @@ class SelectHistoryLessonScreen extends StatelessWidget {
                   color: AppColors.main,
                 ),
               ),
-              DataTable(
-                columns: [
-                  DataColumn(
-                    label: Text("ФИО"),
-                  ),
-                  DataColumn(
-                    label: Text("Был / Не был"),
-                  ),
-                ],
-                rows: [
-                  DataRow(
-                    cells: [
-                      DataCell(Text("Асан Зулпукаров")),
-                      DataCell(
-                        Center(
-                          child: Text(
-                            "был",
-                            style: AppTextStyles.black14.copyWith(
-                              color: AppColors.green,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  dataTextStyle: AppTextStyles.black12,
+                  headingTextStyle: AppTextStyles.black14Medium,
+                  columns: [
+                    DataColumn(
+                      label: Text("ФИО"),
+                    ),
+                    DataColumn(
+                      label: Text("Был/Не был"),
+                    ),
+                  ],
+                  rows: [
+                    DataRow(
+                      cells: [
+                        DataCell(Text("Асан Зулпукаров")),
+                        DataCell(
+                          Center(
+                            child: Text(
+                              "Был",
+                              style: AppTextStyles.black14.copyWith(
+                                color: AppColors.green,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  DataRow(
-                    cells: [
-                      DataCell(Text("Марсел Маданбеков")),
-                      DataCell(
-                        Center(
-                          child: Text(
-                            "Не был",
-                            style: AppTextStyles.black14.copyWith(
-                              color: AppColors.mainRed,
+                      ],
+                    ),
+                    DataRow(
+                      cells: [
+                        DataCell(Text("Марсел Маданбеков")),
+                        DataCell(
+                          Center(
+                            child: Text(
+                              "Не был",
+                              style: AppTextStyles.black14.copyWith(
+                                color: AppColors.mainRed,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

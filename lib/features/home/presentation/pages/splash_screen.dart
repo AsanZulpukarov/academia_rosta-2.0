@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/learn_app_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -36,13 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Image.asset('assets/images/logo.png'),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Text(
-                'АКАДЕМИЯ РОСТА',
-                style: AppTextStyles.black16Medium,
-              ),
-            ),
+            const BottomAppName(),
           ],
         ),
       ),

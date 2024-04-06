@@ -3,11 +3,13 @@ import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_
 import 'package:flutter/material.dart';
 
 class TrainScreen extends StatefulWidget {
+  const TrainScreen({super.key});
+
   @override
-  _TrainScreenState createState() => _TrainScreenState();
+  TrainScreenState createState() => TrainScreenState();
 }
 
-class _TrainScreenState extends State<TrainScreen>
+class TrainScreenState extends State<TrainScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;

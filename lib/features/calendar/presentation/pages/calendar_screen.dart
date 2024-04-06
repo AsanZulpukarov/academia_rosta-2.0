@@ -130,11 +130,26 @@ class _CalendarScreenState extends State<CalendarScreen> {
                       endIndent: 10,
                     ),
                     Expanded(
-                        flex: 3,
-                        child: ListTile(
-                          title: Text("Ментальная арифметика"),
-                          subtitle: Text("Описание"),
-                        )),
+                      flex: 3,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Ментальная арифметика",
+                            style: AppTextStyles.black16Medium,
+                          ),
+                          Text(
+                            "Описание",
+                            maxLines: 1,
+                            style: AppTextStyles.black14.copyWith(
+                              fontStyle: FontStyle.italic,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               );

@@ -1,7 +1,9 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
-import 'package:academia_rosta_diplom/features/trainer/presentation/pages/choose_theme_dialog.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/show_train_number.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/show_train_number_screen.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/character_container_widget.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/choose_character_theme_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,13 +19,6 @@ class TrainCharacterScreen extends StatefulWidget {
 }
 
 class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
-  final List<String> _list = [
-    'One',
-    'Two',
-    'Three',
-    'Four',
-  ];
-  String? _dropdownValue = "One";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,169 +26,62 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            Row(
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
-                  child: _containerCharacter(title: "Скорость"),
+                  child: CharacterContainerWidget(
+                    title: "Скорость",
+                    numberCharacter: 1.00,
+                    numberIncDec: 0.2,
+                    isFixDigit: false,
+                  ),
                 ),
                 Gap(30),
                 Expanded(
-                  child: _containerCharacter(title: "Разрядность"),
+                  child: CharacterContainerWidget(
+                    title: "Разрядность",
+                    numberCharacter: 1.0,
+                    numberIncDec: 1.0,
+                  ),
                 ),
                 Gap(30),
                 Expanded(
-                  child: _containerCharacter(title: "Количество\nпеременных"),
+                  child: CharacterContainerWidget(
+                    title: "Количество\nпеременных",
+                    numberCharacter: 1.0,
+                    numberIncDec: 1.0,
+                  ),
                 ),
               ],
             ),
             Gap(10),
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Выбрать тему:"),
-                  Gap(10),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: AppColors.black),
-                    ),
-                    child: DropdownButton(
-                      isExpanded: true,
-                      underline: SizedBox(),
-                      value: _dropdownValue,
-                      onChanged: (String? value) {
-                        setState(() {
-                          _dropdownValue = value!;
-                        });
-                      },
-                      items:
-                          _list.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(
-                            value,
-                          ),
-                        );
-                      }).toList(),
-                      menuMaxHeight: 240,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            ChooseCharacterThemeWidget(title: "Выбрать тему"),
             Gap(10),
             ShowTrainNumber(),
             Gap(20),
-            GestureDetector(
-              onTap: () {
+            MainButtonWidget(
+              borderRadius: BorderRadius.circular(20),
+              width: 120.w,
+              child: Text(
+                'Начать',
+                style: AppTextStyles.black16.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
+              onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => ShowTrainNumberScreen()));
               },
-              child: Container(
-                width: 100,
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: AppColors.main,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  'Начать',
-                  style: AppTextStyles.black16.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
             ),
           ],
         ),
       ),
     );
   }
-
-  Widget _containerCharacter({required String title}) {
-    return Column(
-      children: [
-        Text(
-          title,
-          style: AppTextStyles.black14.copyWith(fontSize: 15),
-        ),
-        Gap(10),
-        Container(
-          height: 100,
-          foregroundDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: AppColors.black,
-              width: 1,
-            ),
-          ),
-          child: Column(
-            children: [
-              Flexible(
-                flex: 1,
-                child: Center(
-                  child: Text(
-                    "1.00",
-                    style: AppTextStyles.black26,
-                  ),
-                ),
-              ),
-              Flexible(
-                flex: 1,
-                child: Container(
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    color: AppColors.main,
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      width: 1,
-                      color: AppColors.black,
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.remove,
-                            color: AppColors.white,
-                          ),
-                        ),
-                      ),
-                      VerticalDivider(
-                        color: AppColors.black,
-                        width: 1,
-                        thickness: 1,
-                      ),
-                      Expanded(
-                        child: IconButton(
-                          icon: const Icon(
-                            Icons.add,
-                            color: AppColors.white,
-                          ),
-                          onPressed: () {},
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
+  /*
   Widget _trainThemeContainer({required String title}) {
     return Flexible(
       child: DecoratedBox(
@@ -246,6 +134,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
       ),
     );
   }
+  */
   /*
 
   Widget _characterGradient() {

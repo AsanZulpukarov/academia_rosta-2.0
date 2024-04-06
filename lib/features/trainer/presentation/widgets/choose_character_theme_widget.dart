@@ -1,0 +1,67 @@
+import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+
+class ChooseCharacterThemeWidget extends StatefulWidget {
+  final double? menuMaxHeight;
+  final String title;
+  const ChooseCharacterThemeWidget(
+      {Key? key, this.menuMaxHeight = 240, required this.title})
+      : super(key: key);
+
+  @override
+  State<ChooseCharacterThemeWidget> createState() =>
+      _ChooseCharacterThemeWidgetState();
+}
+
+class _ChooseCharacterThemeWidgetState
+    extends State<ChooseCharacterThemeWidget> {
+  final List<String> _list = [
+    'One',
+    'Two',
+    'Three',
+    'Four',
+  ];
+
+  String? _dropdownValue = "One";
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text(widget.title),
+        ),
+        Gap(10),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppColors.black),
+          ),
+          child: DropdownButton(
+            isExpanded: true,
+            underline: SizedBox(),
+            value: _dropdownValue,
+            onChanged: (String? value) {
+              setState(() {
+                _dropdownValue = value!;
+              });
+            },
+            items: _list.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value,
+                ),
+              );
+            }).toList(),
+            menuMaxHeight: 240,
+          ),
+        ),
+      ],
+    );
+  }
+}

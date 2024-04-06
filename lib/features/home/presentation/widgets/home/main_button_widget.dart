@@ -30,6 +30,8 @@ class MainButtonWidget extends StatelessWidget {
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
+          width: width,
+          height: height,
           padding: padding,
           alignment: Alignment.center,
           decoration: BoxDecoration(

@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/pages/choose_photo_dialog.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,9 +9,15 @@ import 'package:gap/gap.dart';
 
 import '../../../../../app_theme.dart';
 
-class EditProfileScreen extends StatelessWidget {
-  EditProfileScreen({Key? key}) : super(key: key);
-  int _currentIndex = 0;
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  int _selectImageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +25,7 @@ class EditProfileScreen extends StatelessWidget {
         title: "Редактировать профиль",
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Form(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -28,7 +35,8 @@ class EditProfileScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     ProfileAvatarItem(
-                      image: "boy_1",
+                      image: ProfileAvatar.listAvatars
+                          .elementAt(_selectImageIndex),
                       radius: 60,
                       backgroundColor: AppColors.white,
                     ),
@@ -38,33 +46,8 @@ class EditProfileScreen extends StatelessWidget {
                           context: context,
                           builder: (context) => AlertDialog(
                             title: Text("Выберите фото:"),
-                            content: Container(
-                              width: MediaQuery.sizeOf(context).width.w,
-                              child: GridView.builder(
-                                shrinkWrap: true,
-                                itemCount: ProfileAvatar.listAvatars.length,
-                                gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  mainAxisSpacing: 10,
-                                  crossAxisSpacing: 10,
-                                ),
-                                itemBuilder: (BuildContext context, int index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      _currentIndex = index;
-                                    },
-                                    child: ProfileAvatarItem(
-                                      image: ProfileAvatar.listAvatars
-                                          .elementAt(index),
-                                      radius: 60,
-                                      backgroundColor: _currentIndex == index
-                                          ? AppColors.main
-                                          : AppColors.white,
-                                    ),
-                                  );
-                                },
-                              ),
+                            content: ChoosePhotoDialog(
+                              currentPhotoIndex: _selectImageIndex,
                             ),
                             actions: [
                               TextButton(
@@ -97,7 +80,7 @@ class EditProfileScreen extends StatelessWidget {
               _titleAndField(title: "Телефон номер"),
               Gap(30),
               MainButtonWidget(
-                onPressed: (){},
+                onPressed: () {},
                 borderRadius: BorderRadius.circular(20),
                 child: Text(
                   'Сохранить',

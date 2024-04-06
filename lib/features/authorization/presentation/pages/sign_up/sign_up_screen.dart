@@ -65,7 +65,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
       ),
       child: Scaffold(
-        appBar: MyAppBarSecond(
+        appBar: const MyAppBarSecond(
           title: "Анкета",
         ),
         body: SingleChildScrollView(
@@ -79,36 +79,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     "Здравствуйте! Добро пожаловать",
                     style: AppTextStyles.black18Medium,
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
                     "Заполните анкету и отправьте запрос.",
                     style: AppTextStyles.black14.copyWith(
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  Gap(20),
+                  const Gap(20),
                   Form(
                     key: _formKey,
                     child: Column(
                       children: [
                         _firstname(),
-                        Gap(10),
+                        const Gap(10),
                         _lastname(),
-                        Gap(10),
+                        const Gap(10),
                         _phone(),
-                        Gap(10),
+                        const Gap(10),
                         _polPerson(),
-                        Gap(10),
+                        const Gap(10),
                         _email(),
-                        Gap(10),
+                        const Gap(10),
                         _bDay(),
-                        Gap(10),
+                        const Gap(10),
                         _login(),
-                        Gap(10),
+                        const Gap(10),
                         _password(),
-                        Gap(10),
+                        const Gap(10),
                         _confirmPassword(),
-                        Gap(10),
+                        const Gap(10),
                         _branch(),
                       ],
                     ),
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                       ),
-                      Gap(20),
+                      const Gap(20),
                       Expanded(
                         child: MainButtonWidget(
                           onPressed: () async {
@@ -189,8 +189,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return TextFormField(
       controller: _passwordController,
       decoration: InputDecoration(
-        label: Text("Пароль"),
-        suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.visibility)),
+        label: const Text("Пароль"),
+        suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
       ),
     );
   }
@@ -227,8 +227,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return TextFormField(
       controller: _confirmPasswordController,
       decoration: InputDecoration(
-        label: Text("Повторите пароль"),
-        suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.visibility)),
+        label: const Text("Повторите пароль"),
+        suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
       ),
     );
   }
@@ -258,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       onTap: _selectDate,
       enabled: true,
       readOnly: true,
-      decoration: InputDecoration(labelText: 'День рождение'),
+      decoration: const InputDecoration(labelText: 'День рождение'),
     );
   }
 
@@ -287,7 +287,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       child: DropdownButton(
         isExpanded: true,
-        underline: SizedBox(),
+        underline: const SizedBox(),
         value: _dropdownValue,
         onChanged: (String? value) {
           setState(() {
