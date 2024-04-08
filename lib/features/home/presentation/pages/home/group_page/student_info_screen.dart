@@ -10,7 +10,9 @@ class StudentInfoScreen extends StatelessWidget {
       appBar: MyAppBarSecond(
         title: "Студент",
       ),
-      body: SingleChildScrollView(),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      ),
     );
   }
 }

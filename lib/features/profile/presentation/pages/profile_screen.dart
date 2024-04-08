@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double gap = 20;
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -102,6 +102,7 @@ class ProfileScreen extends StatelessWidget {
               await showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
+                  backgroundColor: AppColors.white,
                   title: Text(
                     'Выйти из аккаунта?',
                     textAlign: TextAlign.center,

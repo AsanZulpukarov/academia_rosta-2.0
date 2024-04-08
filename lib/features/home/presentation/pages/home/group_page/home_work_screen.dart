@@ -1,8 +1,11 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/create_hw_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/last_hw_card_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +20,7 @@ class HomeWorkScreen extends StatelessWidget {
         title: "Домашнее задание",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -93,7 +96,13 @@ class HomeWorkScreen extends StatelessWidget {
                                   color: AppColors.white,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            CreateHWScreen()));
+                              },
                             ),
                           ),
                         ],
@@ -108,6 +117,22 @@ class HomeWorkScreen extends StatelessWidget {
                   ),
                 ],
               ),
+            ),
+            Gap(20),
+            TitleDividerColumnWidget(
+              title: "Прошлые домашние занятия",
+            ),
+            Gap(20),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return const LastHWCardWidget();
+              },
+              separatorBuilder: (context, index) {
+                return const Gap(10);
+              },
+              itemCount: 4,
             ),
           ],
         ),

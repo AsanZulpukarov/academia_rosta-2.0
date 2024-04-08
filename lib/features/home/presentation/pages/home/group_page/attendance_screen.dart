@@ -46,7 +46,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         title: "Посещения",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
             ContainerFrameWidget(

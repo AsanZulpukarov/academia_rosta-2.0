@@ -69,7 +69,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           title: "Анкета",
         ),
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Stack(
             children: [
               Column(
@@ -190,7 +190,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       controller: _passwordController,
       decoration: InputDecoration(
         label: const Text("Пароль"),
-        suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
+        suffixIcon:
+            IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
       ),
     );
   }
@@ -228,7 +229,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       controller: _confirmPasswordController,
       decoration: InputDecoration(
         label: const Text("Повторите пароль"),
-        suffixIcon: IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
+        suffixIcon:
+            IconButton(onPressed: () {}, icon: const Icon(Icons.visibility)),
       ),
     );
   }

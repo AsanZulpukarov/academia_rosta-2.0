@@ -64,6 +64,7 @@ class AppTheme {
           .copyWith(fontSize: 16.sp, color: AppColors.grey),
     ),
     dialogTheme: const DialogTheme(
+        backgroundColor: AppColors.white,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)))),
     appBarTheme: AppBarTheme(

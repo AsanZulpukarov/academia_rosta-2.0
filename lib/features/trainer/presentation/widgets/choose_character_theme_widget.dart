@@ -4,9 +4,7 @@ import 'package:gap/gap.dart';
 
 class ChooseCharacterThemeWidget extends StatefulWidget {
   final double? menuMaxHeight;
-  final String title;
-  const ChooseCharacterThemeWidget(
-      {Key? key, this.menuMaxHeight = 240, required this.title})
+  const ChooseCharacterThemeWidget({Key? key, this.menuMaxHeight = 240})
       : super(key: key);
 
   @override
@@ -30,13 +28,13 @@ class _ChooseCharacterThemeWidgetState
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Text(widget.title),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 10.0),
+          child: Text("Выбрать тему"),
         ),
-        Gap(10),
+        const Gap(10),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: AppColors.black),

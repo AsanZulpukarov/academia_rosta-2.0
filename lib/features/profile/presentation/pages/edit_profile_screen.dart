@@ -25,7 +25,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         title: "Редактировать профиль",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

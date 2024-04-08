@@ -16,7 +16,7 @@ class ChangePasswordScreen extends StatelessWidget {
         title: 'Изменить пароль',
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Form(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

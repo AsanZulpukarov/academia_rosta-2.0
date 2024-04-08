@@ -25,7 +25,7 @@ class GroupInfoScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
             Column(
@@ -271,7 +271,8 @@ class GroupInfoScreen extends StatelessWidget {
             Text(
               nameButton,
               textAlign: TextAlign.center,
-              style: AppTextStyles.black14,
+              style: AppTextStyles.black12Medium,
+              overflow: TextOverflow.ellipsis,
             ),
             Gap(8),
           ],

@@ -14,7 +14,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
         title: "Посещаемость",
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: ContainerFrameWidget(
           padding: EdgeInsets.all(20),
           child: Column(

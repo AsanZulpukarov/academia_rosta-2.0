@@ -15,7 +15,7 @@ class GroupScreen extends StatelessWidget {
         future: ApiSource.getGroups(),
         builder: (context, snapshot) {
           return ListView.separated(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             itemCount: 5,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -29,8 +29,9 @@ class GroupScreen extends StatelessWidget {
                   height: 120.h,
                   padding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  decoration: ShapeDecoration(
-                    shadows: [
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
                       BoxShadow(
                         color: AppColors.black.withOpacity(0.5),
                         offset: Offset(4, 4),
@@ -45,9 +46,6 @@ class GroupScreen extends StatelessWidget {
                         AppColors.main.withOpacity(0.7),
                         AppColors.main,
                       ],
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
                   child: Column(

@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/show_train_number.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/show_train_number_screen.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/chacracter_exercise_col_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/character_container_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/choose_character_theme_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,43 +24,15 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            const Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: CharacterContainerWidget(
-                    title: "Скорость",
-                    numberCharacter: 1.00,
-                    numberIncDec: 0.2,
-                    isFixDigit: false,
-                  ),
-                ),
-                Gap(30),
-                Expanded(
-                  child: CharacterContainerWidget(
-                    title: "Разрядность",
-                    numberCharacter: 1.0,
-                    numberIncDec: 1.0,
-                  ),
-                ),
-                Gap(30),
-                Expanded(
-                  child: CharacterContainerWidget(
-                    title: "Количество\nпеременных",
-                    numberCharacter: 1.0,
-                    numberIncDec: 1.0,
-                  ),
-                ),
-              ],
-            ),
-            Gap(10),
-            ChooseCharacterThemeWidget(title: "Выбрать тему"),
-            Gap(10),
-            ShowTrainNumber(),
-            Gap(20),
+            const CharacterExerciseWidget(),
+            const Gap(10),
+            const ChooseCharacterThemeWidget(),
+            const Gap(10),
+            const ShowTrainNumber(),
+            const Gap(20),
             MainButtonWidget(
               borderRadius: BorderRadius.circular(20),
               width: 120.w,
@@ -73,7 +46,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => ShowTrainNumberScreen()));
+                        builder: (context) => const ShowTrainNumberScreen()));
               },
             ),
           ],

@@ -13,7 +13,7 @@ class AboutAppScreen extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBarSecond(title: "О приложении"),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [

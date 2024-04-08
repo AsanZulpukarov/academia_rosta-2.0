@@ -1,7 +1,9 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,22 +32,12 @@ class _GradeScreenState extends State<GradeScreen> {
         title: 'Оценки',
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
-            Container(
+            ContainerFrameWidget(
               height: 180.h,
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.black.withOpacity(0.25),
-                      blurRadius: 4,
-                      offset: Offset(0, 0),
-                    ),
-                  ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,15 +143,8 @@ class _GradeScreenState extends State<GradeScreen> {
               ),
             ),
             Gap(20),
-            Text(
-              "Выбрано студентов: 2",
-              style: AppTextStyles.black14Medium,
-            ),
-            Gap(10),
-            Divider(
-              color: AppColors.main,
-              height: 2,
-              thickness: 2,
+            TitleDividerColumnWidget(
+              title: "Выбрано студентов 2",
             ),
             Gap(10),
             ListView.separated(
