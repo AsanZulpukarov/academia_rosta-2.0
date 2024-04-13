@@ -5,12 +5,14 @@ class StudentEntity extends Equatable {
   String? firstname;
   String? lastname;
   String? phoneNumber;
+  bool? isSelect;
 
   StudentEntity({
     this.id,
     this.firstname,
     this.lastname,
     this.phoneNumber,
+    this.isSelect = false,
   });
 
   @override
@@ -20,5 +22,6 @@ class StudentEntity extends Equatable {
         firstname,
         lastname,
         phoneNumber,
+        isSelect,
       ];
 }

@@ -45,7 +45,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         await showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                            title: Text("Выберите фото:"),
+                            backgroundColor: AppColors.white,
+                            title: Text(
+                              "Выберите фото:",
+                              style: AppTextStyles.black16,
+                            ),
                             content: ChoosePhotoDialog(
                               currentPhotoIndex: _selectImageIndex,
                             ),
@@ -70,15 +74,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 ),
               ),
               _titleAndField(title: "Фамилия"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Имя"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Логин"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Email"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Телефон номер"),
-              Gap(30),
+              Gap(20),
               MainButtonWidget(
                 onPressed: () {},
                 borderRadius: BorderRadius.circular(20),
@@ -106,10 +110,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Text(
             title,
-            style: AppTextStyles.black16Regular,
+            style: AppTextStyles.black14,
           ),
         ),
-        Gap(6),
         TextFormField(
           decoration: InputDecoration(
             border: OutlineInputBorder(

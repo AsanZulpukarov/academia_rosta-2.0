@@ -36,7 +36,6 @@ class _GradeScreenState extends State<GradeScreen> {
         child: Column(
           children: [
             ContainerFrameWidget(
-              height: 180.h,
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -100,12 +99,24 @@ class _GradeScreenState extends State<GradeScreen> {
             ),
             Gap(20),
             MainButtonWidget(
+              onPressed: () {},
+              borderRadius: BorderRadius.circular(20),
+              child: Text(
+                'Сохранить',
+                style: AppTextStyles.black16.copyWith(
+                  color: AppColors.white,
+                ),
+              ),
+            ),
+            Gap(20),
+            MainButtonWidget(
               borderRadius: BorderRadius.circular(20.0),
               onPressed: () {
                 showDialog(
                   barrierDismissible: false,
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
+                    backgroundColor: AppColors.white,
                     contentPadding: const EdgeInsets.all(20),
                     scrollable: true,
                     title: const Text(

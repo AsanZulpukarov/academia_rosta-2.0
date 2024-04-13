@@ -26,7 +26,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> resetPassword(
+  Future<Either<Failure, void>> changePassword(
       EditPasswordModel editPasswordModel) {
     // TODO: implement resetPassword
     throw UnimplementedError();

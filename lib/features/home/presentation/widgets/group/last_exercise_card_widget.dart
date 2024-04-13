@@ -72,6 +72,8 @@ class LastExerciseCardWidget extends StatelessWidget {
           child: TitleDescriptionWhiteColorRowWidget(
             title: title1,
             description: description1,
+            titleFlex: 4,
+            descriptionFlex: 3,
             titleStyle: AppTextStyles.black12.copyWith(
               color: AppColors.white,
             ),
@@ -86,6 +88,8 @@ class LastExerciseCardWidget extends StatelessWidget {
           child: TitleDescriptionWhiteColorRowWidget(
             title: title2,
             description: description2,
+            titleFlex: 4,
+            descriptionFlex: 3,
             titleStyle: AppTextStyles.black12.copyWith(
               color: AppColors.white,
             ),

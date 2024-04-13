@@ -54,7 +54,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 children: [
                   Text(
                     "Выберите дату",
-                    style: AppTextStyles.black16.copyWith(
+                    style: AppTextStyles.black14.copyWith(
                       fontWeight: FontWeight.normal,
                     ),
                   ),
@@ -88,8 +88,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ),
                   Gap(20),
                   DataTable(
-                    dataRowHeight: 30.h,
                     headingRowHeight: 30.h,
+                    border: TableBorder(
+                      horizontalInside: BorderSide(
+                        color: AppColors.main.withOpacity(0.5),
+                      ),
+                    ),
                     columns: _createColumns(),
                     rows: _createRows(),
                   ),
@@ -109,7 +113,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             ),
             Gap(50),
             Text(
-              "Последние задания",
+              "Последние посещения",
               style: AppTextStyles.black16Medium,
             ),
             Gap(20),
@@ -130,7 +134,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   Widget _lastLessonContainer({required String date}) {
     return ContainerFrameWidget(
       height: 90.h,
-      width: 90.w,
+      width: 100.w,
       padding: const EdgeInsets.all(8),
       alignment: Alignment.center,
       onTap: () {
@@ -142,7 +146,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       offset: const Offset(4, 4),
       child: Text(
         date,
-        style: AppTextStyles.black16Medium.copyWith(
+        style: AppTextStyles.black14Medium.copyWith(
           color: AppColors.main,
         ),
       ),
@@ -152,24 +156,26 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   List<DataColumn> _createColumns() {
     return [
       DataColumn(
-        label: Text("№"),
+        label: Expanded(child: Text("№")),
       ),
       DataColumn(
-        label: Text("ФИО"),
+        label: Expanded(child: Text("ФИО")),
       ),
       DataColumn(
-        label: IconButton(
-          splashRadius: 16,
-          onPressed: () {
-            setState(() {
-              for (var element in _students) {
-                element["isSelect"] = true;
-              }
-            });
-          },
-          icon: const Icon(
-            Icons.check_circle,
-            color: AppColors.blue,
+        label: Expanded(
+          child: IconButton(
+            splashRadius: 16,
+            onPressed: () {
+              setState(() {
+                for (var element in _students) {
+                  element["isSelect"] = true;
+                }
+              });
+            },
+            icon: const Icon(
+              Icons.check_circle,
+              color: AppColors.blue,
+            ),
           ),
         ),
       ),
@@ -183,20 +189,22 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
             cells: [
               DataCell(Text(student['id'].toString())),
               DataCell(Text(student['name'])),
-              DataCell(IconButton(
-                splashRadius: 16,
-                onPressed: () {
-                  setState(() {
-                    student['isSelect'] = !student['isSelect'];
-                  });
-                },
-                icon: Icon(
-                  Icons.check_circle,
-                  color: student['isSelect'] == true
-                      ? AppColors.blue
-                      : AppColors.grey,
+              DataCell(
+                IconButton(
+                  splashRadius: 16,
+                  onPressed: () {
+                    setState(() {
+                      student['isSelect'] = !student['isSelect'];
+                    });
+                  },
+                  icon: Icon(
+                    Icons.check_circle,
+                    color: student['isSelect'] == true
+                        ? AppColors.blue
+                        : AppColors.grey,
+                  ),
                 ),
-              )),
+              ),
             ],
           ),
         )

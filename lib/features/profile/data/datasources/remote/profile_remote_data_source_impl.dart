@@ -75,3 +75,66 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     }
   }
 }
+
+class ProfileRemoteDataSourceImplFake extends ProfileRemoteDataSource {
+  ProfileRemoteDataSourceImplFake();
+
+  @override
+  Future<void> editPassword(EditPasswordModel editPasswordModel) {
+    // TODO: implement editPassword
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> getMyStatistic() {
+    // TODO: implement getMyStatistic
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<UserInfoModel> getUserInfo() async {
+    var jsonData = {
+      "id": 1,
+      "firstname": "Talgat",
+      "lastname": "Биримкулов",
+      "email": "talgat@mail.ru",
+      "username": "talgat",
+      "phoneNumber": "+996 709 334 979"
+    };
+    if (jsonData.isNotEmpty) {
+      return UserInfoModel.fromJson(jsonData);
+    } else {
+      throw ServerException("Ошибка");
+    }
+  }
+
+  @override
+  Future<void> logoutAccount() {
+    // TODO: implement logoutAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> updateUserInfo(UserInfoModel userInfoModel) async {
+    final url = Uri.parse('${Constants.baseUrl}api/users/update-user');
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      // HttpHeaders.authorizationHeader: "Bearer $token",
+    };
+
+    final response = await http.patch(
+      url,
+      headers: headers,
+      body: userInfoModel.toJson(),
+    );
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonData = jsonDecode(responseBody);
+
+      // return UserInfoModel.fromJson(jsonData);
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
+  }
+}

@@ -40,6 +40,7 @@ class _ChooseCharacterThemeWidgetState
             border: Border.all(color: AppColors.black),
           ),
           child: DropdownButton(
+            dropdownColor: AppColors.white,
             isExpanded: true,
             underline: SizedBox(),
             value: _dropdownValue,

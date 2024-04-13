@@ -53,7 +53,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: 400.h,
+                  height: 360.h,
                   alignment: Alignment.topCenter,
                   child: IndexedStack(
                     index: _currentIndex,
@@ -123,8 +123,8 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
           _appInfo.elementAt(index).label,
           textAlign: TextAlign.center,
           style: TextStyle(
-            color: Colors.black.withOpacity(0.800000011920929),
-            fontSize: 20.sp,
+            color: AppColors.black,
+            fontSize: 16.sp,
           ),
         ),
       ],

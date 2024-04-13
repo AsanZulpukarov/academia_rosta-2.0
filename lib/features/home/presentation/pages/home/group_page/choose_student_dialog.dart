@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChooseStudentsDialog extends StatefulWidget {
   const ChooseStudentsDialog({Key? key}) : super(key: key);
@@ -16,8 +17,8 @@ class _ChooseStudentsDialogState extends State<ChooseStudentsDialog> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      width: 360,
+      height: 360.h,
+      width: 300.w,
       child: ListView.separated(
         shrinkWrap: true,
         itemCount: 10,

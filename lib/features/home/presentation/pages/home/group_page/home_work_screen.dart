@@ -43,7 +43,7 @@ class HomeWorkScreen extends StatelessWidget {
                         locale: Locale("ru"),
                       );
                     },
-                    width: 160.w,
+                    width: 180.w,
                     offset: const Offset(4, 4),
                     padding: const EdgeInsets.all(8),
                     child: Row(
@@ -92,7 +92,7 @@ class HomeWorkScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                               child: Text(
                                 "Создать",
-                                style: AppTextStyles.black14.copyWith(
+                                style: AppTextStyles.black12.copyWith(
                                   color: AppColors.white,
                                 ),
                               ),

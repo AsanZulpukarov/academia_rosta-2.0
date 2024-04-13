@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double gap = 20;
+    double gap = 10;
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
@@ -28,26 +28,30 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 ProfileAvatarItem(
                   image: 'man_3',
-                  radius: 60,
+                  radius: 50,
                   backgroundColor: AppColors.white,
                 ),
                 Gap(10),
                 Text(
                   "Asan Zulpukarov",
-                  style: AppTextStyles.black20,
+                  style: AppTextStyles.black16,
                 ),
                 Text(
                   "asanzulpukarov@gmail.com",
-                  style: AppTextStyles.black14,
+                  style: AppTextStyles.black12.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
                 Text(
                   "+996 990 551 380",
-                  style: AppTextStyles.black14,
+                  style: AppTextStyles.black12.copyWith(
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ],
             ),
           ),
-          Gap(30),
+          Gap(20),
           ProfileNavItem(
             icon: Icons.person_outline,
             title: 'Редактировать профиль',
@@ -114,14 +118,13 @@ class ProfileScreen extends StatelessWidget {
                   actions: [
                     Row(
                       children: [
-                        Gap(10),
                         Expanded(
                           child: MainButtonWidget(
                             borderRadius: BorderRadius.circular(20),
                             onPressed: () => Navigator.of(context).pop(true),
                             child: Text(
                               'Выйти',
-                              style: AppTextStyles.black16.copyWith(
+                              style: AppTextStyles.black14.copyWith(
                                 color: AppColors.white,
                               ),
                             ),
@@ -135,11 +138,10 @@ class ProfileScreen extends StatelessWidget {
                             backgroundColor: AppColors.grey,
                             child: const Text(
                               'Остаться',
-                              style: AppTextStyles.black16,
+                              style: AppTextStyles.black14,
                             ),
                           ),
                         ),
-                        Gap(10),
                       ],
                     ),
                   ],

@@ -10,7 +10,7 @@ class BottomAppName extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Text(
         'АКАДЕМИЯ РОСТА',
-        style: AppTextStyles.black16Medium,
+        style: AppTextStyles.black14Medium,
       ),
     );
   }

@@ -8,7 +8,6 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/ti
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/chacracter_exercise_col_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/choose_character_theme_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -21,23 +20,10 @@ class CreateHWScreen extends StatelessWidget {
       appBar: const MyAppBarSecond(
         title: "Создание Д/З",
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Stack(
+        child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.sizeOf(context).height * 0.57),
-              child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return LastExerciseCardWidget();
-                },
-                separatorBuilder: (context, index) {
-                  return const Gap(10);
-                },
-                itemCount: 4,
-              ),
-            ),
             Column(
               children: [
                 const TitleDescriptionBlackColorRowWidget(
@@ -73,7 +59,7 @@ class CreateHWScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: Text(
                           "Создать как\nтест",
-                          style: AppTextStyles.custom14.copyWith(
+                          style: AppTextStyles.black14.copyWith(
                             color: AppColors.white,
                           ),
                           textAlign: TextAlign.center,
@@ -87,7 +73,7 @@ class CreateHWScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         child: Text(
                           "Создать как\nтренажер",
-                          style: AppTextStyles.custom14.copyWith(
+                          style: AppTextStyles.black14.copyWith(
                             color: AppColors.white,
                           ),
                           textAlign: TextAlign.center,
@@ -102,6 +88,18 @@ class CreateHWScreen extends StatelessWidget {
                   title: "Прошлые упражнения",
                 ),
               ],
+            ),
+            Gap(10),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                return LastExerciseCardWidget();
+              },
+              separatorBuilder: (context, index) {
+                return const Gap(10);
+              },
+              itemCount: 4,
             ),
           ],
         ),

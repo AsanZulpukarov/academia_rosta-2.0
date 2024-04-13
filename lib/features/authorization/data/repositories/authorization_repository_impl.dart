@@ -27,8 +27,7 @@ class AuthorizationRepositoryImpl extends AuthorizationRepository {
   }
 
   @override
-  Future<Either<Failure, UserModel>> signIn(SignInModel signInModel) {
-    // TODO: implement signIn
-    throw UnimplementedError();
+  Future<Either<Failure, UserModel>> signIn(SignInModel signInModel) async {
+    return Left(ServerFailure());
   }
 }

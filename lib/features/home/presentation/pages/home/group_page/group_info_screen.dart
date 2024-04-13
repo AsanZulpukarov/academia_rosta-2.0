@@ -5,26 +5,26 @@ import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.da
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/home_work_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/list_student_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/group_calendar_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
 import 'history_lesson_screen.dart';
 
 class GroupInfoScreen extends StatelessWidget {
-  const GroupInfoScreen({Key? key}) : super(key: key);
+  final String groupName;
+  const GroupInfoScreen({Key? key, required this.groupName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBarSecond(
-        title: "Название группы",
+        title: groupName,
       ),
       body: SingleChildScrollView(
-        physics: ScrollPhysics(),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
           children: [
@@ -59,10 +59,10 @@ class GroupInfoScreen extends StatelessWidget {
                     );
                   },
                 ),
-                Gap(30),
+                Gap(20),
                 _actionButton(context),
-                Gap(30),
-                _groupCalendar(),
+                Gap(20),
+                GroupCalendarWidget(),
               ],
             ),
             Gap(30),
@@ -104,64 +104,7 @@ class GroupInfoScreen extends StatelessWidget {
               ),
             ),
             Gap(10),
-            ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 7,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StudentInfoScreen()));
-                  },
-                  child: Container(
-                    decoration: ShapeDecoration(
-                      shadows: [
-                        BoxShadow(
-                          color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(4, 4),
-                          blurRadius: 8,
-                        ),
-                      ],
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomRight,
-                        end: Alignment.topLeft,
-                        colors: [
-                          AppColors.main.withOpacity(0.9),
-                          AppColors.main,
-                        ],
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        "Asan Zulpukarov",
-                        style: AppTextStyles.black16Regular.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                      leading: Text(
-                        (index + 1).toString(),
-                        style: AppTextStyles.black16Regular.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ),
-                );
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return const Gap(10);
-              },
-            ),
+            ListStudentScreen(),
           ],
         ),
       ),
@@ -277,75 +220,6 @@ class GroupInfoScreen extends StatelessWidget {
             Gap(8),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _groupCalendar() {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.main),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 10, bottom: 8),
-            child: Text(
-              "Расписание",
-              style: AppTextStyles.black16,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _dayNameAndTime(dayName: "ПН", time: "19:00"),
-              _dayNameAndTime(dayName: "ВТ"),
-              _dayNameAndTime(dayName: "СР", time: "19:00"),
-              _dayNameAndTime(dayName: "ЧТ"),
-              _dayNameAndTime(dayName: "ПТ", time: "19:00"),
-              _dayNameAndTime(dayName: "СБ"),
-              _dayNameAndTime(dayName: "ВС"),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _dayNameAndTime({
-    required String dayName,
-    String? time,
-  }) {
-    return Expanded(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 30.w,
-            height: 30.h,
-            decoration: BoxDecoration(
-              color: time == null ? AppColors.white : AppColors.main,
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.main),
-            ),
-            alignment: Alignment.center,
-            child: Text(
-              dayName,
-              style: AppTextStyles.black16.copyWith(
-                color: time == null ? AppColors.black : AppColors.white,
-              ),
-            ),
-          ),
-          Gap(6),
-          Text(
-            time ?? "",
-            style: AppTextStyles.black16,
-          ),
-        ],
       ),
     );
   }

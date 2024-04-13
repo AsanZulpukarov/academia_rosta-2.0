@@ -18,7 +18,7 @@ showBottomWindowTeacher(BuildContext context, TeacherModel teacherModel) {
       builder: (context) {
         return Container(
           padding: const EdgeInsets.all(20),
-          height: MediaQuery.of(context).size.height / 4,
+          height: MediaQuery.of(context).size.height / 3.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -32,7 +32,7 @@ showBottomWindowTeacher(BuildContext context, TeacherModel teacherModel) {
               const Gap(10),
               Text(
                 "Информация об учителе",
-                style: AppTextStyles.black18Medium,
+                style: AppTextStyles.black16Medium,
                 textAlign: TextAlign.center,
               ),
               const Gap(40),
@@ -64,7 +64,7 @@ showBottomWindowSubject(BuildContext context, SubjectModel subjectModel) {
       builder: (context) {
         return Container(
           padding: const EdgeInsets.all(20),
-          height: MediaQuery.of(context).size.height / 4,
+          height: MediaQuery.of(context).size.height / 3.5,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -78,7 +78,7 @@ showBottomWindowSubject(BuildContext context, SubjectModel subjectModel) {
               const Gap(10),
               Text(
                 "Информация о предмете",
-                style: AppTextStyles.black18Medium,
+                style: AppTextStyles.black16Medium,
                 textAlign: TextAlign.center,
               ),
               const Gap(40),
@@ -104,7 +104,7 @@ Widget _personInfo({required String title, required String subtitle}) {
         flex: 2,
         child: Text(
           title,
-          style: AppTextStyles.black16.copyWith(
+          style: AppTextStyles.black14.copyWith(
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -113,7 +113,7 @@ Widget _personInfo({required String title, required String subtitle}) {
         flex: 3,
         child: Text(
           subtitle,
-          style: AppTextStyles.black16.copyWith(
+          style: AppTextStyles.black14.copyWith(
             fontWeight: FontWeight.normal,
           ),
         ),

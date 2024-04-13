@@ -22,11 +22,11 @@ class ChangePasswordScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _titleAndField(title: "Текущий пароль"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Новый пароль"),
-              Gap(10),
+              Gap(5),
               _titleAndField(title: "Потверждение пароля"),
-              Gap(40),
+              Gap(20),
               MainButtonWidget(
                 onPressed: () {},
                 borderRadius: BorderRadius.circular(20),
@@ -54,10 +54,9 @@ class ChangePasswordScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Text(
             title,
-            style: AppTextStyles.black16Regular,
+            style: AppTextStyles.black14,
           ),
         ),
-        Gap(6),
         TextFormField(
           obscuringCharacter: "*",
           obscureText: true,
@@ -93,7 +92,7 @@ class ChangePasswordScreen extends StatelessWidget {
             ),
             filled: false,
           ),
-          style: AppTextStyles.black14Medium.copyWith(
+          style: AppTextStyles.black12Medium.copyWith(
             fontWeight: FontWeight.normal,
             color: AppColors.black,
           ),

@@ -1,8 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/notification/presentation/pages/notification_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../../pages/home/notification_page/notification_screen.dart';
 
 class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBarMain({Key? key}) : super(key: key);

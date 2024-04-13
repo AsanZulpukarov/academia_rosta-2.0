@@ -1,0 +1,12 @@
+part of 'hw_bloc.dart';
+
+sealed class HWEvent extends Equatable {
+  const HWEvent();
+  @override
+  // TODO: implement props
+  List<Object?> get props => [];
+}
+
+final class HWEmptyEvent extends HWEvent {}
+
+final class HWDeleteEvent extends HWEvent {}

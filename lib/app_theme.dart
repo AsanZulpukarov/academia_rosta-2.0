@@ -9,7 +9,7 @@ class AppColors {
   static const Color customButton = main; // Color(0xffFFB951);
   static const Color mainColor = main; // Color(0xFFFFB951);
   static const Color secondaryColor = Color.fromRGBO(241, 94, 49, 1);
-  static const Color customText = Color(0xff444444);
+  static const Color customText = Colors.black;
   static const Color filColor = Color(0xffEDEDEF);
   static const Color white = Colors.white;
   static const Color blue = Color(0xFF3D8BFF);

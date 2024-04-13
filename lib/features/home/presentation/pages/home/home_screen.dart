@@ -1,11 +1,12 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/calendar/presentation/pages/calendar_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/group_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/groups_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/profile_screen.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_%20screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NavBarItem {
   Widget? screen;
@@ -26,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final List<NavBarItem> _navBarOptions = [
     NavBarItem(
-      screen: GroupScreen(),
+      screen: GroupsScreen(),
       icon: Icons.group,
       label: "Группы",
     ),
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: MyAppBarMain(),
       body: _navBarOptions.elementAt(_selectedIndex).screen,
       bottomNavigationBar: Container(
-        height: 56,
+        height: 60.h,
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: const BorderRadius.only(
@@ -68,14 +69,14 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           border: Border.all(
             color: AppColors.white,
-            width: 2,
+            width: 1,
           ),
           boxShadow: const [
             BoxShadow(
               color: AppColors.grey,
-              spreadRadius: 10,
-              blurRadius: 11,
-              offset: Offset(0, 4),
+              spreadRadius: 4,
+              blurRadius: 6,
+              offset: Offset(0, 0),
             ),
           ],
         ),
@@ -93,28 +94,32 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _navBarButton(int index) {
-    return MaterialButton(
-      onPressed: () {
+    return GestureDetector(
+      onTap: () {
         _onItemTapped(index);
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            _navBarOptions.elementAt(index).icon,
-            color: index == _selectedIndex
-                ? AppColors.main
-                : AppColors.borderColor,
-          ),
-          Text(
-            _navBarOptions.elementAt(index).label ?? "",
-            style: AppTextStyles.black12.copyWith(
+      child: Container(
+        padding: EdgeInsets.zero,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              _navBarOptions.elementAt(index).icon,
               color: index == _selectedIndex
                   ? AppColors.main
                   : AppColors.borderColor,
+              size: 30,
             ),
-          ),
-        ],
+            Text(
+              _navBarOptions.elementAt(index).label ?? "",
+              style: AppTextStyles.black12.copyWith(
+                color: index == _selectedIndex
+                    ? AppColors.main
+                    : AppColors.borderColor,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

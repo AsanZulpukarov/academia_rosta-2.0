@@ -1,3 +1,4 @@
+import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -34,7 +35,10 @@ class ProfileNavItem extends StatelessWidget {
               color: AppColors.black,
             ),
           ),
-          title: Text(title),
+          title: Text(
+            title,
+            style: AppTextStyles.black14,
+          ),
           trailing: const Icon(
             Icons.arrow_forward_ios,
             color: AppColors.black,

@@ -1,6 +1,13 @@
+import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
+import 'package:academia_rosta_diplom/features/authorization/domain/usecases/reset_password.dart';
+import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/reset_password_bloc/reset_password_bloc.dart';
+import 'package:academia_rosta_diplom/features/authorization/presentation/pages/reset_password/reset_password_code_screen.dart';
+import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/app_logo_widget.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../app_text_styles.dart';
@@ -15,83 +22,122 @@ class ResetPasswordScreen extends StatefulWidget {
 
 class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   final TextEditingController _loginController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        inputDecorationTheme: InputDecorationTheme(
-          labelStyle: AppTextStyles.black14.copyWith(
-            color: AppColors.borderColor,
-          ),
-          suffixIconColor: AppColors.borderColor,
-          contentPadding:
-              const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-          border: OutlineInputBorder(
-            borderSide:
-                const BorderSide(color: AppColors.borderColor, width: 2),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide:
-                const BorderSide(color: AppColors.borderColor, width: 2),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide:
-                const BorderSide(color: AppColors.borderColor, width: 2),
-            borderRadius: BorderRadius.circular(30),
-          ),
+    return BlocProvider(
+      create: (context) => ResetPasswordBloc(
+        resetPasswordUseCase: ResetPasswordUseCase(
+          authorizationRepository: AuthorizationRepositoryImpl(),
         ),
       ),
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Stack(
-            children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // SvgPicture.asset('assets/images/logo.svg'),
-                  SizedBox(
-                    width: 140,
-                    child: Image.asset('assets/images/logo.png'),
-                  ),
-
-                  const Gap(60),
-                  Form(
-                    key: _formKey,
-                    child: _login(),
-                  ),
-                  const Gap(30),
-                  MainButtonWidget(
-                    onPressed: () {},
-                    borderRadius: BorderRadius.circular(20),
-                    child: Text(
-                      'Отправить',
-                      style: AppTextStyles.black16.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Вернуться в войти",
-                      style:
-                          AppTextStyles.black14.copyWith(color: AppColors.main),
-                    ),
-                  ),
-                ],
-              ),
-              const BottomAppName(),
-            ],
+      child: Theme(
+        data: ThemeData(
+          inputDecorationTheme: InputDecorationTheme(
+            labelStyle: AppTextStyles.black14.copyWith(
+              color: AppColors.borderColor,
+            ),
+            suffixIconColor: AppColors.borderColor,
+            contentPadding:
+                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            border: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColors.borderColor, width: 2),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColors.borderColor, width: 2),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide:
+                  const BorderSide(color: AppColors.borderColor, width: 2),
+              borderRadius: BorderRadius.circular(30),
+            ),
           ),
+        ),
+        child: BlocConsumer<ResetPasswordBloc, ResetPasswordState>(
+          listener: (context, state) {
+            if (state is ResetPasswordErrorState) {
+              AppUtils.showSnackBar(
+                  context: context, description: state.message);
+            } else if (state is ResetPasswordLoadedState) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResetPasswordCodeScreen(),
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            return Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Stack(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const AppLogoWidget(
+                          width: 140,
+                        ),
+                        const Gap(60),
+                        const Text(
+                          "Для сброса пароля напишите свой логин",
+                          style: AppTextStyles.black14,
+                        ),
+                        Gap(20),
+                        Form(
+                          key: _formKey,
+                          child: _login(),
+                        ),
+                        const Gap(30),
+                        Builder(builder: (context) {
+                          if (state is ResetPasswordLoadingState) {
+                            return const Center(
+                              child: CircularProgressIndicator.adaptive(),
+                            );
+                          }
+                          return MainButtonWidget(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                context.read<ResetPasswordBloc>().add(
+                                      ResetPasswordButtonTapEvent(
+                                          username: _loginController.text),
+                                    );
+                              }
+                            },
+                            borderRadius: BorderRadius.circular(20),
+                            child: Text(
+                              'Отправить',
+                              style: AppTextStyles.black16.copyWith(
+                                color: AppColors.white,
+                              ),
+                            ),
+                          );
+                        }),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text(
+                            "Вернуться в войти",
+                            style: AppTextStyles.black14
+                                .copyWith(color: AppColors.main),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const BottomAppName(),
+                  ],
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -102,8 +148,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       controller: _loginController,
       decoration: const InputDecoration(
         label: Text("Логин"),
-        suffixIcon: Icon(Icons.person),
       ),
+      validator: (value) => AppUtils.validateUsername(value),
     );
   }
 }

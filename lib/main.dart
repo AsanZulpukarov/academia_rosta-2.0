@@ -15,17 +15,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(builder: (context, child) {
-      return MaterialApp(
-        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
-        supportedLocales: const [
-          Locale('en'),
-          Locale('ru'),
-        ],
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.themeData,
-        home: const SplashScreen(),
-      );
-    });
+    return ScreenUtilInit(
+      builder: (context, child) {
+        return MaterialApp(
+          localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('ru'),
+          ],
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.themeData,
+          home: const SplashScreen(),
+        );
+      },
+    );
   }
 }
