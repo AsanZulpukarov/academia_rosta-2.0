@@ -12,6 +12,6 @@ class SignInUseCase extends UseCase<UserModel, Object> {
   @override
   Future<Either<Failure, UserModel>> call(Object params) async {
     return await authorizationRepository
-        .signIn(SignInModel(username: "", password: ""));
+        .signIn(SignInModel(username: "marsel", password: "marsel"));
   }
 }

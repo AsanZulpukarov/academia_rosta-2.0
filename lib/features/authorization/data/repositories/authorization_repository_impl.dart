@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
+import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/sign_in_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/sign_up_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/user_model.dart';
@@ -28,6 +29,12 @@ class AuthorizationRepositoryImpl extends AuthorizationRepository {
 
   @override
   Future<Either<Failure, UserModel>> signIn(SignInModel signInModel) async {
-    return Left(ServerFailure());
+    try {
+      AuthorizationRemoteDataSourceImpl authorizationRemoteDataSourceImpl = AuthorizationRemoteDataSourceImpl();
+      return Right(await authorizationRemoteDataSourceImpl.signIn(signInModel));
+    } on Failure{
+
+      throw Left(ServerFailure());
+    }
   }
 }
