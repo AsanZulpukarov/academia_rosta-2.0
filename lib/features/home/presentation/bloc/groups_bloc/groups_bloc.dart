@@ -15,7 +15,6 @@ class GroupsBloc extends Bloc<GroupsEvent, GroupsState> {
       final errorOrSuccess = await getAllGroupsUseCase.call("");
       errorOrSuccess.fold(
           (l) => emit(GroupsErrorState(AppUtils.mapFailureToMessage(l))), (r) {
-        print(r);
         emit(GroupsLoadedState(r));
       });
     });

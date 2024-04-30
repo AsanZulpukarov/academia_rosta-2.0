@@ -13,4 +13,11 @@ final class ChangePasswordLoadingState extends ChangePasswordState {}
 
 final class ChangePasswordLoadedState extends ChangePasswordState {}
 
-final class ChangePasswordErrorState extends ChangePasswordState {}
+final class ChangePasswordErrorState extends ChangePasswordState {
+  String message;
+  ChangePasswordErrorState({required this.message});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [message];
+}
