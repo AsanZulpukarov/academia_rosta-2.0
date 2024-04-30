@@ -7,4 +7,10 @@ sealed class ChangePasswordEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-final class ResetPasswordSaveEvent extends ChangePasswordEvent {}
+final class ChangePasswordSaveEvent extends ChangePasswordEvent {
+  EditPasswordEntity editPasswordEntity;
+  ChangePasswordSaveEvent({required this.editPasswordEntity});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [editPasswordEntity];
+}

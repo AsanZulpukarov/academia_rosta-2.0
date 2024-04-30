@@ -1,0 +1,1 @@
+enum HWTypeEnum { test, trainer }
