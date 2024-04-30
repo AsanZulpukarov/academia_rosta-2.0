@@ -50,6 +50,7 @@ class AppTheme {
   static ThemeData themeData = ThemeData(
     primaryColor: AppColors.mainColor,
     scaffoldBackgroundColor: AppColors.bgColor,
+    useMaterial3: false,
     colorScheme: ColorScheme.fromSwatch().copyWith(
       primary: AppColors.mainColor,
       secondary: AppColors.secondaryColor,

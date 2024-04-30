@@ -1,9 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/calendar/presentation/pages/list_point_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -29,21 +27,30 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       physics: const ScrollPhysics(),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: [AppColors.main.withOpacity(0.1), AppColors.white],
-              ),
+              color: AppColors.white,
+              // boxShadow: [
+              //   BoxShadow(
+              //     color: AppColors.mainColor.withOpacity(0.4),
+              //     blurRadius: 16,
+              //   )
+              // ],
+              borderRadius: BorderRadius.circular(20)
             ),
             child: TableCalendar(
               daysOfWeekStyle: DaysOfWeekStyle(
-                weekdayStyle: AppTextStyles.black14Medium,
+                weekdayStyle: AppTextStyles.black14Medium.copyWith(
+                  color: AppColors.mainColor,
+                ),
+                weekendStyle: AppTextStyles.black14Medium.copyWith(
+                  color: AppColors.mainColor.withOpacity(0.5),
+                ),
               ),
               daysOfWeekHeight: 30,
               calendarStyle: CalendarStyle(
@@ -62,17 +69,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
               startingDayOfWeek: StartingDayOfWeek.monday,
               locale: 'ru',
               headerStyle: HeaderStyle(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
-                      color: AppColors.blackOpacity65,
+                      color: AppColors.mainColor,
                     ),
                   ),
                 ),
                 formatButtonVisible: false,
                 titleCentered: true,
                 titleTextStyle: AppTextStyles.black16Regular.copyWith(
-                  color: AppColors.blackOpacity65,
+                  color: AppColors.mainColor,
                 ),
               ),
               availableGestures: AvailableGestures.all,
@@ -87,7 +94,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
             ),
           ),
-          Gap(10),
+          Gap(20),
           ListPointScreen(),
         ],
       ),
