@@ -21,7 +21,7 @@ class TrainScreenState extends State<TrainScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
 
     _animation = Tween<double>(begin: 0, end: 1).animate(_controller);
@@ -56,6 +56,7 @@ class TrainScreenState extends State<TrainScreen>
                   ? TrainCharacterScreen()
                   : ShowTrainNumberScreen(
                       list: [],
+                speed: 1.0,
                     );
             },
           ),

@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/edit_password_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/change_password.dart';
@@ -30,7 +31,11 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => ChangePasswordBloc(
-        changePasswordUseCase: ChangePasswordUseCase(ProfileRepositoryImpl()),
+        changePasswordUseCase: ChangePasswordUseCase(
+          ProfileRepositoryImpl(
+            profileRemoteDataSource: ProfileRemoteDataSourceImpl(),
+          ),
+        ),
       ),
       child: Scaffold(
         appBar: const MyAppBarSecond(
@@ -53,8 +58,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14.0),
                       child: Text(
                         "Новый пароль",
                         style: AppTextStyles.black14,
@@ -62,8 +67,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     _passwordField(context),
                     const Gap(5),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 14.0),
                       child: Text(
                         "Потверждение пароля",
                         style: AppTextStyles.black14,
@@ -84,7 +89,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                               context.read<ChangePasswordBloc>().add(
                                     ChangePasswordSaveEvent(
                                       editPasswordEntity: EditPasswordEntity(
-                                        id: 1,
                                         password: _newPassword.text,
                                         confirmPassword: _confirmPassword.text,
                                       ),

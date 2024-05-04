@@ -7,7 +7,7 @@ abstract class ResetPasswordEvent extends Equatable {
 }
 
 class ResetPasswordButtonTapEvent extends ResetPasswordEvent {
-  String username;
+  final String username;
 
   ResetPasswordButtonTapEvent({required this.username});
 

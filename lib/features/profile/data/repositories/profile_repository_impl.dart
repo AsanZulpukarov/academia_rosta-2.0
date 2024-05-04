@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
+import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/profile/data/models/user_info_model.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/edit_password_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
@@ -6,7 +7,8 @@ import 'package:academia_rosta_diplom/features/profile/domain/repositories/profi
 import 'package:dartz/dartz.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
-  ProfileRepositoryImpl();
+  ProfileRemoteDataSource profileRemoteDataSource;
+  ProfileRepositoryImpl({required this.profileRemoteDataSource});
 
   @override
   Future<Either<Failure, void>> getMyStatistic() {
@@ -27,10 +29,12 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> changePassword(
-      EditPasswordEntity editPasswordEntity) {
-    // TODO: implement resetPassword
-    throw UnimplementedError();
+  Future<Either<Failure, void>> changePassword(EditPasswordEntity editPasswordEntity) async {
+    try {
+      return Right(await profileRemoteDataSource.editPassword(editPasswordEntity));
+    } on Exception {
+      throw ServerFailure();
+    }
   }
 
   @override

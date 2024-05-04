@@ -9,52 +9,6 @@ class AppUtils {
   static DateFormat dateFormat = DateFormat('dd.MM.yyyy');
   static DateFormat time = DateFormat('HH:mm');
 
-  static getFormattedDate({
-    required DateTime dateTime,
-    bool withYearLabel = false,
-    bool withHour = false,
-    String yearLabel = 'г',
-  }) {
-    if (withYearLabel) {
-      if (withHour) {
-        return '${dateFormat.format(dateTime)}$yearLabel ${time.format(dateTime)}';
-      } else {
-        return dateFormat.format(dateTime) + yearLabel;
-      }
-    } else {
-      if (withHour) {
-        return '${dateFormat.format(dateTime)} ${time.format(dateTime)}';
-      } else {
-        return dateFormat.format(dateTime);
-      }
-    }
-  }
-
-  static toDoceDate({
-    required DateTime? dateTime,
-  }) {
-    if (dateTime == null) return null;
-
-    final format = DateFormat('yyyy-MM-ddTHH:mm:ss', 'en-US');
-    return format.format(dateTime);
-  }
-
-  static fromDoceDate({
-    required String? dateTime,
-  }) {
-    if (dateTime == null) return null;
-
-    final format = DateFormat('yyyy-MM-ddTHH:mm:ssZ', 'en-US');
-    return format.parse(dateTime);
-  }
-
-  static getDateTimeWithSeparator({
-    required DateTime dateTime,
-    String separator = ', ',
-  }) {
-    return dateFormat.format(dateTime) + separator + time.format(dateTime);
-  }
-
   static showSnackBar({
     required BuildContext context,
     String title = "Ошибка",
