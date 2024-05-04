@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ShowTrainNumberScreen extends StatefulWidget {
-  const ShowTrainNumberScreen({Key? key}) : super(key: key);
+  final List<int> list;
+  const ShowTrainNumberScreen({Key? key, required this.list}) : super(key: key);
 
   @override
   State<ShowTrainNumberScreen> createState() => _ShowTrainNumberScreenState();
 }
 
 class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
-  final List<int> _list = [1, 896666, -3, 4, 5, 6, 7, 8, 9];
   int _currentValue = 0;
-  late Timer _timer; // Добавлен таймер
+  late Timer _timer;
 
   @override
   void initState() {
@@ -24,16 +24,15 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
 
   @override
   void dispose() {
-    // Отмена таймера при уничтожении виджета
     _stopTimer();
     super.dispose();
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
-        _currentValue = (_currentValue + 1) % _list.length;
-        if (_currentValue == _list.length - 1) {
+        _currentValue = (_currentValue + 1) % widget.list.length;
+        if (_currentValue == widget.list.length - 1) {
           _stopTimer();
         }
       });
@@ -48,7 +47,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,25 +61,25 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   }
 
   Widget _buildNumberContainer(int index) {
-    double _height = 180;
+    double height = 180;
     if (_isValidIndex(index)) {
       return Container(
-        height: _height,
+        height: height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: _getColorContainer(index),
         ),
         child: Text(
-          _list[index].toString(),
+          widget.list[index].toString(),
           style: AppTextStyles.black26.copyWith(
-            fontSize: (6 * (18 - _list[index].toString().length)).sp,
+            fontSize: (6 * (18 - widget.list[index].toString().length)).sp,
             color: _getColorText(index),
           ),
         ),
       );
     } else {
       return Container(
-        height: _height,
+        height: height,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: _getColorContainer(index),
@@ -90,7 +89,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   }
 
   bool _isValidIndex(int index) {
-    return index >= 0 && index < _list.length;
+    return index >= 0 && index < widget.list.length;
   }
 
   Color _getColorContainer(int index) {

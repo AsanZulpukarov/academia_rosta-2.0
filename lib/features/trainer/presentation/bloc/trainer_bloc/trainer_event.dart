@@ -7,11 +7,4 @@ sealed class TrainerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class TrainerSelectThemeEvent extends TrainerEvent {
-  String theme;
-
-  TrainerSelectThemeEvent(this.theme);
-  @override
-  // TODO: implement props
-  List<Object> get props => [theme];
-}
+class TrainerSelectThemeEvent extends TrainerEvent {}

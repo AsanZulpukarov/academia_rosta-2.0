@@ -1,16 +1,16 @@
 class SignUpEntity {
-  String? firstname;
-  String? lastname;
-  String? phone;
-  String? polPerson;
-  String? email;
-  DateTime? bDay;
-  String? username;
-  String? password;
-  String? confirmPassword;
-  String? branch;
+  final String? firstname;
+  final String? lastname;
+  final String? phone;
+  final String? polPerson;
+  final String? email;
+  final DateTime? bDay;
+  final String? username;
+  final String? password;
+  final String? confirmPassword;
+  final String? branch;
 
-  SignUpEntity({
+  const SignUpEntity({
     required this.firstname,
     required this.lastname,
     required this.phone,

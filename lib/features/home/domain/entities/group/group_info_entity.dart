@@ -1,12 +1,17 @@
 import 'package:equatable/equatable.dart';
 
 class GroupInfoEntity extends Equatable {
-  int? id;
-  String? name;
-  String? teacher;
-  String? subject;
+  final int? id;
+  final String? name;
+  final String? teacher;
+  final String? subject;
 
-  GroupInfoEntity({this.id, this.name, this.teacher, this.subject,});
+  const GroupInfoEntity({
+    this.id,
+    this.name,
+    this.teacher,
+    this.subject,
+  });
 
   @override
   // TODO: implement props

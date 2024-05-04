@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../app_text_styles.dart';
 
 class ShowTrainNumber extends StatefulWidget {
-  const ShowTrainNumber({Key? key}) : super(key: key);
+  final List<int> number;
+  const ShowTrainNumber({Key? key, required this.number}) : super(key: key);
 
   @override
   State<ShowTrainNumber> createState() => _ShowTrainNumberState();

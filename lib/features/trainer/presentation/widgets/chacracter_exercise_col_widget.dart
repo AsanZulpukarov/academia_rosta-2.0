@@ -1,6 +1,9 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/bloc/trainer_bloc/trainer_bloc.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/bloc/trainer_bloc/trainer_bloc.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/character_container_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class CharacterExerciseWidget extends StatelessWidget {
@@ -8,42 +11,59 @@ class CharacterExerciseWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Характеристики упражнения",
-          style: AppTextStyles.black16Medium,
-        ),
-        const Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
+    return BlocBuilder<TrainerBloc, TrainerState>(
+      builder: (context, state) {
+        return Column(
           children: [
-            Expanded(
-              child: CharacterContainerWidget(
-                title: "Скорость",
-                numberCharacter: 1.00,
-                numberIncDec: 0.2,
-                isFixDigit: false,
-              ),
+            Text(
+              "Характеристики упражнения",
+              style: AppTextStyles.black16Medium,
             ),
-            Gap(22),
-            Expanded(
-              child: CharacterContainerWidget(
-                title: "Разрядность",
-                numberCharacter: 1.0,
-                numberIncDec: 1.0,
-              ),
-            ),
-            Gap(22),
-            Expanded(
-              child: CharacterContainerWidget(
-                title: "Количество\nпеременных",
-                numberCharacter: 1.0,
-                numberIncDec: 1.0,
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Expanded(
+                  child: CharacterContainerWidget(
+                    title: "Скорость",
+                    numberCharacter: state.exerciseTrainEntity.speed ?? 1.0,
+                    numberIncDec: 0.2,
+                    isFixDigit: false,
+                    onChange: (double num) {
+                      state.exerciseTrainEntity.speed = num;
+                    },
+                  ),
+                ),
+                Gap(22),
+                Expanded(
+                  child: CharacterContainerWidget(
+                    title: "Разрядность",
+                    numberCharacter:
+                        state.exerciseTrainEntity.digitsCount?.toDouble() ??
+                            1.0,
+                    numberIncDec: 1.0,
+                    onChange: (double num) {
+                      state.exerciseTrainEntity.digitsCount = num.toInt();
+                    },
+                  ),
+                ),
+                Gap(22),
+                Expanded(
+                  child: CharacterContainerWidget(
+                    title: "Количество\nпеременных",
+                    numberCharacter:
+                        state.exerciseTrainEntity.numberCount?.toDouble() ??
+                            1.0,
+                    numberIncDec: 1.0,
+                    onChange: (double num) {
+                      state.exerciseTrainEntity.numberCount = num.toInt();
+                    },
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 }

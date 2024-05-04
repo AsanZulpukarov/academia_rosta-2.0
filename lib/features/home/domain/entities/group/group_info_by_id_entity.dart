@@ -5,14 +5,14 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/timeta
 import 'package:equatable/equatable.dart';
 
 class GroupInfoByIdEntity extends Equatable {
-  int? id;
-  String? name;
-  TeacherEntity? teacher;
-  SubjectEntity? subject;
-  List<StudentEntity>? pupils;
-  TimetableEntity? timetable;
+  final int? id;
+  final String? name;
+  final TeacherEntity? teacher;
+  final SubjectEntity? subject;
+  final List<StudentEntity>? pupils;
+  final TimetableEntity? timetable;
 
-  GroupInfoByIdEntity(
+  const GroupInfoByIdEntity(
       {this.id,
       this.name,
       this.teacher,

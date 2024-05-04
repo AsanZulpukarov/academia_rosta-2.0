@@ -1,12 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class TeacherEntity extends Equatable {
-  int? id;
-  String? firstname;
-  String? lastname;
-  String? phoneNumber;
+  final int? id;
+  final String? firstname;
+  final String? lastname;
+  final String? phoneNumber;
 
-  TeacherEntity({
+  const TeacherEntity({
     this.id,
     this.firstname,
     this.lastname,

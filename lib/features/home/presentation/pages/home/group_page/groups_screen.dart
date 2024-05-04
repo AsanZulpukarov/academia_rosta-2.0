@@ -7,6 +7,8 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_groups.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/groups_bloc/groups_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/group_info_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,13 +34,9 @@ class GroupsScreen extends StatelessWidget {
       child: BlocBuilder<GroupsBloc, GroupsState>(
         builder: (context, state) {
           if (state is GroupsLoadingState) {
-            return Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
+            return const LoadingStateWidget();
           } else if (state is GroupsErrorState) {
-            Center(
-              child: Text("Вышла ошибка"),
-            );
+            return ErrorStateWidget(message: state.message);
           } else if (state is GroupsLoadedState) {
             List<GroupInfoEntity> groupList = state.groups;
             return ListView.separated(
@@ -64,7 +62,7 @@ class GroupsScreen extends StatelessWidget {
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(4, 4),
+                          offset: const Offset(4, 4),
                           blurRadius: 8,
                         ),
                       ],
@@ -89,7 +87,7 @@ class GroupsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Gap(10),
+                        const Gap(10),
                         _groupInfoRow('Предмет',
                             groupList.elementAt(index).subject ?? "Предмет"),
                         _groupInfoRow('Учитель',

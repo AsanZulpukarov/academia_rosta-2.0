@@ -1,9 +1,9 @@
 class EditPasswordEntity {
-  int? id;
-  String? password;
-  String? confirmPassword;
+  final int? id;
+  final String? password;
+  final String? confirmPassword;
 
-  EditPasswordEntity({
+  const EditPasswordEntity({
     required this.id,
     required this.password,
     required this.confirmPassword,

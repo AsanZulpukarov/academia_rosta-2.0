@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class SubjectEntity extends Equatable {
-  int? id;
-  String? name;
-  int? cost;
+  final int? id;
+  final String? name;
+  final int? cost;
 
-  SubjectEntity({
+  const SubjectEntity({
     this.id,
     this.name,
     this.cost,

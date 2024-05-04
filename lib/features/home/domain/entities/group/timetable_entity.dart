@@ -1,13 +1,13 @@
 class TimetableEntity {
-  String? monday;
-  String? tuesday;
-  String? wednesday;
-  String? thursday;
-  String? friday;
-  String? saturday;
-  String? sunday;
+  final String? monday;
+  final String? tuesday;
+  final String? wednesday;
+  final String? thursday;
+  final String? friday;
+  final String? saturday;
+  final String? sunday;
 
-  TimetableEntity({
+  const TimetableEntity({
     this.monday,
     this.tuesday,
     this.wednesday,

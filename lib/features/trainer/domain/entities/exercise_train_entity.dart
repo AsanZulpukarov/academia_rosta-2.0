@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 
 class ExerciseTrainEntity extends Equatable {
-  int? id;
-  String? topic;
-  int? questionCount;
+  final int? id;
+  final String? topic;
+  final int? questionCount;
   int? digitsCount;
   int? numberCount;
   double? speed;

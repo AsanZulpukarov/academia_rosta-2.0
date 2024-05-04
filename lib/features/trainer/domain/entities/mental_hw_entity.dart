@@ -4,14 +4,14 @@ import 'package:academia_rosta_diplom/features/trainer/domain/enums/hw_type_enum
 import 'package:equatable/equatable.dart';
 
 class MentalHWEntity extends Equatable {
-  int? id;
-  DateTime? createDate;
-  DateTime? deadLine;
-  List<ExerciseTrainEntity>? exercises;
-  HWTypeEnum? hwType;
-  UserInfoEntity? userInfo;
+  final int? id;
+  final DateTime? createDate;
+  final DateTime? deadLine;
+  final List<ExerciseTrainEntity>? exercises;
+  final HWTypeEnum? hwType;
+  final UserInfoEntity? userInfo;
 
-  MentalHWEntity({
+  const MentalHWEntity({
     this.id,
     this.createDate,
     this.deadLine,

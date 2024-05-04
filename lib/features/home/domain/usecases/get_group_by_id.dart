@@ -4,7 +4,6 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_
 import 'package:academia_rosta_diplom/features/home/domain/repositories/group_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import '../entities/group/group_info_entity.dart';
 
 class GetGroupByIdUseCase
     extends UseCase<List<GroupInfoByIdEntity>, GetGroupByIdParams> {

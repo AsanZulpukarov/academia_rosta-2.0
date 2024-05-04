@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 class StudentEntity extends Equatable {
-  int? id;
-  String? firstname;
-  String? lastname;
-  String? phoneNumber;
+  final int? id;
+  final String? firstname;
+  final String? lastname;
+  final String? phoneNumber;
   bool? isSelect;
 
   StudentEntity({

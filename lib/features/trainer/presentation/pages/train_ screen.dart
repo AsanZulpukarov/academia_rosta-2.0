@@ -54,7 +54,9 @@ class TrainScreenState extends State<TrainScreen>
             builder: (context, child) {
               return _isFrontVisible
                   ? TrainCharacterScreen()
-                  : ShowTrainNumberScreen();
+                  : ShowTrainNumberScreen(
+                      list: [],
+                    );
             },
           ),
         ),

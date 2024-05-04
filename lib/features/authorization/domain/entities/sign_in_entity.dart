@@ -1,6 +1,6 @@
 class SignInEntity {
-  String? username;
-  String? password;
+  final String? username;
+  final String? password;
 
-  SignInEntity({required this.username, required this.password});
+  const SignInEntity({required this.username, required this.password});
 }

@@ -10,6 +10,7 @@ class CharacterContainerWidget extends StatefulWidget {
   final Color buttonBackgroundColor;
   final double? heightContainer;
   final bool isFixDigit;
+  final Function(double num) onChange;
   const CharacterContainerWidget({
     Key? key,
     required this.title,
@@ -18,6 +19,7 @@ class CharacterContainerWidget extends StatefulWidget {
     this.isFixDigit = true,
     this.buttonBackgroundColor = AppColors.main,
     this.heightContainer = 100,
+    required this.onChange,
   }) : super(key: key);
 
   @override
@@ -86,6 +88,7 @@ class _CharacterContainerWidgetState extends State<CharacterContainerWidget> {
                             if (_numberCharacter - widget.numberIncDec > 0.2) {
                               setState(() {
                                 _numberCharacter -= widget.numberIncDec;
+                                widget.onChange(_numberCharacter);
                               });
                             }
                           },
@@ -109,6 +112,7 @@ class _CharacterContainerWidgetState extends State<CharacterContainerWidget> {
                           onPressed: () {
                             setState(() {
                               _numberCharacter += widget.numberIncDec;
+                              widget.onChange(_numberCharacter);
                             });
                           },
                         ),
