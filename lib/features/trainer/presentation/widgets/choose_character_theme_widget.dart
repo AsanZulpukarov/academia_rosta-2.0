@@ -22,6 +22,7 @@ class _ChooseCharacterThemeWidgetState
 
   @override
   Widget build(BuildContext context) {
+
     return BlocBuilder<TrainerBloc, TrainerState>(
       builder: (context, state) {
         return Column(
