@@ -5,7 +5,7 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_
 
 abstract class GroupRemoteDataSource {
   Future<List<GroupInfoEntity>> getAllGroups();
-  Future<GroupInfoByIdEntity> getGroupById(String id);
+  Future<GroupInfoByIdEntity> getGroupById(int id);
   Future<void> postAttendanceStudents();
   Future<void> getLastThreeLessonHistory();
   Future<void> getAllLessonHistory();

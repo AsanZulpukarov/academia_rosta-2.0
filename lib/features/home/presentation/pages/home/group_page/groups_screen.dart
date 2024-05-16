@@ -5,6 +5,8 @@ import 'package:academia_rosta_diplom/features/home/data/datasources/remote/grou
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_groups.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_group_by_id.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/groups_bloc/groups_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/group_info_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
@@ -24,7 +26,7 @@ class GroupsScreen extends StatelessWidget {
       create: (context) => GroupsBloc(
         getAllGroupsUseCase: GetAllGroupsUseCase(
           GroupRepositoryImpl(
-            remoteGroupDataSource: GroupRemoteDataSourceImplFake(),
+            remoteGroupDataSource: GroupRemoteDataSourceImpl(),
             networkInfo: NetworkInfoImpl(
               connectionChecker: InternetConnectionChecker(),
             ),
@@ -39,6 +41,17 @@ class GroupsScreen extends StatelessWidget {
             return ErrorStateWidget(message: state.message);
           } else if (state is GroupsLoadedState) {
             List<GroupInfoEntity> groupList = state.groups;
+            if (groupList.isEmpty) {
+              return Center(
+                child: Text(
+                  "Нет групп",
+                  style: AppTextStyles.black26.copyWith(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              );
+            }
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               itemCount: groupList.length,
@@ -46,12 +59,24 @@ class GroupsScreen extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GroupInfoScreen(
-                                  groupName: groupList.elementAt(index).name ??
-                                      "Название группы",
-                                )));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                      create: (context) => GroupInfoBloc(
+                        getGroupByIdUseCase: GetGroupByIdUseCase(
+                          GroupRepositoryImpl(remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+                            networkInfo: NetworkInfoImpl(
+                              connectionChecker: InternetConnectionChecker(),
+                            ),
+                          ),
+                        ),
+                      )..add(GroupInfoEmptyEvent(groupList[index].id ?? 1)),
+                      child: GroupInfoScreen(
+                          groupName:groupList[index].name ?? "Название группы"
+                        ),
+                      ),
+                      ),
+                    );
                   },
                   child: Container(
                     height: 140.h,

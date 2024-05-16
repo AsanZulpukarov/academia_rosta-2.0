@@ -6,23 +6,14 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 class GetGroupByIdUseCase
-    extends UseCase<List<GroupInfoByIdEntity>, GetGroupByIdParams> {
+    extends UseCase<GroupInfoByIdEntity, int> {
   final GroupRepository appRepository;
 
   GetGroupByIdUseCase(this.appRepository);
 
   @override
-  Future<Either<Failure, List<GroupInfoByIdEntity>>> call(
-      GetGroupByIdParams params) async {
-    return await appRepository.getGroupById(id: params.query);
+  Future<Either<Failure, GroupInfoByIdEntity>> call(
+      int params) async {
+    return await appRepository.getGroupById(id: params);
   }
-}
-
-class GetGroupByIdParams extends Equatable {
-  final String query;
-
-  const GetGroupByIdParams({required this.query});
-  @override
-  // TODO: implement props
-  List<Object?> get props => [query];
 }

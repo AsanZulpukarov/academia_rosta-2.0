@@ -11,7 +11,7 @@ class GroupsInitialState extends GroupsState {}
 class GroupsLoadingState extends GroupsState {}
 
 class GroupsLoadedState extends GroupsState {
-  List<GroupInfoEntity> groups;
+  final List<GroupInfoEntity> groups;
 
   GroupsLoadedState(this.groups);
 
@@ -21,7 +21,7 @@ class GroupsLoadedState extends GroupsState {
 }
 
 class GroupsErrorState extends GroupsState {
-  String message;
+  final String message;
 
   GroupsErrorState(this.message);
 

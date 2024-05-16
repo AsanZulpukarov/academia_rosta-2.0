@@ -19,7 +19,6 @@ class EditPasswordModel extends EditPasswordEntity {
   Map<String, dynamic> toJson() {
     return {
       "password": password,
-      "confirmPassword": confirmPassword,
     };
   }
 }

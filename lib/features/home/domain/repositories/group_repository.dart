@@ -5,8 +5,8 @@ import 'package:dartz/dartz.dart';
 
 abstract class GroupRepository {
   Future<Either<Failure, List<GroupInfoEntity>>> getAllGroups();
-  Future<Either<Failure, List<GroupInfoByIdEntity>>> getGroupById(
-      {required String id});
+  Future<Either<Failure, GroupInfoByIdEntity>> getGroupById(
+      {required int id});
 
   Future<Either<Failure, void>> postAttendanceStudents();
   Future<Either<Failure, void>> getLastThreeLessonHistory();

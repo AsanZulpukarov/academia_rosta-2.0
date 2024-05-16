@@ -17,9 +17,12 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, UserInfoModel>> getUserInfo() {
-    // TODO: implement getUserInfo
-    throw UnimplementedError();
+  Future<Either<Failure, UserInfoEntity>> getUserInfo() async {
+    try {
+      return Right(await profileRemoteDataSource.getUserInfo());
+    } on Exception {
+    throw ServerFailure();
+    }
   }
 
   @override
@@ -29,7 +32,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> changePassword(EditPasswordEntity editPasswordEntity) async {
+  Future<Either<Failure, bool>> changePassword(EditPasswordEntity editPasswordEntity) async {
     try {
       return Right(await profileRemoteDataSource.editPassword(editPasswordEntity));
     } on Exception {
@@ -38,8 +41,11 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> updateUserInfo(UserInfoEntity userInfoEntity) {
-    // TODO: implement setUserInfo
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> updateUserInfo(UserInfoEntity userInfoEntity) async {
+    try {
+      return Right(await profileRemoteDataSource.updateUserInfo(userInfoEntity));
+    } on Exception {
+    throw ServerFailure();
+    }
   }
 }

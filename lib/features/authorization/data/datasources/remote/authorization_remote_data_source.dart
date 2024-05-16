@@ -6,7 +6,7 @@ import 'package:academia_rosta_diplom/features/authorization/domain/entities/sig
 
 abstract class AuthorizationRemoteDataSource {
   Future<UserModel> signIn(SignInEntity signInEntity);
-  Future<void> signUp(SignUpEntity signUpModel);
+  Future<void> signUp(SignUpEntity signUpEntity);
   Future<void> resetPassword(String username);
   Future<void> sendCode(String code);
 

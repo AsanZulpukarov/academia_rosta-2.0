@@ -1,7 +1,14 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/core/platform/network_info.dart';
+import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_group_by_id.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/home_work_screen.dart';
@@ -9,13 +16,17 @@ import 'package:academia_rosta_diplom/features/home/presentation/pages/home/grou
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/group_calendar_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
 import 'history_lesson_screen.dart';
 
 class GroupInfoScreen extends StatelessWidget {
   final String groupName;
+
   const GroupInfoScreen({Key? key, required this.groupName}) : super(key: key);
 
   @override
@@ -24,89 +35,113 @@ class GroupInfoScreen extends StatelessWidget {
       appBar: MyAppBarSecond(
         title: groupName,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Column(
-          children: [
-            Column(
-              children: [
-                _row2Text(
-                  title: "Предмет:",
-                  subtitle: "Ментальная арифметика",
-                  function: () {
-                    showBottomWindowSubject(
-                      context,
-                      SubjectModel(
-                        id: 1,
-                        name: "Менталька",
-                        cost: 200,
+      body: BlocConsumer<GroupInfoBloc, GroupInfoState>(
+        listener: (context, state) {
+          if (state is GroupInfoErrorState) {
+            AppUtils.showSnackBar(context: context, description: state.message);
+          }
+        },
+        builder: (context, state) {
+          GroupInfoByIdEntity groupInfoByIdEntity;
+          if (state is GroupInfoLoadingState) {
+            return const LoadingStateWidget();
+          } else if (state is GroupInfoLoadedState) {
+            groupInfoByIdEntity = state.group;
+            return SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      _row2Text(
+                        title: "Предмет:",
+                        subtitle: groupInfoByIdEntity.subject?.name ??
+                            "Название предмета",
+                        function: () {
+                          showBottomWindowSubject(
+                            context,
+                            SubjectModel(
+                              id: groupInfoByIdEntity.subject?.id,
+                              name: groupInfoByIdEntity.subject?.name,
+                              cost: groupInfoByIdEntity.subject?.cost,
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
-                Gap(10),
-                _row2Text(
-                  title: "Учитель:",
-                  subtitle: "Маданбеков Марсел",
-                  function: () {
-                    showBottomWindowTeacher(
-                      context,
-                      TeacherModel(
-                          id: 1,
-                          firstname: "Марсел",
-                          lastname: "Маданбеков",
-                          phoneNumber: "+996990551380"),
-                    );
-                  },
-                ),
-                Gap(20),
-                _actionButton(context),
-                Gap(20),
-                GroupCalendarWidget(),
-              ],
-            ),
-            Gap(30),
-            Container(
-              decoration: ShapeDecoration(
-                shadows: [
-                  BoxShadow(
-                    color: AppColors.black.withOpacity(0.5),
-                    offset: Offset(4, 4),
-                    blurRadius: 8,
+                      Gap(10),
+                      _row2Text(
+                        title: "Учитель:",
+                        subtitle: groupInfoByIdEntity.teacher?.getFullName() ??
+                            "Пусто",
+                        function: () {
+                          showBottomWindowTeacher(
+                            context,
+                            TeacherModel(
+                              id: 1,
+                              firstname:
+                                  groupInfoByIdEntity.teacher?.firstname ??
+                                      "Пусто",
+                              lastname: groupInfoByIdEntity.teacher?.lastname ??
+                                  "Пусто",
+                              phoneNumber:
+                                  groupInfoByIdEntity.teacher?.phoneNumber ??
+                                      "Пусто",
+                            ),
+                          );
+                        },
+                      ),
+                      Gap(20),
+                      _actionButton(context),
+                      Gap(20),
+                      GroupCalendarWidget(),
+                    ],
                   ),
+                  Gap(30),
+                  Container(
+                    decoration: ShapeDecoration(
+                      shadows: [
+                        BoxShadow(
+                          color: AppColors.black.withOpacity(0.5),
+                          offset: Offset(4, 4),
+                          blurRadius: 8,
+                        ),
+                      ],
+                      color: AppColors.secondaryColor,
+                      // gradient: LinearGradient(
+                      //   begin: Alignment.bottomRight,
+                      //   end: Alignment.topLeft,
+                      //   colors: [
+                      //     AppColors.secondaryColor,
+                      //     AppColors.secondaryColor,
+                      //   ],
+                      // ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                    child: ListTile(
+                      title: Text(
+                        "Студенты",
+                        style: AppTextStyles.black16Regular.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                      leading: Text(
+                        "№",
+                        style: AppTextStyles.black16Regular.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Gap(10),
+                  const ListStudentScreen(),
                 ],
-                color: AppColors.secondaryColor,
-                // gradient: LinearGradient(
-                //   begin: Alignment.bottomRight,
-                //   end: Alignment.topLeft,
-                //   colors: [
-                //     AppColors.secondaryColor,
-                //     AppColors.secondaryColor,
-                //   ],
-                // ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
               ),
-              child: ListTile(
-                title: Text(
-                  "Студенты",
-                  style: AppTextStyles.black16Regular.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-                leading: Text(
-                  "№",
-                  style: AppTextStyles.black16Regular.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-              ),
-            ),
-            Gap(10),
-            ListStudentScreen(),
-          ],
-        ),
+            );
+          }
+          return const SizedBox();
+        },
       ),
     );
   }

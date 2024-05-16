@@ -11,17 +11,17 @@ class GroupInfoInitialState extends GroupInfoState {}
 class GroupInfoLoadingState extends GroupInfoState {}
 
 class GroupInfoLoadedState extends GroupInfoState {
-  List<GroupInfoModel> groups;
+  final GroupInfoByIdEntity group;
 
-  GroupInfoLoadedState(this.groups);
+  GroupInfoLoadedState(this.group);
 
   @override
   // TODO: implement props
-  List<Object?> get props => [groups];
+  List<Object?> get props => [group];
 }
 
 class GroupInfoErrorState extends GroupInfoState {
-  String message;
+  final String message;
 
   GroupInfoErrorState(this.message);
 

@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/error/exception.dart';
+import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/sign_in_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/sign_up_model.dart';
@@ -11,6 +12,7 @@ import 'package:academia_rosta_diplom/features/authorization/domain/entities/sig
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_up_entity.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
   AuthorizationRemoteDataSourceImpl();
@@ -23,7 +25,11 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       HttpHeaders.acceptCharsetHeader: 'utf-8',
     };
 
-    final response = await http.post(url, headers: headers, body: {"username":username},);
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: {"username": username},
+    );
 
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -43,7 +49,11 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       HttpHeaders.acceptCharsetHeader: 'utf-8',
     };
 
-    final response = await http.post(url, headers: headers, body: {"code":code},);
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode({"code": code}),
+    );
 
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -73,11 +83,23 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       final jsonData = jsonDecode(responseBody);
+      setToken(jsonData['token']);
+      setRole(jsonData['role']);
       return UserModel.fromJson(jsonData);
     } else {
       print("Asan --> ${response.statusCode} ${responseBody}");
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
+  }
+
+  void setToken(String value) async {
+    SharedPreferences sharedPreferences = await SharedPrefSource.getInstance();
+    sharedPreferences.setString(SharedPrefSource.tokenKey, value);
+  }
+
+  void setRole(String value) async {
+    SharedPreferences sharedPreferences = await SharedPrefSource.getInstance();
+    sharedPreferences.setString(SharedPrefSource.roleKey, value);
   }
 
   @override

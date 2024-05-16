@@ -13,6 +13,10 @@ class TeacherEntity extends Equatable {
     this.phoneNumber,
   });
 
+  String getFullName(){
+    return "$lastname $firstname";
+  }
+
   @override
   // TODO: implement props
   List<Object?> get props => [

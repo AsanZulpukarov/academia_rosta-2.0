@@ -15,20 +15,27 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   ProfileRemoteDataSourceImpl();
 
   @override
-  Future<void> editPassword(EditPasswordEntity editPasswordEntity) async {
-    EditPasswordModel editPasswordModel = EditPasswordModel(password: editPasswordEntity.password, confirmPassword: editPasswordEntity.confirmPassword);
-    final url = Uri.parse('${Constants.baseUrl}api/users/update-user');
+  Future<bool> editPassword(EditPasswordEntity editPasswordEntity) async {
+    EditPasswordModel editPasswordModel = EditPasswordModel(
+        password: editPasswordEntity.password,
+        confirmPassword: editPasswordEntity.confirmPassword,);
+    final url = Uri.parse('${Constants.baseUrl}api/profile/change-password');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      // HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
     };
-    final response = await http.patch(
+    print(editPasswordModel.toJson());
+    print(jsonEncode(editPasswordModel.toJson()));
+    final response = await http.post(
       url,
       headers: headers,
-      body: editPasswordModel.toJson(),);
+      body: jsonEncode(editPasswordModel.toJson()),
+    );
+    print(response.statusCode);
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
@@ -42,12 +49,11 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
 
   @override
   Future<UserInfoModel> getUserInfo() async {
-    final url =
-        Uri.parse('${Constants.baseUrl}api/users/user-details?userId=1');
+    final url = Uri.parse('${Constants.baseUrl}api/profile');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      // HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -68,21 +74,29 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   }
 
   @override
-  Future<void> updateUserInfo(UserInfoEntity userInfoEntity) async {
-    final url = Uri.parse('${Constants.baseUrl}api/users/update-user');
+  Future<bool> updateUserInfo(UserInfoEntity userInfoEntity) async {
+    final url = Uri.parse('${Constants.baseUrl}api/profile');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      // HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
     };
 
-    final response = await http.patch(
+    final response = await http.post(
       url,
       headers: headers,
-      body: UserInfoModel(firstname: userInfoEntity.firstname, lastname: userInfoEntity.lastname , email: userInfoEntity.email, username: userInfoEntity.username, phoneNumber: userInfoEntity.phoneNumber).toJson(),
+      body: jsonEncode(UserInfoModel(
+        firstname: userInfoEntity.firstname,
+        lastname: userInfoEntity.lastname,
+        email: userInfoEntity.email,
+        username: userInfoEntity.username,
+        phoneNumber: userInfoEntity.phoneNumber,
+      ).toJson()),
     );
+    print(response.statusCode);
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
+      return true;
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }

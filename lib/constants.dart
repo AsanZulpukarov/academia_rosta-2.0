@@ -1,9 +1,13 @@
 class Constants {
-  static const String _ip = "mental-academia.ru";
-  static const String _host = "https";
-  static const String _port = "443";
-  // static const baseUrl = "$_host://$_ip:$_port/";
-  static const baseUrl = "$_host://$_ip/";
+  // static const String _ip = "mental-academia.ru";
+  // static const String _host = "https";
+  // static const baseUrl = "$_host://$_ip/";
+
+
+  static const String _ip = "192.168.50.84";
+  static const String _host = "http";
+  static const String _port = "8080";
+  static const baseUrl = "$_host://$_ip:$_port/";
 
   static const List<Map<String, dynamic>> topics = [
     {"name": "Простое сложение вычитание", "code": "psv"},
@@ -34,4 +38,5 @@ class Constants {
     {"name": "Помощь друга +9", "code": "pb+9"},
     {"name": "Помощь друга -9", "code": "pb-9"},
   ];
+  static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlJPTEVfVEVBQ0hFUiIsImlkIjoiMyIsInVzZXJuYW1lIjoiY2h5bmFyYSIsImlhdCI6MTcxNTg0NjUyNiwiZXhwIjoxNzE2NDQ2NTI2fQ.a7OGeV9mdUuB0yLCCDGSPB4A3YonAuXE6pUkNadket4gAqnWeILrGX7uNPI4UvPwpAvEBSiWDCCMy0TTxwYgMg";
 }

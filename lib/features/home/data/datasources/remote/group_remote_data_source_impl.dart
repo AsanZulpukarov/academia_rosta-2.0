@@ -21,7 +21,7 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      // HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -38,12 +38,12 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
   }
 
   @override
-  Future<GroupInfoByIdModel> getGroupById(String id) async {
-    final url = Uri.parse('${Constants.baseUrl}api/groups');
+  Future<GroupInfoByIdModel> getGroupById(int id) async {
+    final url = Uri.parse('${Constants.baseUrl}api/groups/group-details?groupId=$id');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      // HttpHeaders.authorizationHeader: "Bearer $token",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -155,7 +155,7 @@ class GroupRemoteDataSourceImplFake implements GroupRemoteDataSource {
   }
 
   @override
-  Future<GroupInfoByIdEntity> getGroupById(String id) async {
+  Future<GroupInfoByIdEntity> getGroupById(int id) async {
     var jsonData = {
       "id": 4,
       "name": "Талгар-Английский-1",

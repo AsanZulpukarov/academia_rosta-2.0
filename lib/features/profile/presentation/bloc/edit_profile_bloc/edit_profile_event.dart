@@ -8,14 +8,18 @@ sealed class EditProfileEvent extends Equatable {
 }
 
 final class EditProfileEmptyEvent extends EditProfileEvent {
-  UserEntity user;
-  EditProfileEmptyEvent(this.user);
-  @override
-  // TODO: implement props
-  List<Object?> get props => [user];
+  const EditProfileEmptyEvent();
 }
 
 final class EditProfileChangeImageEvent extends EditProfileEvent {
 }
 
-final class EditProfileSaveEvent extends EditProfileEvent {}
+final class EditProfileSaveEvent extends EditProfileEvent {
+  final UserInfoEntity userInfoEntity;
+
+  const EditProfileSaveEvent(this.userInfoEntity);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [userInfoEntity];
+
+}

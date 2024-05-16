@@ -6,4 +6,11 @@ abstract class GroupInfoEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class GroupInfoEmptyEvent extends GroupInfoEvent {}
+class GroupInfoEmptyEvent extends GroupInfoEvent {
+  final int id;
+
+  GroupInfoEmptyEvent(this.id);
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id];
+}

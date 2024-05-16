@@ -38,7 +38,7 @@ showBottomWindowTeacher(BuildContext context, TeacherModel teacherModel) {
               const Gap(40),
               _personInfo(
                 title: "ФИО:",
-                subtitle: "${teacherModel.lastname} ${teacherModel.firstname}",
+                subtitle: teacherModel.getFullName(),
               ),
               const Gap(20),
               _personInfo(

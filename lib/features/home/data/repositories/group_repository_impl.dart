@@ -18,14 +18,21 @@ class GroupRepositoryImpl extends GroupRepository {
 
   @override
   Future<Either<Failure, List<GroupInfoEntity>>> getAllGroups() async {
-    return Right(await remoteGroupDataSource.getAllGroups());
+    try {
+      return Right(await remoteGroupDataSource.getAllGroups());
+    } on Exception{
+      throw Left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, List<GroupInfoByIdEntity>>> getGroupById(
-      {required String id}) {
-    // TODO: implement getGroupById
-    throw UnimplementedError();
+  Future<Either<Failure, GroupInfoByIdEntity>> getGroupById(
+      {required int id}) async {
+    try {
+      return Right(await remoteGroupDataSource.getGroupById(id));
+    } on Exception{
+    throw Left(ServerFailure());
+    }
   }
 
   @override

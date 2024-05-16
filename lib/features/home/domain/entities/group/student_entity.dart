@@ -15,6 +15,9 @@ class StudentEntity extends Equatable {
     this.isSelect = false,
   });
 
+  String getFullName(){
+    return "$lastname $firstname";
+  }
   @override
   // TODO: implement props
   List<Object?> get props => [

@@ -82,7 +82,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                           return const Center(
                             child: CircularProgressIndicator.adaptive(),
                           );
-                        } else if (state is ChangePasswordErrorState) {}
+                        }
                         return MainButtonWidget(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -119,7 +119,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget _passwordField(BuildContext context) {
     return TextFormField(
       controller: _newPassword,
-      obscureText: true,
+      obscureText: isVisible,
       validator: (value) => AppUtils.validatePassword(value),
       decoration: InputDecoration(
         suffixIcon: IconButton(
@@ -167,7 +167,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget _confirmPasswordField(BuildContext context) {
     return TextFormField(
       controller: _confirmPassword,
-      obscureText: true,
+      obscureText: isVisible,
       validator: (value) =>
           AppUtils.validateConfirmPassword(value, _newPassword.text),
       decoration: InputDecoration(
