@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/features/home/data/datasources/local/shared_pref_source.dart';
+import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

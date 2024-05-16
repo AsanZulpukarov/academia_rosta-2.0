@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_in_entity.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/usecases/sign_in.dart';
@@ -34,7 +35,9 @@ class _SignInScreenState extends State<SignInScreen> {
     return BlocProvider(
       create: (context) => SignInBloc(
           signInUseCase: SignInUseCase(
-              authorizationRepository: AuthorizationRepositoryImpl())),
+              authorizationRepository: AuthorizationRepositoryImpl(
+                authorizationRemoteDataSource: AuthorizationRemoteDataSourceImpl(),
+              ),),),
       child: Theme(
         data: ThemeData(
           inputDecorationTheme: InputDecorationTheme(

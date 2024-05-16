@@ -5,6 +5,7 @@ import 'package:academia_rosta_diplom/features/home/presentation/pages/home/grou
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/profile_screen.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_%20screen.dart';
+import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_character_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
       label: "Календарь",
     ),
     NavBarItem(
-      screen: TrainScreen(),
+      screen: TrainCharacterScreen(),
       icon: Icons.calculate,
       label: "Тренажер",
     ),

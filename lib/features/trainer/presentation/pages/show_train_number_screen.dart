@@ -1,12 +1,20 @@
 import 'dart:async';
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
 class ShowTrainNumberScreen extends StatefulWidget {
   final List<int> list;
-  const ShowTrainNumberScreen({Key? key, required this.list}) : super(key: key);
+  final double speed;
+
+  const ShowTrainNumberScreen(
+      {Key? key, required this.list, required this.speed})
+      : super(key: key);
 
   @override
   State<ShowTrainNumberScreen> createState() => _ShowTrainNumberScreenState();
@@ -15,10 +23,15 @@ class ShowTrainNumberScreen extends StatefulWidget {
 class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   int _currentValue = 0;
   late Timer _timer;
+  late int answer;
+  bool isShowNumber = true;
+  final TextEditingController _answerController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    answer = widget.list.last;
+    widget.list.removeLast();
     _startTimer();
   }
 
@@ -29,11 +42,13 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(
+        Duration(milliseconds: (widget.speed * 1000).toInt()), (timer) {
       setState(() {
-        _currentValue = (_currentValue + 1) % widget.list.length;
-        if (_currentValue == widget.list.length - 1) {
+        _currentValue++;
+        if (_currentValue == widget.list.length) {
           _stopTimer();
+            isShowNumber = false;
         }
       });
     });
@@ -46,16 +61,58 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const MyAppBarSecond(title: "Тренажер"),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _buildNumberContainer(_currentValue - 1),
-            _buildNumberContainer(_currentValue),
-            _buildNumberContainer(_currentValue + 1),
-          ],
-        ),
+        child: isShowNumber
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildNumberContainer(_currentValue - 1),
+                  _buildNumberContainer(_currentValue),
+                  _buildNumberContainer(_currentValue + 1),
+                ],
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    controller: _answerController,
+                    keyboardType: TextInputType.number,
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      hintText: "Напишити ответ",
+                      filled: false,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide:
+                            const BorderSide(color: AppColors.borderColor),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide:
+                            const BorderSide(color: AppColors.borderColor),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide:
+                            const BorderSide(color: AppColors.borderColor),
+                      ),
+                    ),
+                  ),
+                  const Gap(20),
+                  MainButtonWidget(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Text(
+                      "Проверить",
+                      style: AppTextStyles.black14.copyWith(
+                        color: AppColors.white,
+                      ),
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
+              ),
       ),
     );
   }
@@ -94,13 +151,13 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
 
   Color _getColorContainer(int index) {
     return index == _currentValue
-        ? Colors.blue.withOpacity(0.5)
-        : Colors.blue.withOpacity(0.1);
+        ? AppColors.mainColor.withOpacity(0.5)
+        : AppColors.mainColor.withOpacity(0.1);
   }
 
   Color _getColorText(int index) {
     return index == _currentValue
-        ? AppColors.black
-        : AppColors.black.withOpacity(0.4);
+        ? AppColors.white
+        : AppColors.black.withOpacity(0.5);
   }
 }

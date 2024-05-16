@@ -37,9 +37,10 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
         ),
       ),
       child: Scaffold(
-        body: SingleChildScrollView(
+        body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const CharacterExerciseWidget(),
               const Gap(10),
@@ -60,6 +61,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
                       MaterialPageRoute(
                         builder: (context) => ShowTrainNumberScreen(
                           list: state.numbers,
+                          speed: state.exerciseTrainEntity.speed ?? 1.0,
                         ),
                       ),
                     );
@@ -81,6 +83,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
                     onPressed: () {
                       BlocProvider.of<TrainerBloc>(context)
                           .add(TrainerSelectThemeEvent());
+
                     },
                   );
                 },
@@ -91,141 +94,4 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
       ),
     );
   }
-/*
-  Widget _trainThemeContainer({required String title}) {
-    return Flexible(
-      child: DecoratedBox(
-        decoration: ShapeDecoration(
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColors.mainGradientColor,
-              AppColors.white,
-            ],
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          shadows: [
-            AppTheme.boxShadow,
-          ],
-        ),
-        child: ListTile(
-          title: Text(
-            title,
-            style: AppTextStyles.black12Medium.copyWith(
-              fontSize: 12.sp,
-            ),
-          ),
-          trailing: Container(
-            width: 30.w,
-            height: 30.h,
-            child: TextField(
-              textAlign: TextAlign.center,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.blackOpacity65),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.blackOpacity65),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.blackOpacity65),
-                ),
-                contentPadding: EdgeInsets.zero,
-                filled: false,
-              ),
-              style: TextStyle(color: AppColors.blackOpacity65),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-  */
-/*
-
-  Widget _characterGradient() {
-    return Container(
-      child: Column(
-        children: [
-          Row(
-            children: [
-              _trainThemeContainer(title: "Скорость"),
-              Gap(20),
-              _trainThemeContainer(title: "Разрядность"),
-            ],
-          ),
-          Gap(20),
-          Row(
-            children: [
-              _trainThemeContainer(title: "Количество\nпеременных"),
-              Gap(20),
-              Flexible(
-                child: GestureDetector(
-                  onTap: () => showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      ),
-                      contentPadding: const EdgeInsets.all(20),
-                      scrollable: true,
-                      title: const Text(
-                        'Выберите тему',
-                        style: AppTextStyles.black20,
-                      ),
-                      content: ChooseThemeDialog(),
-                      actions: [
-                        TextButton(
-                          onPressed: () => Navigator.pop(context, 'Выбрать'),
-                          child: Text(
-                            'Выбрать',
-                            style: AppTextStyles.black16
-                                .copyWith(color: AppColors.main),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  child: DecoratedBox(
-                    decoration: ShapeDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [AppColors.mainGradientColor, AppColors.white],
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      shadows: [
-                        AppTheme.boxShadow,
-                      ],
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        "Выбрать тему",
-                        style: AppTextStyles.black12Medium.copyWith(
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                      trailing: Icon(
-                        Icons.touch_app,
-                        color: AppColors.blackOpacity65,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  */
 }

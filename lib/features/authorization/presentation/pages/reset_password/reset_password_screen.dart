@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/usecases/reset_password.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/reset_password_bloc/reset_password_bloc.dart';
@@ -30,7 +31,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return BlocProvider(
       create: (context) => ResetPasswordBloc(
         resetPasswordUseCase: ResetPasswordUseCase(
-          authorizationRepository: AuthorizationRepositoryImpl(),
+          authorizationRepository: AuthorizationRepositoryImpl(
+            authorizationRemoteDataSource: AuthorizationRemoteDataSourceImpl(),
+          ),
         ),
       ),
       child: Theme(

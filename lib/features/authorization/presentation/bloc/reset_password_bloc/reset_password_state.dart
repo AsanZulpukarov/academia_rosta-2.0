@@ -13,7 +13,7 @@ class ResetPasswordLoadingState extends ResetPasswordState {}
 class ResetPasswordLoadedState extends ResetPasswordState {}
 
 class ResetPasswordErrorState extends ResetPasswordState {
-  String message;
+  final String message;
 
   ResetPasswordErrorState(this.message);
 

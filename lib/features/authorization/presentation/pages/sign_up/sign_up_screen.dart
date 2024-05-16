@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_up_entity.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/usecases/sign_up.dart';
@@ -75,8 +76,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignUpBloc(
-          signUpUseCase: SignUpUseCase(
-              authorizationRepository: AuthorizationRepositoryImpl())),
+        signUpUseCase: SignUpUseCase(
+          authorizationRepository: AuthorizationRepositoryImpl(
+            authorizationRemoteDataSource: AuthorizationRemoteDataSourceImpl(),
+          ),
+        ),
+      ),
       child: Theme(
         data: ThemeData(
           inputDecorationTheme: InputDecorationTheme(
