@@ -21,7 +21,7 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -43,7 +43,7 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
     };
 
     final response = await http.get(url, headers: headers);

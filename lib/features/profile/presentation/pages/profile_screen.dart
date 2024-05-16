@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/change_password_screen.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/pages/my_object_screen.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_nav_item.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
             title: 'Моя статистика',
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MyStatisticScreen()));
+                  MaterialPageRoute(builder: (context) => MyObjectScreen()));
             },
           ),
           Gap(gap),

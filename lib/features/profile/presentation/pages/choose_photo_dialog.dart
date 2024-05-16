@@ -31,7 +31,7 @@ class _ChoosePhotoDialogState extends State<ChoosePhotoDialog> {
   int _currentIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.sizeOf(context).width.w,
       child: GridView.builder(
         shrinkWrap: true,

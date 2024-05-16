@@ -38,5 +38,6 @@ class Constants {
     {"name": "Помощь друга +9", "code": "pb+9"},
     {"name": "Помощь друга -9", "code": "pb-9"},
   ];
-  static String token = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlJPTEVfVEVBQ0hFUiIsImlkIjoiMyIsInVzZXJuYW1lIjoiY2h5bmFyYSIsImlhdCI6MTcxNTg0NjUyNiwiZXhwIjoxNzE2NDQ2NTI2fQ.a7OGeV9mdUuB0yLCCDGSPB4A3YonAuXE6pUkNadket4gAqnWeILrGX7uNPI4UvPwpAvEBSiWDCCMy0TTxwYgMg";
+  static String tokenTeacher = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwicm9sZSI6IlJPTEVfVEVBQ0hFUiIsImlkIjoiMyIsInVzZXJuYW1lIjoiY2h5bmFyYSIsImlhdCI6MTcxNTg0NjUyNiwiZXhwIjoxNzE2NDQ2NTI2fQ.a7OGeV9mdUuB0yLCCDGSPB4A3YonAuXE6pUkNadket4gAqnWeILrGX7uNPI4UvPwpAvEBSiWDCCMy0TTxwYgMg";
+  static String tokenStudent = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0Iiwicm9sZSI6IlJPTEVfUFVQSUwiLCJpZCI6IjQiLCJ1c2VybmFtZSI6ImRvbmkiLCJpYXQiOjE3MTU4NTk4NDEsImV4cCI6MTcxNjQ1OTg0MX0.H9BZ_DSNNwCYBqSxnG39JnaC-rOW0ydBfrkK-FpqjtP7LmgPj427mNU_FRIXZD6LFjnAPd-IDcd6H9qSqjKvYw";
 }

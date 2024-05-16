@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/subject_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/edit_password_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
 import 'package:dartz/dartz.dart';
@@ -9,5 +10,6 @@ abstract class ProfileRepository {
   Future<Either<Failure, bool>> changePassword(
       EditPasswordEntity editPasswordEntity);
   Future<Either<Failure, void>> getMyStatistic();
+  Future<Either<Failure, List<SubjectEntity>>> getMySubjects();
   Future<Either<Failure, void>> logoutAccount();
 }

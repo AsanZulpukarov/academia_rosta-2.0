@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/error/exception.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
 import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/profile/data/models/edit_password_model.dart';
 import 'package:academia_rosta_diplom/features/profile/data/models/user_info_model.dart';
@@ -23,7 +24,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
     };
     print(editPasswordModel.toJson());
     print(jsonEncode(editPasswordModel.toJson()));
@@ -53,7 +54,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -79,7 +80,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.token}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
     };
 
     final response = await http.post(
@@ -97,6 +98,28 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
+  }
+
+  @override
+  Future<List<SubjectModel>> getMySubjects() async {
+    final url = Uri.parse('${Constants.baseUrl}api/profile/my-subjects');
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenStudent}",
+    };
+
+    final response = await http.get(url, headers: headers);
+    print(response.statusCode);
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonData = jsonDecode(responseBody);
+      return (jsonData as List)
+          .map((subject) =>SubjectModel.fromJson(subject))
+          .toList();
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }

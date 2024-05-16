@@ -6,13 +6,11 @@ import 'package:academia_rosta_diplom/features/authorization/data/repositories/a
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_up_entity.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/usecases/sign_up.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/sing_up_bloc/sign_up_bloc.dart';
-import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import '../../../../home/data/api_source.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);

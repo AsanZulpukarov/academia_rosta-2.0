@@ -13,4 +13,12 @@ final class MyStatisticLoadingState extends MyStatisticState {}
 
 final class MyStatisticLoadedState extends MyStatisticState {}
 
-final class MyStatisticErrorState extends MyStatisticState {}
+final class MyStatisticErrorState extends MyStatisticState {
+  final String message;
+
+  const MyStatisticErrorState({required this.message});
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [message];
+}
