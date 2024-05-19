@@ -10,7 +10,7 @@ class StatisticCardInfoWidget extends StatelessWidget {
   final String theme;
   final String level;
   final int percent;
-  final Widget? progressIndicator;
+  final List<Widget> progressIndicator;
   const StatisticCardInfoWidget({
     Key? key,
     required this.theme,
@@ -52,7 +52,9 @@ class StatisticCardInfoWidget extends StatelessWidget {
             ),
           ),
           Gap(30),
-          progressIndicator ?? SizedBox(),
+          Column(
+            children: progressIndicator,
+          ),
           Gap(30),
           Center(
             child: CircularPercentIndicator(

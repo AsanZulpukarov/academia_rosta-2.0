@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
 import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/edit_password_entity.dart';
+import 'package:academia_rosta_diplom/features/profile/domain/entities/mark_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/repositories/profile_repository.dart';
 import 'package:dartz/dartz.dart';
@@ -11,9 +12,12 @@ class ProfileRepositoryImpl extends ProfileRepository {
   ProfileRepositoryImpl({required this.profileRemoteDataSource});
 
   @override
-  Future<Either<Failure, void>> getMyStatistic() {
-    // TODO: implement getMyStatistic
-    throw UnimplementedError();
+  Future<Either<Failure,  Map<String,MarkEntity>>> getMyStatistic(int id) async {
+    try {
+      return Right(await profileRemoteDataSource.getMyStatistic(id));
+    } on Exception {
+    throw ServerFailure();
+    }
   }
 
   @override

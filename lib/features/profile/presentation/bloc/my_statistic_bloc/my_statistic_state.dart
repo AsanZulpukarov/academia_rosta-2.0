@@ -11,7 +11,14 @@ final class MyStatisticInitialState extends MyStatisticState {}
 
 final class MyStatisticLoadingState extends MyStatisticState {}
 
-final class MyStatisticLoadedState extends MyStatisticState {}
+final class MyStatisticLoadedState extends MyStatisticState {
+  final  Map<String,MarkEntity> statistics;
+
+  const MyStatisticLoadedState(this.statistics);
+  @override
+  // TODO: implement props
+  List<Object> get props => [statistics];
+}
 
 final class MyStatisticErrorState extends MyStatisticState {
   final String message;

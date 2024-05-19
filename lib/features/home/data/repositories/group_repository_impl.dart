@@ -21,7 +21,7 @@ class GroupRepositoryImpl extends GroupRepository {
     try {
       return Right(await remoteGroupDataSource.getAllGroups());
     } on Exception{
-      throw Left(ServerFailure());
+      return throw Left(ServerFailure());
     }
   }
 
@@ -31,7 +31,7 @@ class GroupRepositoryImpl extends GroupRepository {
     try {
       return Right(await remoteGroupDataSource.getGroupById(id));
     } on Exception{
-    throw Left(ServerFailure());
+    return throw Left(ServerFailure());
     }
   }
 
