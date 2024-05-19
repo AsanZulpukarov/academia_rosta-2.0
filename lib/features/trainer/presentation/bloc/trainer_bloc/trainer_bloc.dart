@@ -27,7 +27,7 @@ class TrainerBloc extends Bloc<TrainerEvent, TrainerState> {
       errorOrSuccess.fold(
           (l) => emit(TrainerErrorState(
               message: AppUtils.mapFailureToMessage(l),
-              exerciseTrainEntity: state.exerciseTrainEntity)), (r) {
+              exerciseTrainEntity: state.exerciseTrainEntity),), (r) {
         emit(TrainerLoadedState(
             numbers: r, exerciseTrainEntity: state.exerciseTrainEntity));
       });

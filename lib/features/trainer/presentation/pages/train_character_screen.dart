@@ -43,7 +43,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const CharacterExerciseWidget(),
-              const Gap(10),
+              Gap(10.h),
               const ChooseCharacterThemeWidget(),
               // const Gap(10),
               // const ShowTrainNumber(),

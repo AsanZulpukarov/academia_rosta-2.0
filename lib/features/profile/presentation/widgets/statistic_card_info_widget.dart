@@ -9,7 +9,7 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 class StatisticCardInfoWidget extends StatelessWidget {
   final String theme;
   final String level;
-  final int percent;
+  final double percent;
   final List<Widget> progressIndicator;
   const StatisticCardInfoWidget({
     Key? key,
@@ -28,40 +28,40 @@ class StatisticCardInfoWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "Статистика раздела:",
             style: AppTextStyles.black14,
           ),
-          Gap(10),
+          Gap(10.h),
           Text(
             theme,
             style: AppTextStyles.black16.copyWith(
               color: AppColors.main,
             ),
           ),
-          Gap(16),
+          Gap(16.h),
           Text(
             "Темы из первых книг по Ментальной арифметике:",
             style: AppTextStyles.black14,
           ),
-          Gap(10),
+          Gap(10.h),
           Text(
             level,
             style: AppTextStyles.black16.copyWith(
               color: AppColors.main,
             ),
           ),
-          Gap(30),
+          Gap(30.h),
           Column(
             children: progressIndicator,
           ),
-          Gap(30),
+          Gap(30.h),
           Center(
             child: CircularPercentIndicator(
               radius: 120.r,
-              percent: percent / 100.0,
+              percent: percent/100,
               center: Text(
-                "$percent%",
+                "${percent.toStringAsFixed(0)}%",
                 style: AppTextStyles.black26.copyWith(
                   fontSize: 48.sp,
                 ),

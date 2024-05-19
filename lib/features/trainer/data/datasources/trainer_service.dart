@@ -58,43 +58,44 @@ class TrainerService {
   }
 
   Generatable getTask(String taskName) {
+    print(taskName);
     switch (taskName) {
-      case "psvПСВ":
+      case "ПСВ":
         return PSV();
-      case "pb+1":
+      case "ПБ+1":
         return PBPlusOne();
-      case "pb-1":
+      case "ПБ-1":
         return PBMinusOne();
-      case "pb+2":
+      case "ПБ+2":
         return PBPlusTwo();
-      case "pb-2":
+      case "ПБ-2":
         return PBMinusTwo();
 
-      case "pb+3":
+      case "ПБ+3":
         return PBPlusThree();
-      case "pb-3":
+      case "ПБ-3":
         return PBMinusThree();
-      case "pb+4":
+      case "ПБ+4":
         return PBPlusFour();
-      case "pb-4":
+      case "ПБ-4":
         return PBMinusFour();
-      case "pd+1":
+      case "ПД+1":
         return PDPlusOne();
-      case "pd+2":
+      case "ПД+2":
         return PDPlusTwo();
-      case "pd+3":
+      case "ПД+3":
         return PDPlusThree();
-      case "pd+4":
+      case "ПД+4":
         return PDPlusFour();
-      case "pd+5":
+      case "ПД+5":
         return PDPlusFive();
-      case "pd+6":
+      case "ПД+6":
         return PDPlusSix();
-      case "pd+7":
+      case "ПД+7":
         return PDPlusSeven();
-      case "pd+8":
+      case "ПД+8":
         return PDPlusEight();
-      case "pd+9":
+      case "ПД+9":
         return PDPlusNine();
       default:
         return PDPlusNine();

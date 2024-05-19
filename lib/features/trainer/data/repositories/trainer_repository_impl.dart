@@ -25,9 +25,9 @@ class TrainerRepositoryImpl extends TrainerRepository {
       ExerciseTrainEntity exerciseTrainEntity) async {
     try {
       return Right(TrainerService().getArray(
-          exerciseTrainEntity.topic ?? "psv",
+          exerciseTrainEntity.topic ?? "ПСВ",
           exerciseTrainEntity.digitsCount ?? 1,
-          exerciseTrainEntity.numberCount ?? 1));
+          exerciseTrainEntity.numberCount ?? 1,),);
     } on Exception {
       throw Left(ServerFailure());
     }

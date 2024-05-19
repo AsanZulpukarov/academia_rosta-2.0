@@ -18,11 +18,9 @@ class ChooseCharacterThemeWidget extends StatefulWidget {
 
 class _ChooseCharacterThemeWidgetState
     extends State<ChooseCharacterThemeWidget> {
-  String? _dropdownValue = Constants.topics.first['name'];
-
+  String? _dropdownValue = Constants.topics.first.code;
   @override
   Widget build(BuildContext context) {
-
     return BlocBuilder<TrainerBloc, TrainerState>(
       builder: (context, state) {
         return Column(
@@ -47,14 +45,15 @@ class _ChooseCharacterThemeWidgetState
                 onChanged: (String? value) {
                   setState(() {
                     _dropdownValue = value!;
+                    state.exerciseTrainEntity.topic = _dropdownValue;
                   });
                 },
                 items: Constants.topics.map<DropdownMenuItem<String>>((value) {
-                  String name = value['name'];
+                  String code = value.code;
                   return DropdownMenuItem<String>(
-                    value: name,
+                    value: code,
                     child: Text(
-                      name,
+                      value.name,
                     ),
                   );
                 }).toList(),

@@ -59,14 +59,13 @@ class MyStatisticScreen extends StatelessWidget {
                 List<MarkEntity> pd2 = [];
                 List<MarkEntity> pd3 = [];
                 for (int i = 1; i < Constants.topics.length; i++) {
-                  MarkEntity topicItem =
-                      statistics[Constants.topics[i]['code']] ??
-                          MarkEntity(
-                            topic: Constants.topics[i]['code'],
-                            correct: 0,
-                            incorrect: 0,
-                            total: 0,
-                          );
+                  MarkEntity topicItem = statistics[Constants.topics[i].code] ??
+                      MarkEntity(
+                        topic: Constants.topics[i].code,
+                        correct: 0,
+                        incorrect: 0,
+                        total: 0,
+                      );
                   if (i < 9) {
                     pb.add(topicItem);
                   } else if (i % 2 == 0) {
@@ -75,7 +74,7 @@ class MyStatisticScreen extends StatelessWidget {
                     pd3.add(topicItem);
                   }
                 }
-
+                print(statistics);
                 return ListView(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -83,11 +82,19 @@ class MyStatisticScreen extends StatelessWidget {
                     StatisticCardInfoWidget(
                       theme: "Простое сложение и вычитание (ПСВ)",
                       level: "Junior 1, Senior 1",
-                      percent: 91,
+                      percent: ((statistics[Constants.topics[0].code]?.correct ??
+                              0) * 100) /
+                          (statistics[Constants.topics[0].code]?.total ?? 1),
                       progressIndicator: [
                         StatisticThemeProgressIndicatorWidget(
-                          topic:Constants.topics[0]["code"] ?? "Пусто",
-                          markEntity: statistics[Constants.topics[0]["code"]]!,
+                          topic: Constants.topics[0].code,
+                          markEntity: statistics[Constants.topics[0].code] ??
+                              MarkEntity(
+                                topic: Constants.topics[0].code,
+                                correct: 0,
+                                incorrect: 0,
+                                total: 0,
+                              ),
                         ),
                       ],
                     ),
@@ -95,10 +102,12 @@ class MyStatisticScreen extends StatelessWidget {
                     StatisticCardInfoWidget(
                       theme: "Помощь брата",
                       level: "Junior 1, Senior 1",
-                      percent: 100,
+                      percent: (statistics["ПБ"]?.correct ?? 0 * 100) /
+                          (statistics["ПБ"]?.total ?? 1),
                       progressIndicator: pb.map((e) {
                         return StatisticThemeProgressIndicatorWidget(
-                          topic:e.topic?.substring(e.topic!.length-2) ?? "Пусто",
+                          topic: e.topic?.substring(e.topic!.length - 2) ??
+                              "Пусто",
                           markEntity: e,
                         );
                       }).toList(),
@@ -107,10 +116,12 @@ class MyStatisticScreen extends StatelessWidget {
                     StatisticCardInfoWidget(
                       theme: "Помощь друга",
                       level: "Junior 2, Senior 2",
-                      percent: 20,
+                      percent: (statistics["ПБ"]?.correct ?? 0 * 100) /
+                          (statistics["ПБ"]?.total ?? 1),
                       progressIndicator: pd2.map((e) {
                         return StatisticThemeProgressIndicatorWidget(
-                          topic:e.topic?.substring(e.topic!.length-2) ?? "Пусто",
+                          topic: e.topic?.substring(e.topic!.length - 2) ??
+                              "Пусто",
                           markEntity: e,
                         );
                       }).toList(),
@@ -119,10 +130,12 @@ class MyStatisticScreen extends StatelessWidget {
                     StatisticCardInfoWidget(
                       theme: "Помощь друга",
                       level: "Junior 3, Senior 3",
-                      percent: 50,
+                      percent: (statistics["ПБ"]?.correct ?? 0 * 100) /
+                          (statistics["ПБ"]?.total ?? 1),
                       progressIndicator: pd2.map((e) {
                         return StatisticThemeProgressIndicatorWidget(
-                          topic:e.topic?.substring(e.topic!.length-2) ?? "Пусто",
+                          topic: e.topic?.substring(e.topic!.length - 2) ??
+                              "Пусто",
                           markEntity: e,
                         );
                       }).toList(),
