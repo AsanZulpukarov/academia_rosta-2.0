@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
@@ -41,6 +44,7 @@ class GroupsScreen extends StatelessWidget {
             return ErrorStateWidget(message: state.message);
           } else if (state is GroupsLoadedState) {
             List<GroupInfoEntity> groupList = state.groups;
+            print(groupList.first.image);
             if (groupList.isEmpty) {
               return Center(
                 child: Text(
@@ -52,6 +56,7 @@ class GroupsScreen extends StatelessWidget {
                 ),
               );
             }
+            print("${Constants.baseUrl}images/${groupList[0].image}");
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               itemCount: groupList.length,
@@ -84,6 +89,14 @@ class GroupsScreen extends StatelessWidget {
                         vertical: 10, horizontal: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: NetworkImage("${Constants.baseUrl}images/${groupList[index].image}",headers: <String, String>{
+                          HttpHeaders.contentTypeHeader: 'application/json',
+                          HttpHeaders.acceptCharsetHeader: 'utf-8',
+                          HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
+                        }),
+                        fit: BoxFit.cover
+                      ),
                       boxShadow: [
                         BoxShadow(
                           color: AppColors.black.withOpacity(0.5),
@@ -91,12 +104,12 @@ class GroupsScreen extends StatelessWidget {
                           blurRadius: 8,
                         ),
                       ],
-                      // color: AppColors.main,
+                      color: AppColors.main,
                       gradient: LinearGradient(
                         begin: Alignment.bottomRight,
                         end: Alignment.topLeft,
                         colors: [
-                          AppColors.main.withOpacity(0.7),
+                          AppColors.main.withOpacity(0.1),
                           AppColors.main,
                         ],
                       ),

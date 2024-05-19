@@ -5,12 +5,14 @@ class GroupInfoEntity extends Equatable {
   final String? name;
   final String? teacher;
   final String? subject;
+  final String? image;
 
   const GroupInfoEntity({
     this.id,
     this.name,
     this.teacher,
     this.subject,
+    this.image,
   });
 
   @override
