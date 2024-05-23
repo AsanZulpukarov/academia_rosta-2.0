@@ -11,4 +11,5 @@ abstract class ProfileRemoteDataSource {
   Future< Map<String,MarkEntity>> getMyStatistic(int id);
   Future<List<SubjectModel>> getMySubjects();
   Future<void> logoutAccount();
+  Future<void> changeAvatar(String avatar);
 }

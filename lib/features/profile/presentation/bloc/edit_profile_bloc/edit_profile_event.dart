@@ -12,6 +12,7 @@ final class EditProfileEmptyEvent extends EditProfileEvent {
 }
 
 final class EditProfileChangeImageEvent extends EditProfileEvent {
+
 }
 
 final class EditProfileSaveEvent extends EditProfileEvent {

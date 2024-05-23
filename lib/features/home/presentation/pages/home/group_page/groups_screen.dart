@@ -93,7 +93,7 @@ class GroupsScreen extends StatelessWidget {
                         image: NetworkImage("${Constants.baseUrl}images/${groupList[index].image}",headers: <String, String>{
                           HttpHeaders.contentTypeHeader: 'application/json',
                           HttpHeaders.acceptCharsetHeader: 'utf-8',
-                          HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
+                          HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
                         }),
                         fit: BoxFit.cover
                       ),

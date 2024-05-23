@@ -3,7 +3,6 @@ import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
-import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
@@ -106,7 +105,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   context: context,
                                   builder: (context) => AlertDialog(
                                     backgroundColor: AppColors.white,
-                                    title: Text(
+                                    title: const Text(
                                       "Выберите фото:",
                                       style: AppTextStyles.black16,
                                     ),

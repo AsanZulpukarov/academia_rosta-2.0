@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/authorization/data/models/sign_up
 import 'package:academia_rosta_diplom/features/authorization/data/models/user_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_in_entity.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_up_entity.dart';
+import 'package:academia_rosta_diplom/main.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -87,19 +88,16 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       setRole(jsonData['role']);
       return UserModel.fromJson(jsonData);
     } else {
-      print("Asan --> ${response.statusCode} ${responseBody}");
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
   }
 
   void setToken(String value) async {
-    SharedPreferences sharedPreferences = await SharedPrefSource.getInstance();
-    sharedPreferences.setString(SharedPrefSource.tokenKey, value);
+    prefs.setString(SharedPrefSource.tokenKey, value);
   }
 
   void setRole(String value) async {
-    SharedPreferences sharedPreferences = await SharedPrefSource.getInstance();
-    sharedPreferences.setString(SharedPrefSource.roleKey, value);
+    prefs.setString(SharedPrefSource.roleKey, value);
   }
 
   @override

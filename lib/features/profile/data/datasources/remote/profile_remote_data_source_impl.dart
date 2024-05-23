@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/error/exception.dart';
+import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
 import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/profile/data/models/edit_password_model.dart';
@@ -11,6 +12,7 @@ import 'package:academia_rosta_diplom/features/profile/data/models/user_info_mod
 import 'package:academia_rosta_diplom/features/profile/domain/entities/edit_password_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/mark_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
+import 'package:academia_rosta_diplom/main.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -26,7 +28,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
     print(editPasswordModel.toJson());
     print(jsonEncode(editPasswordModel.toJson()));
@@ -50,7 +52,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenStudent}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -74,7 +76,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -89,9 +91,8 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   }
 
   @override
-  Future<void> logoutAccount() {
-    // TODO: implement logoutAccount
-    throw UnimplementedError();
+  Future<void> logoutAccount() async {
+    prefs.clear();
   }
 
   @override
@@ -100,7 +101,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenTeacher}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
 
     final response = await http.post(
@@ -129,7 +130,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
-      HttpHeaders.authorizationHeader: "Bearer ${Constants.tokenStudent}",
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
 
     final response = await http.get(url, headers: headers);
@@ -143,5 +144,11 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
+  }
+
+  @override
+  Future<void> changeAvatar(String avatar) {
+    Constants.user.imageName = avatar;
+    return prefs.setString(SharedPrefSource.imageKey,avatar);
   }
 }
