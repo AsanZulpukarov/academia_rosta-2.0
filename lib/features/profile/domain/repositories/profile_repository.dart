@@ -13,5 +13,5 @@ abstract class ProfileRepository {
   Future<Either<Failure,  Map<String,MarkEntity>>> getMyStatistic(int id);
   Future<Either<Failure, List<SubjectEntity>>> getMySubjects();
   Future<Either<Failure, void>> logoutAccount();
-  Future<Either<Failure, void>> changeAvatar(String avatar);
+  Future<Either<Failure, void>> changeAvatar(int avatar);
 }

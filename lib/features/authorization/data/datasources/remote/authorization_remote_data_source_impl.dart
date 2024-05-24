@@ -86,6 +86,7 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       final jsonData = jsonDecode(responseBody);
       setToken(jsonData['token']);
       setRole(jsonData['role']);
+      Constants.user = UserModel.fromJson(jsonData);
       return UserModel.fromJson(jsonData);
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);

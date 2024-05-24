@@ -63,7 +63,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, void>> changeAvatar(String avatar) async {
+  Future<Either<Failure, void>> changeAvatar(int avatar) async {
     try {
       return Right(await profileRemoteDataSource.changeAvatar(avatar));
     } on Exception {

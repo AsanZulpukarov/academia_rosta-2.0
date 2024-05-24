@@ -147,8 +147,8 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   }
 
   @override
-  Future<void> changeAvatar(String avatar) {
-    Constants.user.imageName = avatar;
-    return prefs.setString(SharedPrefSource.imageKey,avatar);
+  Future<void> changeAvatar(int avatar) {
+    Constants.user.setAvatar(avatar);
+    return prefs.setInt(SharedPrefSource.imageKey,avatar);
   }
 }

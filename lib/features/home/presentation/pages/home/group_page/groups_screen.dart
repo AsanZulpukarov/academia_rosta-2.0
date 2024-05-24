@@ -44,7 +44,6 @@ class GroupsScreen extends StatelessWidget {
             return ErrorStateWidget(message: state.message);
           } else if (state is GroupsLoadedState) {
             List<GroupInfoEntity> groupList = state.groups;
-            print(groupList.first.image);
             if (groupList.isEmpty) {
               return Center(
                 child: Text(

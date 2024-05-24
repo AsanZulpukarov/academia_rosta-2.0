@@ -16,9 +16,19 @@ class Constants {
   static const String _host = "http";
   static const String _port = "8080";
   static const baseUrl = "$_host://$_ip:$_port/";
+  static UserEntity user = UserModel.fromJson(
+    {
+      'token': prefs.getString(SharedPrefSource.tokenKey),
+      'role': prefs.getString(SharedPrefSource.roleKey),
+      'avatar': prefs.getString(SharedPrefSource.imageKey),
+    },
+  );
 
   static const List<TopicEntity> topics = [
-    TopicEntity(name: "Простое сложение вычитание", code: "ПСВ"),
+    TopicEntity(
+      name: "Простое сложение вычитание",
+      code: "ПСВ",
+    ),
     TopicEntity(
       name: "Помощь брата +1",
       code: "ПБ+1",
@@ -124,11 +134,4 @@ class Constants {
       code: "ПД-9",
     ),
   ];
-  static UserEntity user = UserModel.fromJson(
-    {
-      'token': prefs.getString(SharedPrefSource.tokenKey),
-      'role': prefs.getString(SharedPrefSource.roleKey),
-      'imageKey': prefs.getString(SharedPrefSource.imageKey),
-    },
-  );
-  }
+}

@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_user_
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/update_user_info.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/edit_profile_bloc/edit_profile_bloc.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/choose_photo_dialog.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/pages/edit_profile_form.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -76,136 +77,57 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             if (state is EditProfileLoadingState) {
               return const LoadingStateWidget();
             } else if (state is EditProfileLoadedState) {
-              _lastnameController.text = state.userInfoEntity.lastname ?? "";
-              _firstnameController.text = state.userInfoEntity.firstname ?? "";
-              _usernameController.text = state.userInfoEntity.username ?? "";
-              _emailController.text = state.userInfoEntity.email ?? "";
-              _phoneController.text = state.userInfoEntity.phoneNumber ?? "";
               return SingleChildScrollView(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Column(
-                          children: [
-                            ProfileAvatarItem(
-                              image: ProfileAvatar.listAvatars
-                                  .elementAt(selectImageIndex),
-                              radius: 60,
-                              backgroundColor: AppColors.white,
-                            ),
-                            TextButton(
-                              onPressed: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    backgroundColor: AppColors.white,
-                                    title: const Text(
-                                      "Выберите фото:",
-                                      style: AppTextStyles.black16,
-                                    ),
-                                    content: ChoosePhotoDialog(
-                                      currentPhotoIndex: selectImageIndex,
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text("Выбрать"))
-                                    ],
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Column(
+                        children: [
+                          ProfileAvatarItem(
+                            image: ProfileAvatar.listAvatars
+                                .elementAt(selectImageIndex),
+                            radius: 60,
+                            backgroundColor: AppColors.white,
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (context) => AlertDialog(
+                                  backgroundColor: AppColors.white,
+                                  title: const Text(
+                                    "Выберите фото:",
+                                    style: AppTextStyles.black16,
                                   ),
-                                );
-                              },
-                              child: Text(
-                                "Изменить фото",
-                                style: AppTextStyles.black14.copyWith(
-                                  color: AppColors.main,
+                                  content: ChoosePhotoDialog(
+                                    currentPhotoIndex: selectImageIndex,
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Выбрать"))
+                                  ],
                                 ),
+                              );
+                            },
+                            child: Text(
+                              "Изменить фото",
+                              style: AppTextStyles.black14.copyWith(
+                                color: AppColors.main,
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      _titleAndField(
-                        title: "Фамилия",
-                        controller: _lastnameController,
-                        validator: AppUtils.validateLastName,
-                      ),
-                      Gap(5),
-                      _titleAndField(
-                        title: "Имя",
-                        controller: _firstnameController,
-                        validator: AppUtils.validateFirstName,
-                      ),
-                      Gap(5),
-                      _titleAndField(
-                          title: "Логин",
-                          controller: _usernameController,
-                          validator: AppUtils.validateUsername),
-                      Gap(5),
-                      _titleAndField(
-                        title: "Email",
-                        controller: _emailController,
-                        validator: AppUtils.validateEmail,
-                        textInputType: TextInputType.emailAddress,
-                      ),
-                      Gap(5),
-                      _titleAndField(
-                        title: "Телефон номер",
-                        controller: _phoneController,
-                        validator: AppUtils.validatePhone,
-                        textInputType: TextInputType.number,
-                      ),
-                      Gap(20),
-                      Builder(builder: (context) {
-                        if (state is EditProfileLoadingState) {
-                          return const Center(
-                            child: CircularProgressIndicator.adaptive(),
-                          );
-                        }
-                        return MainButtonWidget(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              context.read<EditProfileBloc>().add(
-                                    EditProfileSaveEvent(UserInfoEntity(
-                                      firstname: _firstnameController.text,
-                                      lastname: _lastnameController.text,
-                                      username: _usernameController.text,
-                                      email: _emailController.text,
-                                      phoneNumber: _phoneController.text,
-                                    )),
-                                  );
-                            }
-                          },
-                          borderRadius: BorderRadius.circular(20),
-                          child: Text(
-                            'Сохранить',
-                            style: AppTextStyles.black16.copyWith(
-                              color: AppColors.white,
-                            ),
                           ),
-                        );
-                      }),
-                      Gap(10),
-                      MainButtonWidget(
-                        backgroundColor: AppColors.grey,
-                        onPressed: () {},
-                        borderRadius: BorderRadius.circular(20),
-                        child: Text(
-                          'Отменить изменения',
-                          style: AppTextStyles.black16.copyWith(
-                            color: AppColors.main,
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                    EditProfileForm(userInfoEntity: state.userInfoEntity,),
+                  ],
                 ),
               );
             }

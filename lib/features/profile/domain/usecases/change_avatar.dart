@@ -3,12 +3,12 @@ import 'package:academia_rosta_diplom/core/usecases/usecase.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/repositories/profile_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class ChangeAvatarUseCase extends UseCase<void,String>{
+class ChangeAvatarUseCase extends UseCase<void,int>{
   final ProfileRepository profileRepository;
 
   ChangeAvatarUseCase(this.profileRepository);
   @override
-  Future<Either<Failure, void>> call(String params) async{
+  Future<Either<Failure, void>> call(int params) async{
     return await profileRepository.changeAvatar(params);
   }
 }
