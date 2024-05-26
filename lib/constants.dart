@@ -24,6 +24,22 @@ class Constants {
     },
   );
 
+  static final List<String> months = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ];
+
+
   static const List<TopicEntity> topics = [
     TopicEntity(
       name: "Простое сложение вычитание",

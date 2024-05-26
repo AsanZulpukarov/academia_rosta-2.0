@@ -17,7 +17,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 
 import '../../../../../app_theme.dart';
 
@@ -29,12 +28,6 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  final TextEditingController _firstnameController = TextEditingController();
-  final TextEditingController _lastnameController = TextEditingController();
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
   int selectImageIndex = 0;
   @override
   void initState() {
@@ -135,59 +128,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           },
         ),
       ),
-    );
-  }
-
-  Widget _titleAndField({
-    required String title,
-    required TextEditingController controller,
-    required Function(String? value) validator,
-    TextInputType textInputType = TextInputType.text,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14.0),
-          child: Text(
-            title,
-            style: AppTextStyles.black14,
-          ),
-        ),
-        TextFormField(
-          controller: controller,
-          validator: (value) => validator(value),
-          keyboardType: textInputType,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: AppColors.main,
-                width: 1,
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: AppColors.main,
-                width: 1,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(
-                color: AppColors.main,
-                width: 1,
-              ),
-            ),
-            filled: false,
-          ),
-          style: AppTextStyles.black14Medium.copyWith(
-            fontWeight: FontWeight.normal,
-            color: AppColors.black,
-          ),
-        ),
-      ],
     );
   }
 }

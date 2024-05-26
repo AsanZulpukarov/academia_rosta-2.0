@@ -91,7 +91,7 @@ class GroupInfoScreen extends StatelessWidget {
                         },
                       ),
                       Gap(20),
-                      _actionButton(context),
+                      _actionButton(context,groupInfoByIdEntity.id ?? 1),
                       Gap(20),
                       GroupCalendarWidget(),
                     ],
@@ -182,7 +182,7 @@ class GroupInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _actionButton(BuildContext context) {
+  Widget _actionButton(BuildContext context,int id) {
     return Row(
       children: [
         _actionButtonAndName(
@@ -199,7 +199,7 @@ class GroupInfoScreen extends StatelessWidget {
           nameButton: 'Занятия',
           function: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HistoryLessonScreen()));
+                MaterialPageRoute(builder: (context) => HistoryLessonScreen(id: id,)));
           },
         ),
         Gap(10),

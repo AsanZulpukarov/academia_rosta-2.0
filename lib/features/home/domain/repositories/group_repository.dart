@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/lesson_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class GroupRepository {
@@ -10,7 +11,7 @@ abstract class GroupRepository {
 
   Future<Either<Failure, void>> postAttendanceStudents();
   Future<Either<Failure, void>> getLastThreeLessonHistory();
-  Future<Either<Failure, void>> getAllLessonHistory();
+  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int params);
   Future<Either<Failure, void>> getAllHW();
   Future<Either<Failure, void>> deleteHWById();
   Future<Either<Failure, void>> createHWByStudentId();

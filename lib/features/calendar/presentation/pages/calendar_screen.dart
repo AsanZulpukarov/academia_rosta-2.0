@@ -35,12 +35,6 @@ class _CalendarScreenState extends State<CalendarScreen> {
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: AppColors.white,
-              // boxShadow: [
-              //   BoxShadow(
-              //     color: AppColors.mainColor.withOpacity(0.4),
-              //     blurRadius: 16,
-              //   )
-              // ],
               borderRadius: BorderRadius.circular(20)
             ),
             child: TableCalendar(
@@ -94,8 +88,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
             ),
           ),
-          Gap(20),
-          ListPointScreen(),
+          const Gap(20),
+          ListPointScreen(selectDate: _selectedDay,),
         ],
       ),
     );

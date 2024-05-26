@@ -29,7 +29,7 @@ class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            "Hello Teacher",
+            "Привет Marsel",
             style: AppTextStyles.black20.copyWith(fontWeight: FontWeight.w400),
           ),
           Text(

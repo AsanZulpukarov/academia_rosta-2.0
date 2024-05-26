@@ -10,10 +10,14 @@ class LessonHistoryInitialState extends LessonHistoryState {}
 
 class LessonHistoryLoadingState extends LessonHistoryState {}
 
-class LessonHistoryLoadedState extends LessonHistoryState {}
+class LessonHistoryLoadedState extends LessonHistoryState {
+  final List<LessonEntity> lessons;
+
+  LessonHistoryLoadedState({required this.lessons});
+}
 
 class LessonHistoryErrorState extends LessonHistoryState {
-  String message;
+  final String message;
 
   LessonHistoryErrorState(this.message);
 

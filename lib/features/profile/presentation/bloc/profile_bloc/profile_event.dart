@@ -7,4 +7,5 @@ sealed class ProfileEvent extends Equatable {
   List<Object?> get props => [];
 }
 
+final class ProfileEmptyEvent extends ProfileEvent {}
 final class ProfileExitAccountEvent extends ProfileEvent {}

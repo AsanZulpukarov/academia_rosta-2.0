@@ -3,6 +3,7 @@ import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/lesson_entity.dart';
 
 import 'package:dartz/dartz.dart';
 
@@ -66,9 +67,12 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getAllLessonHistory() {
-    // TODO: implement getAllLessonHistory
-    throw UnimplementedError();
+  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id) async {
+    try {
+      return Right(await remoteGroupDataSource.getAllLessonHistory(id));
+    } on Exception{
+    return throw Left(ServerFailure());
+    }
   }
 
   @override

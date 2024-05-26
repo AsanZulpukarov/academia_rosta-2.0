@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
@@ -55,7 +56,6 @@ class GroupsScreen extends StatelessWidget {
                 ),
               );
             }
-            print("${Constants.baseUrl}images/${groupList[0].image}");
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               itemCount: groupList.length,
@@ -66,35 +66,40 @@ class GroupsScreen extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => BlocProvider(
-                      create: (context) => GroupInfoBloc(
-                        getGroupByIdUseCase: GetGroupByIdUseCase(
-                          GroupRepositoryImpl(remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-                            networkInfo: NetworkInfoImpl(
-                              connectionChecker: InternetConnectionChecker(),
+                          create: (context) => GroupInfoBloc(
+                            getGroupByIdUseCase: GetGroupByIdUseCase(
+                              GroupRepositoryImpl(
+                                remoteGroupDataSource:
+                                    GroupRemoteDataSourceImpl(),
+                                networkInfo: NetworkInfoImpl(
+                                  connectionChecker:
+                                      InternetConnectionChecker(),
+                                ),
+                              ),
                             ),
-                          ),
+                          )..add(GroupInfoEmptyEvent(groupList[index].id ?? 1)),
+                          child: GroupInfoScreen(
+                              groupName:
+                                  groupList[index].name ?? "Название группы"),
                         ),
-                      )..add(GroupInfoEmptyEvent(groupList[index].id ?? 1)),
-                      child: GroupInfoScreen(
-                          groupName:groupList[index].name ?? "Название группы"
-                        ),
-                      ),
                       ),
                     );
                   },
                   child: Container(
                     height: 140.h,
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: NetworkImage("${Constants.baseUrl}images/${groupList[index].image}",headers: <String, String>{
-                          HttpHeaders.contentTypeHeader: 'application/json',
-                          HttpHeaders.acceptCharsetHeader: 'utf-8',
-                          HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
-                        }),
-                        fit: BoxFit.cover
+                        image: NetworkImage(
+                          "${Constants.baseUrl}images/${groupList[index].image}",
+                          headers: <String, String>{
+                            HttpHeaders.contentTypeHeader: 'application/json',
+                            HttpHeaders.acceptCharsetHeader: 'utf-8',
+                            HttpHeaders.authorizationHeader:
+                                "Bearer ${Constants.user.token}",
+                          },
+                        ),
+                        fit: BoxFit.cover,
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -113,23 +118,46 @@ class GroupsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          groupList.elementAt(index).name ?? "Название группы",
-                          style: AppTextStyles.black26.copyWith(
-                            color: AppColors.white,
-                            fontWeight: FontWeight.w500,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                          sigmaX: 2,
+                          sigmaY: 2,
+                        ),
+                        child: Container(
+                          width: double.infinity,
+                          height: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 10, horizontal: 20),
+                          decoration: BoxDecoration(
+                            color: AppColors.black.withOpacity(0.6),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                groupList.elementAt(index).name ??
+                                    "Название группы",
+                                style: AppTextStyles.black26.copyWith(
+                                  color: AppColors.white,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              const Gap(10),
+                              _groupInfoRow(
+                                  'Предмет',
+                                  groupList.elementAt(index).subject ??
+                                      "Предмет"),
+                              _groupInfoRow(
+                                  'Учитель',
+                                  groupList.elementAt(index).teacher ??
+                                      "Учитель"),
+                            ],
                           ),
                         ),
-                        const Gap(10),
-                        _groupInfoRow('Предмет',
-                            groupList.elementAt(index).subject ?? "Предмет"),
-                        _groupInfoRow('Учитель',
-                            groupList.elementAt(index).teacher ?? "Учитель"),
-                      ],
+                      ),
                     ),
                   ),
                 );

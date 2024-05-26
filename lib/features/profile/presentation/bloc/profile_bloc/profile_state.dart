@@ -11,8 +11,8 @@ final class ProfileInitialState extends ProfileState {}
 final class ProfileLoadingState extends ProfileState {}
 
 final class ProfileLoadedState extends ProfileState {
-  UserEntity user;
-  ProfileLoadedState(this.user);
+  final UserInfoEntity user;
+  const ProfileLoadedState(this.user);
 
   @override
   // TODO: implement props
@@ -20,8 +20,8 @@ final class ProfileLoadedState extends ProfileState {
 }
 
 final class ProfileErrorState extends ProfileState {
-  String message;
-  ProfileErrorState(this.message);
+  final String message;
+  const ProfileErrorState(this.message);
   @override
   // TODO: implement props
   List<Object> get props => [message];

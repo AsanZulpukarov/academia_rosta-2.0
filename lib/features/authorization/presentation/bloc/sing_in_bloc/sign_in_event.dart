@@ -7,7 +7,7 @@ abstract class SignInEvent extends Equatable {
 }
 
 class SingInButtonEvent extends SignInEvent {
-  SignInEntity signInEntity;
+  final SignInEntity signInEntity;
 
   SingInButtonEvent(this.signInEntity);
 

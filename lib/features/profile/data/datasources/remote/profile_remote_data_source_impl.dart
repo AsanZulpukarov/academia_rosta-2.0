@@ -48,7 +48,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
 
   @override
   Future< Map<String,MarkEntity>> getMyStatistic(int id) async {
-    final url = Uri.parse('${Constants.baseUrl}pupil/profile/api/full-statistics?subjectId=$id');
+    final url = Uri.parse('${Constants.baseUrl}pupil/profile-old/api/full-statistics?subjectId=$id');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
@@ -57,6 +57,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
 
     final response = await http.get(url, headers: headers);
     final responseBody = utf8.decode(response.bodyBytes);
+    print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String,dynamic> jsonData = jsonDecode(responseBody);
       List<String> keysMap = jsonData.keys.toList();

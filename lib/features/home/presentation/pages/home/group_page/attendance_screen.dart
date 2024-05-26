@@ -4,7 +4,9 @@ import 'package:academia_rosta_diplom/features/home/presentation/pages/home/grou
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
@@ -42,7 +44,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarSecond(
+      appBar: const MyAppBarSecond(
         title: "Посещения",
       ),
       body: SingleChildScrollView(
@@ -58,7 +60,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   ContainerFrameWidget(
                     onTap: () {
                       showDatePicker(
@@ -66,16 +68,16 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                         initialDate: DateTime.now(),
                         firstDate: DateTime(1990),
                         lastDate: DateTime.now(),
-                        locale: Locale("ru"),
+                        locale: const Locale("ru"),
                       );
                     },
                     width: 160.w,
-                    offset: Offset(4, 4),
-                    padding: EdgeInsets.all(8),
+                    offset: const Offset(4, 4),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.access_time,
                           color: AppColors.black,
                         ),
@@ -87,17 +89,27 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                     ),
                   ),
                   Gap(20),
-                  DataTable(
-                    headingRowHeight: 30.h,
-                    border: TableBorder(
-                      horizontalInside: BorderSide(
-                        color: AppColors.main.withOpacity(0.5),
+                  Container(
+                    width: double.infinity,
+                    height: 200.h,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+                    child: SingleChildScrollView(
+                      child: DataTable(
+                        border: TableBorder(
+                          horizontalInside: BorderSide(
+                            color: AppColors.main.withOpacity(0.5),
+                          ),
+                        ),
+                        columnSpacing: 0,
+                        horizontalMargin: 0,
+
+                        columns: _createColumns(),
+                        rows: _createRows(),
                       ),
                     ),
-                    columns: _createColumns(),
-                    rows: _createRows(),
                   ),
-                  Gap(20),
+                  const Gap(20),
                   MainButtonWidget(
                     onPressed: () {},
                     borderRadius: BorderRadius.circular(20),
@@ -141,7 +153,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => SelectHistoryLessonScreen()));
+                builder: (context) => SelectHistoryLessonScreen(),),);
       },
       offset: const Offset(4, 4),
       child: Text(
@@ -152,29 +164,47 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       ),
     );
   }
-
   List<DataColumn> _createColumns() {
+    final double containerWidth = 20.w;
+    final EdgeInsets containerPadding = EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w);
+
     return [
       DataColumn(
-        label: Expanded(child: Text("№")),
+        label: Container(
+          padding: containerPadding,
+          width: containerWidth,
+          alignment: Alignment.center,
+          child: const Text("№"),
+        ),
       ),
       DataColumn(
-        label: Expanded(child: Text("ФИО")),
+        label: Container(
+          padding: containerPadding,
+          width: 120.w,
+          alignment: Alignment.centerLeft,
+          child: const Text(
+            "ФИО",
+            maxLines: 2,
+          ),
+        ),
       ),
       DataColumn(
-        label: Expanded(
-          child: IconButton(
-            splashRadius: 16,
-            onPressed: () {
-              setState(() {
-                for (var element in _students) {
-                  element["isSelect"] = true;
-                }
-              });
-            },
-            icon: const Icon(
+        label: GestureDetector(
+          onTap: () {
+            setState(() {
+              for (var element in _students) {
+                element["isSelect"] = true;
+              }
+            });
+          },
+          child: Container(
+            padding: containerPadding,
+            width: containerWidth,
+            alignment: Alignment.center,
+            child: const Icon(
               Icons.check_circle,
               color: AppColors.blue,
+              size: 20,
             ),
           ),
         ),
@@ -183,31 +213,51 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   List<DataRow> _createRows() {
-    return _students
-        .map(
-          (student) => DataRow(
-            cells: [
-              DataCell(Text(student['id'].toString())),
-              DataCell(Text(student['name'])),
-              DataCell(
-                IconButton(
-                  splashRadius: 16,
-                  onPressed: () {
-                    setState(() {
-                      student['isSelect'] = !student['isSelect'];
-                    });
-                  },
-                  icon: Icon(
-                    Icons.check_circle,
-                    color: student['isSelect'] == true
-                        ? AppColors.blue
-                        : AppColors.grey,
-                  ),
-                ),
-              ),
-            ],
+    return _students.map((student) {
+      final bool isSelected = student['isSelect'] == true;
+      return DataRow(
+        cells: [
+          DataCell(
+            _buildDataCell(student['id'].toString(),20.w),
           ),
-        )
-        .toList();
+          DataCell(
+            _buildDataCell(student['name'],120.w),
+          ),
+          DataCell(
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  student["isSelect"] = !isSelected;
+                });
+              },
+              child: _buildIconContainer(Icons.check_circle, isSelected ? AppColors.blue : AppColors.grey),
+            ),
+          ),
+        ],
+      );
+    }).toList();
   }
+
+  Widget _buildDataCell(String text,double width) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
+      width: width,
+      alignment: Alignment.centerLeft,
+      child: Text(text),
+    );
+  }
+
+  Widget _buildIconContainer(IconData icon, Color color) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
+      width: 20.w,
+      alignment: Alignment.center,
+      child: Icon(
+        icon,
+        color: color,
+        size: 20,
+      ),
+    );
+  }
+
 }

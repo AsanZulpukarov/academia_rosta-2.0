@@ -5,4 +5,8 @@ abstract class LessonHistoryEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class LessonHistoryEmptyEvent extends LessonHistoryEvent {}
+class LessonHistoryEmptyEvent extends LessonHistoryEvent {
+  final int id;
+
+  LessonHistoryEmptyEvent({required this.id});
+}

@@ -15,6 +15,10 @@ class UserInfoEntity extends Equatable {
     required this.phoneNumber,
   });
 
+  String getFIO(){
+    return "$lastname $firstname";
+  }
+
   @override
   // TODO: implement props
   List<Object?> get props => [
