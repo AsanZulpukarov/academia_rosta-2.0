@@ -12,7 +12,9 @@ final class EditProfileEmptyEvent extends EditProfileEvent {
 }
 
 final class EditProfileChangeImageEvent extends EditProfileEvent {
+  final int avatar;
 
+  const EditProfileChangeImageEvent(this.avatar);
 }
 
 final class EditProfileSaveEvent extends EditProfileEvent {

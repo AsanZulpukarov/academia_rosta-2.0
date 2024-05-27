@@ -37,59 +37,90 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<Either<Failure, void>> createHWByStudentId() {
-    // TODO: implement createHWByStudentId
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, void>> deleteHWById() {
-    // TODO: implement deleteHWById
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, void>> deleteHWByStudentId() {
-    // TODO: implement deleteHWByStudentId
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, void>> getAllHW() {
-    // TODO: implement getAllHW
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, void>> getAllHWByStudentId() {
-    // TODO: implement getAllHWByStudentId
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id) async {
+  Future<Either<Failure, void>> createHWByStudentId() async {
     try {
-      return Right(await remoteGroupDataSource.getAllLessonHistory(id));
+      return Right(await remoteGroupDataSource.createHWByStudentId());
     } on Exception{
-    return throw Left(ServerFailure());
+    return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, void>> getLastThreeLessonHistory() {
+  Future<Either<Failure, void>> deleteHWById() async {
+    try {
+      return Right(await remoteGroupDataSource.deleteHWById());
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteHWByStudentId() async {
+    try {
+      return Right(await remoteGroupDataSource.deleteHWByStudentId());
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> getAllHW() async {
+    try {
+      return Right(await remoteGroupDataSource.getAllHW());
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id) async {
+
+    try {
+      return Right(await remoteGroupDataSource.getAllLessonHistory(id));
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> getLastThreeLessonHistory() async {
     // TODO: implement getLastThreeLessonHistory
-    throw UnimplementedError();
+    
+    try {
+      return Right(await remoteGroupDataSource.getLastThreeLessonHistory());
+    } on Exception{
+    return Left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, void>> postAttendanceStudents() {
+  Future<Either<Failure, void>> postAttendanceStudents() async {
     // TODO: implement postAttendanceStudents
-    throw UnimplementedError();
+    
+    try {
+      return Right(await remoteGroupDataSource.postAttendanceStudents());
+    } on Exception{
+    return Left(ServerFailure());
+    }
   }
 
   @override
-  Future<Either<Failure, void>> postGradeByStudentsId() {
+  Future<Either<Failure, void>> postGradeByStudentsId() async {
     // TODO: implement postGradeByStudentsId
-    throw UnimplementedError();
+    
+    try {
+      return Right(await remoteGroupDataSource.postGradeByStudentsId());
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> getAllHWByStudentId() async {
+    try {
+      return Right(await remoteGroupDataSource.getAllHWByStudentId());
+    } on Exception{
+    return Left(ServerFailure());
+    }
   }
 }

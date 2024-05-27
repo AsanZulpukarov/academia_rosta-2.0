@@ -11,7 +11,7 @@ abstract class GroupRepository {
 
   Future<Either<Failure, void>> postAttendanceStudents();
   Future<Either<Failure, void>> getLastThreeLessonHistory();
-  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int params);
+  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id);
   Future<Either<Failure, void>> getAllHW();
   Future<Either<Failure, void>> deleteHWById();
   Future<Either<Failure, void>> createHWByStudentId();

@@ -20,7 +20,7 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
 
   _onAttendanceStudentCheckboxTapEvent(
       AttendanceStudentCheckboxTapEvent event, Emitter<AttendanceState> emit) {
-    students.elementAt(event.index).isSelect = event.isSelect;
+    students.elementAt(event.index).isAttended = event.isSelect;
   }
 
   _onAttendanceLastThreeLessonEmptyEvent(

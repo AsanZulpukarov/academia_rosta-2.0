@@ -6,6 +6,7 @@ class StudentModel extends StudentEntity {
     required firstname,
     required lastname,
     required phoneNumber,
+    super.isAttended,
   }) : super(
           id: id,
           firstname: firstname,
@@ -19,6 +20,7 @@ class StudentModel extends StudentEntity {
       firstname: json['firstname'],
       lastname: json['lastname'],
       phoneNumber: json['phoneNumber'],
+      isAttended: json['isAttended'],
     );
   }
 
@@ -28,6 +30,7 @@ class StudentModel extends StudentEntity {
     data['firstname'] = firstname;
     data['lastname'] = lastname;
     data['phoneNumber'] = phoneNumber;
+    data['isAttended'] = isAttended;
     return data;
   }
 }

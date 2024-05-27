@@ -7,8 +7,10 @@ import 'package:academia_rosta_diplom/features/home/data/models/subject_model.da
 import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_group_by_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/home_work_screen.dart';
@@ -17,8 +19,10 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/g
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
@@ -48,7 +52,7 @@ class GroupInfoScreen extends StatelessWidget {
           } else if (state is GroupInfoLoadedState) {
             groupInfoByIdEntity = state.group;
             return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
               child: Column(
                 children: [
                   Column(
@@ -68,7 +72,7 @@ class GroupInfoScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      Gap(10),
+                      Gap(5.h),
                       _row2Text(
                         title: "Учитель:",
                         subtitle: groupInfoByIdEntity.teacher?.getFullName() ??
@@ -77,7 +81,7 @@ class GroupInfoScreen extends StatelessWidget {
                           showBottomWindowTeacher(
                             context,
                             TeacherModel(
-                              id: 1,
+                              id: groupInfoByIdEntity.teacher?.id,
                               firstname:
                                   groupInfoByIdEntity.teacher?.firstname ??
                                       "Пусто",
@@ -90,48 +94,48 @@ class GroupInfoScreen extends StatelessWidget {
                           );
                         },
                       ),
-                      Gap(20),
-                      _actionButton(context,groupInfoByIdEntity.id ?? 1),
-                      Gap(20),
+                      Gap(16.h),
+                      _actionButton(context, groupInfoByIdEntity.id ?? 1),
+                      Gap(16.h),
                       GroupCalendarWidget(),
                     ],
                   ),
-                  Gap(30),
+                  Gap(20.h),
                   Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 10.h),
                     decoration: ShapeDecoration(
                       shadows: [
                         BoxShadow(
                           color: AppColors.black.withOpacity(0.5),
-                          offset: Offset(4, 4),
+                          offset: const Offset(4, 4),
                           blurRadius: 8,
                         ),
                       ],
                       color: AppColors.secondaryColor,
-                      // gradient: LinearGradient(
-                      //   begin: Alignment.bottomRight,
-                      //   end: Alignment.topLeft,
-                      //   colors: [
-                      //     AppColors.secondaryColor,
-                      //     AppColors.secondaryColor,
-                      //   ],
-                      // ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
-                    child: ListTile(
-                      title: Text(
-                        "Студенты",
-                        style: AppTextStyles.black16Regular.copyWith(
-                          color: AppColors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "№",
+                          style: AppTextStyles.black16Regular.copyWith(
+                            color: AppColors.white,
+                          ),
                         ),
-                      ),
-                      leading: Text(
-                        "№",
-                        style: AppTextStyles.black16Regular.copyWith(
-                          color: AppColors.white,
+                        Gap(10.w),
+                        Expanded(
+                          child: Text(
+                            "Студенты",
+                            style: AppTextStyles.black16Regular.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                   Gap(10),
@@ -182,7 +186,7 @@ class GroupInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _actionButton(BuildContext context,int id) {
+  Widget _actionButton(BuildContext context, int id) {
     return Row(
       children: [
         _actionButtonAndName(
@@ -198,8 +202,24 @@ class GroupInfoScreen extends StatelessWidget {
           nameIcon: 'history_lesson_icon.png',
           nameButton: 'Занятия',
           function: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HistoryLessonScreen(id: id,)));
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => BlocProvider(
+                  create: (context) => LessonHistoryBloc(
+                    GetAllLessonHistoryUseCase(
+                      GroupRepositoryImpl(
+                        remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+                        networkInfo: NetworkInfoImpl(
+                          connectionChecker: InternetConnectionChecker(),
+                        ),
+                      ),
+                    ),
+                  )..add(LessonHistoryEmptyEvent(id: id)),
+                  child: HistoryLessonScreen(),
+                ),
+              ),
+            );
           },
         ),
         Gap(10),

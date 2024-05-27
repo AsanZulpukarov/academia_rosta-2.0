@@ -7,8 +7,22 @@ import 'package:intl/intl.dart';
 
 class AppUtils {
   static DateFormat dateFormat = DateFormat('dd.MM.yyyy');
-  static DateFormat time = DateFormat('HH:mm');
-
+  static String parseDateToString(DateTime date){
+    return dateFormat.format(date);
+  }
+  static DateTime parseStringToDateFormat(String date){
+    return dateFormat.parse(date);
+  }
+  static String getGreeting() {
+    var hour = DateTime.now().hour;
+    if (hour < 12) {
+      return 'Доброе утро';
+    } else if (hour < 18) {
+      return 'Добрый день';
+    } else {
+      return 'Добрый вечер';
+    }
+  }
   static showSnackBar({
     required BuildContext context,
     String title = "Ошибка",

@@ -1,5 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/constants.dart';
+import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/notification/presentation/pages/notification_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,11 +31,11 @@ class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            "Привет Marsel",
+            "Привет",
             style: AppTextStyles.black20.copyWith(fontWeight: FontWeight.w400),
           ),
           Text(
-            "Доброго дня",
+            AppUtils.getGreeting(),
             style: AppTextStyles.black14.copyWith(
               fontWeight: FontWeight.w400,
               color: AppColors.blackOpacity65,

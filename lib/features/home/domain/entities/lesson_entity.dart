@@ -1,17 +1,15 @@
-import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class LessonEntity extends Equatable {
-  final int id;
-  final DateTime createLesson;
-  final List<UserInfoEntity> students;
-  final bool isAttendance;
+  final int? id;
+  final DateTime? createLesson;
+  final List<StudentEntity>? students;
 
   const LessonEntity({
     required this.id,
     required this.createLesson,
     required this.students,
-    required this.isAttendance,
   });
 
   @override
@@ -20,6 +18,5 @@ class LessonEntity extends Equatable {
         id,
         createLesson,
         students,
-        isAttendance,
       ];
 }

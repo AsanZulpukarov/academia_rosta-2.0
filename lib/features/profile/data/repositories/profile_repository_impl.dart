@@ -16,7 +16,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.getMyStatistic(id));
     } on Exception {
-    throw ServerFailure();
+    
+    return Left(ServerFailure());
     }
   }
 
@@ -25,7 +26,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.getUserInfo());
     } on Exception {
-    throw ServerFailure();
+    
+    return Left(ServerFailure());
     }
   }
 
@@ -40,7 +42,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.editPassword(editPasswordEntity));
     } on Exception {
-      throw ServerFailure();
+      
+    return Left(ServerFailure());
     }
   }
 
@@ -49,7 +52,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.updateUserInfo(userInfoEntity));
     } on Exception {
-    throw ServerFailure();
+    return Left(ServerFailure());
     }
   }
 
@@ -58,7 +61,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.getMySubjects());
     } on Exception {
-    throw ServerFailure();
+    
+    return Left(ServerFailure());
     }
   }
 
@@ -67,7 +71,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.changeAvatar(avatar));
     } on Exception {
-    throw ServerFailure();
+    
+    return Left(ServerFailure());
     }
   }
 }

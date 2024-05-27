@@ -10,7 +10,11 @@ import 'package:gap/gap.dart';
 
 class EditProfileForm extends StatefulWidget {
   final UserInfoEntity userInfoEntity;
-  const EditProfileForm({super.key,required this.userInfoEntity,});
+
+  const EditProfileForm({
+    super.key,
+    required this.userInfoEntity,
+  });
 
   @override
   State<EditProfileForm> createState() => _EditProfileFormState();
@@ -76,7 +80,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   validator: AppUtils.validatePhone,
                   textInputType: TextInputType.number,
                 ),
-                Gap(20),
+                const Gap(20),
                 Builder(builder: (context) {
                   if (state is EditProfileLoadingState) {
                     return const Center(
@@ -87,14 +91,16 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         context.read<EditProfileBloc>().add(
-                          EditProfileSaveEvent(UserInfoEntity(
-                            firstname: _firstnameController.text,
-                            lastname: _lastnameController.text,
-                            username: _usernameController.text,
-                            email: _emailController.text,
-                            phoneNumber: _phoneController.text,
-                          )),
-                        );
+                              EditProfileSaveEvent(
+                                UserInfoEntity(
+                                  firstname: _firstnameController.text,
+                                  lastname: _lastnameController.text,
+                                  username: _usernameController.text,
+                                  email: _emailController.text,
+                                  phoneNumber: _phoneController.text,
+                                ),
+                              ),
+                            );
                       }
                     },
                     borderRadius: BorderRadius.circular(20),

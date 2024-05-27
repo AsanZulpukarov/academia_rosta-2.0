@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
@@ -22,20 +23,26 @@ import 'about_app_screen.dart';
 import 'contact_screen.dart';
 import 'edit_profile_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  final profileBloc = ProfileBloc(
+    GetUserInfoUseCase(
+      ProfileRepositoryImpl(
+        profileRemoteDataSource: ProfileRemoteDataSourceImpl(),
+      ),
+    ),
+  );
+  @override
   Widget build(BuildContext context) {
     double gap = 10.h;
-    return BlocProvider(
-      create: (context) => ProfileBloc(
-        GetUserInfoUseCase(
-          ProfileRepositoryImpl(
-            profileRemoteDataSource: ProfileRemoteDataSourceImpl(),
-          ),
-        ),
-      )..add(ProfileEmptyEvent()),
+    return BlocProvider.value(
+      value: profileBloc..add(ProfileEmptyEvent()),
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: Column(
@@ -52,9 +59,10 @@ class ProfileScreen extends StatelessWidget {
                     UserInfoEntity user = state.user;
                     return Column(
                       children: [
-                        const ProfileAvatarItem(
-                          image: 'man_3',
-                          radius: 50,
+                        ProfileAvatarItem(
+                          image: ProfileAvatar
+                              .listAvatars[Constants.user.avatar ?? 0],
+                          radius: 50.r,
                           backgroundColor: AppColors.white,
                         ),
                         const Gap(10),
@@ -85,11 +93,14 @@ class ProfileScreen extends StatelessWidget {
             ProfileNavItem(
               icon: Icons.person_outline,
               title: 'Редактировать профиль',
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const EditProfileScreen(),),);
+              onTap: () async {
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const EditProfileScreen(),
+                  ),
+                );
+                setState(() {});
               },
             ),
             Gap(gap),
@@ -159,10 +170,14 @@ class ProfileScreen extends StatelessWidget {
                           Expanded(
                             child: MainButtonWidget(
                               borderRadius: BorderRadius.circular(20),
-                              onPressed: () {
-                                BlocProvider.of<ProfileBloc>(context).add(ProfileExitAccountEvent());
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                                    const SignInScreen()), (Route<dynamic> route) => false);},
+                              onPressed: () async{
+                                profileBloc.add(ProfileExitAccountEvent());
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const SignInScreen()),
+                                    (Route<dynamic> route) => false);
+                              },
                               child: Text(
                                 'Выйти',
                                 style: AppTextStyles.black14.copyWith(

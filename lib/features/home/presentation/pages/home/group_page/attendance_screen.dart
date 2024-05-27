@@ -103,7 +103,6 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                         ),
                         columnSpacing: 0,
                         horizontalMargin: 0,
-
                         columns: _createColumns(),
                         rows: _createRows(),
                       ),
@@ -150,10 +149,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       padding: const EdgeInsets.all(8),
       alignment: Alignment.center,
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => SelectHistoryLessonScreen(),),);
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => SelectHistoryLessonScreen(),
+        //   ),
+        // );
       },
       offset: const Offset(4, 4),
       child: Text(
@@ -164,9 +165,11 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       ),
     );
   }
+
   List<DataColumn> _createColumns() {
     final double containerWidth = 20.w;
-    final EdgeInsets containerPadding = EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w);
+    final EdgeInsets containerPadding =
+        EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w);
 
     return [
       DataColumn(
@@ -218,10 +221,10 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       return DataRow(
         cells: [
           DataCell(
-            _buildDataCell(student['id'].toString(),20.w),
+            _buildDataCell(student['id'].toString(), 20.w),
           ),
           DataCell(
-            _buildDataCell(student['name'],120.w),
+            _buildDataCell(student['name'], 120.w),
           ),
           DataCell(
             GestureDetector(
@@ -230,7 +233,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   student["isSelect"] = !isSelected;
                 });
               },
-              child: _buildIconContainer(Icons.check_circle, isSelected ? AppColors.blue : AppColors.grey),
+              child: _buildIconContainer(Icons.check_circle,
+                  isSelected ? AppColors.blue : AppColors.grey),
             ),
           ),
         ],
@@ -238,7 +242,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     }).toList();
   }
 
-  Widget _buildDataCell(String text,double width) {
+  Widget _buildDataCell(String text, double width) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
       width: width,
@@ -259,5 +263,4 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       ),
     );
   }
-
 }

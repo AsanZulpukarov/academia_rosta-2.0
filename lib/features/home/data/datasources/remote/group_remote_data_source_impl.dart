@@ -91,7 +91,7 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
 
   @override
   Future<List<LessonEntity>> getAllLessonHistory(int id) async {
-    final url = Uri.parse('${Constants.baseUrl}api/groups/group-details');
+    final url = Uri.parse('${Constants.baseUrl}api/lessons/by-group/$id');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',

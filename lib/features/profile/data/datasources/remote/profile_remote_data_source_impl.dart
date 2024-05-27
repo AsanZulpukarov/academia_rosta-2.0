@@ -84,7 +84,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       final jsonData = jsonDecode(responseBody);
-
+      Constants.user.avatar = prefs.getInt(SharedPrefSource.imageKey);
       return UserInfoModel.fromJson(jsonData);
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);

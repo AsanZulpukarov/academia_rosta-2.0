@@ -1,11 +1,11 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:academia_rosta_diplom/features/profile/data/datasources/remote/profile_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/profile/data/repositories/profile_repository_impl.dart';
-import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
+import 'package:academia_rosta_diplom/features/profile/domain/usecases/change_avatar.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_user_info.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/update_user_info.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/edit_profile_bloc/edit_profile_bloc.dart';
@@ -14,9 +14,9 @@ import 'package:academia_rosta_diplom/features/profile/presentation/pages/edit_p
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../app_theme.dart';
 
@@ -29,11 +29,10 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   int selectImageIndex = 0;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-
   }
 
   @override
@@ -46,6 +45,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
           ),
         ),
         updateUserInfoUseCase: UpdateUserInfoUseCase(
+          ProfileRepositoryImpl(
+            profileRemoteDataSource: ProfileRemoteDataSourceImpl(),
+          ),
+        ),
+        changeAvatarUseCase: ChangeAvatarUseCase(
           ProfileRepositoryImpl(
             profileRemoteDataSource: ProfileRemoteDataSourceImpl(),
           ),
@@ -71,8 +75,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               return const LoadingStateWidget();
             } else if (state is EditProfileLoadedState) {
               return SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,29 +85,47 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         children: [
                           ProfileAvatarItem(
                             image: ProfileAvatar.listAvatars
-                                .elementAt(selectImageIndex),
-                            radius: 60,
+                                .elementAt(Constants.user.avatar ?? 0),
+                            radius: 50.r,
                             backgroundColor: AppColors.white,
                           ),
                           TextButton(
                             onPressed: () async {
                               await showDialog(
                                 context: context,
-                                builder: (context) => AlertDialog(
+                                builder: (c) => AlertDialog(
                                   backgroundColor: AppColors.white,
                                   title: const Text(
                                     "Выберите фото:",
                                     style: AppTextStyles.black16,
                                   ),
                                   content: ChoosePhotoDialog(
-                                    currentPhotoIndex: selectImageIndex,
+                                    currentPhotoIndex: Constants.user.avatar ?? 0,
+                                    onTap:(value){
+                                      selectImageIndex = value;
+                                    }
                                   ),
                                   actions: [
                                     TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text("Выбрать"))
+                                      onPressed: () {
+                                        BlocProvider.of<EditProfileBloc>(
+                                                context)
+                                            .add(
+                                          EditProfileChangeImageEvent(
+                                              selectImageIndex),
+                                        );
+                                        setState(() {
+                                          selectImageIndex = Constants.user.avatar ?? 0;
+                                        });
+                                          Navigator.pop(c);
+                                      },
+                                      child: Text(
+                                        "Выбрать",
+                                        style: AppTextStyles.black16.copyWith(
+                                          color: AppColors.main,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               );
@@ -119,7 +140,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         ],
                       ),
                     ),
-                    EditProfileForm(userInfoEntity: state.userInfoEntity,),
+                    EditProfileForm(
+                      userInfoEntity: state.userInfoEntity,
+                    ),
                   ],
                 ),
               );

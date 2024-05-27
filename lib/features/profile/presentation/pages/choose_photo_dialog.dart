@@ -12,9 +12,11 @@ class ChoosePhotoDialog extends StatefulWidget {
   final double mainAxisSpacing;
   final double crossAxisSpacing;
   final double radius;
+  final Function(int index) onTap;
   const ChoosePhotoDialog({
     Key? key,
     required this.currentPhotoIndex,
+    required this.onTap,
     this.backgroundColor = AppColors.white,
     this.radius = 60,
     this.selectBackgroundColor = AppColors.main,
@@ -46,6 +48,7 @@ class _ChoosePhotoDialogState extends State<ChoosePhotoDialog> {
             onTap: () {
               setState(() {
                 _currentIndex = index;
+                widget.onTap(_currentIndex);
               });
             },
             child: Container(

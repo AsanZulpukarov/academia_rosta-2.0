@@ -5,14 +5,14 @@ class StudentEntity extends Equatable {
   final String? firstname;
   final String? lastname;
   final String? phoneNumber;
-  bool? isSelect;
+  bool? isAttended;
 
   StudentEntity({
     this.id,
     this.firstname,
     this.lastname,
     this.phoneNumber,
-    this.isSelect = false,
+    this.isAttended = false,
   });
 
   String getFullName(){
@@ -25,6 +25,6 @@ class StudentEntity extends Equatable {
         firstname,
         lastname,
         phoneNumber,
-        isSelect,
+        isAttended,
       ];
 }
