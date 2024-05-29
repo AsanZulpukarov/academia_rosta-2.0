@@ -1,17 +1,20 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_description_row_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class LastExerciseCardWidget extends StatelessWidget {
-  const LastExerciseCardWidget({Key? key}) : super(key: key);
+  final ExerciseEntity exercise;
+  const LastExerciseCardWidget({Key? key, required this.exercise}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         gradient: LinearGradient(
@@ -27,25 +30,25 @@ class LastExerciseCardWidget extends StatelessWidget {
         children: [
           _row2TitleAnd2Description(
             title1: "Тип",
-            description1: "Тренажер",
+            description1: exercise.type ?? "Пусто",
             title2: "Тема",
-            description2: "Пд +4",
+            description2: exercise.topic ?? "Пусто",
           ),
-          Divider(),
+          const Divider(color: AppColors.white,),
           _row2TitleAnd2Description(
             title1: "Скорость",
-            description1: "2",
+            description1: (exercise.speed ?? 0).toString(),
             title2: "Разрядность",
-            description2: "2",
+            description2: (exercise.digitsCount ?? 0).toString(),
           ),
-          Divider(),
+          const Divider(color: AppColors.white,),
           _row2TitleAnd2Description(
             title1: "Количество\nпеременных",
-            description1: "2",
+            description1: (exercise.numbersCount ?? 0).toString(),
             title2: "Количество\nпримеров",
-            description2: "4",
+            description2: (exercise.questionCount ?? 0).toString(),
           ),
-          Gap(20),
+          const Gap(20),
           MainButtonWidget(
             backgroundColor: AppColors.secondaryColor,
             borderRadius: BorderRadius.circular(20),
@@ -83,7 +86,7 @@ class LastExerciseCardWidget extends StatelessWidget {
             ),
           ),
         ),
-        Gap(10),
+        Gap(30.w),
         Expanded(
           child: TitleDescriptionWhiteColorRowWidget(
             title: title2,

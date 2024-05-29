@@ -86,7 +86,7 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
                           width: 140,
                         ),
                         const Gap(60),
-                        const Text(
+                        Text(
                           "Введите код отправленный на ваш email",
                           style: AppTextStyles.black14,
                         ),

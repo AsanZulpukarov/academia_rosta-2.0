@@ -119,7 +119,7 @@ class _GradeScreenState extends State<GradeScreen> {
                     backgroundColor: AppColors.white,
                     contentPadding: const EdgeInsets.all(20),
                     scrollable: true,
-                    title: const Text(
+                    title: Text(
                       'Выберите студентов',
                       style: AppTextStyles.black20,
                     ),

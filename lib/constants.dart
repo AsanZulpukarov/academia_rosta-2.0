@@ -39,7 +39,6 @@ class Constants {
     'Декабрь'
   ];
 
-
   static const List<TopicEntity> topics = [
     TopicEntity(
       name: "Простое сложение вычитание",

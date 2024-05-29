@@ -13,7 +13,6 @@ import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/home_work_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/list_student_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/group_calendar_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
@@ -102,7 +101,8 @@ class GroupInfoScreen extends StatelessWidget {
                   ),
                   Gap(20.h),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 10.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     decoration: ShapeDecoration(
                       shadows: [
                         BoxShadow(
@@ -138,8 +138,10 @@ class GroupInfoScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Gap(10),
-                  const ListStudentScreen(),
+                  const Gap(10),
+                  ListStudentScreen(
+                    idSubject: state.group.subject?.id ?? 0,
+                  ),
                 ],
               ),
             );
@@ -216,22 +218,13 @@ class GroupInfoScreen extends StatelessWidget {
                       ),
                     ),
                   )..add(LessonHistoryEmptyEvent(id: id)),
-                  child: HistoryLessonScreen(),
+                  child: const HistoryLessonScreen(),
                 ),
               ),
             );
           },
         ),
-        Gap(10),
-        _actionButtonAndName(
-          nameIcon: 'home_work_icon.png',
-          nameButton: 'Д/З',
-          function: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => HomeWorkScreen()));
-          },
-        ),
-        Gap(10),
+        Gap(10.h),
         _actionButtonAndName(
           nameIcon: 'grade_icon.png',
           nameButton: 'Оценки',

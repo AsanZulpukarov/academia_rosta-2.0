@@ -15,6 +15,7 @@ import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/chac
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/choose_character_theme_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CreateHWScreen extends StatelessWidget {
@@ -27,47 +28,50 @@ class CreateHWScreen extends StatelessWidget {
         title: "Создание Д/З",
       ),
       body: BlocProvider(
-        create: (context) => TrainerBloc(getNumbersUseCase:  GetNumbersUseCase(
-                TrainerRepositoryImpl(
-                  trainerLocalDataSource:
-                  TrainerLocalDataSourceImpl(),
-                  trainerRemoteDataSource:
-                  TrainerRemoteDataSourceImpl(),
-                ),
-              ),
+        create: (context) => TrainerBloc(
+          getNumbersUseCase: GetNumbersUseCase(
+            TrainerRepositoryImpl(
+              trainerLocalDataSource: TrainerLocalDataSourceImpl(),
+              trainerRemoteDataSource: TrainerRemoteDataSourceImpl(),
+            ),
+          ),
         ),
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
           child: Column(
             children: [
               Column(
                 children: [
-                  const TitleDescriptionBlackColorRowWidget(
+                  TitleDescriptionBlackColorRowWidget(
+                    titleStyle: AppTextStyles.black16,
+                    descriptionStyle: AppTextStyles.black16,
                     title: "ФИО",
                     description: "Асан Зулпукаров",
                   ),
-                  const Gap(20),
-                  const TitleDescriptionBlackColorRowWidget(
+                  Gap(20.h),
+                  TitleDescriptionBlackColorRowWidget(
+                    titleStyle: AppTextStyles.black16,
+                    descriptionStyle: AppTextStyles.black16,
                     title: "Дата завершения",
                     description: "07.04.2002",
                   ),
-                  const Gap(20),
+                  Gap(20.h),
                   const CharacterExerciseWidget(),
-                  const Gap(20),
-                  const Row(
+                  Gap(20.h),
+                  Row(
                     children: [
-                      Expanded(
+                      const Expanded(
                         flex: 2,
                         child: ChooseCharacterThemeWidget(),
                       ),
-                      Gap(20),
-                      Expanded(
+                      Gap(20.h),
+                      const Expanded(
                         flex: 1,
                         child: CountExampleInputWidget(),
                       ),
                     ],
                   ),
-                  const Gap(20),
+                  Gap(20.h),
                   Row(
                     children: [
                       Expanded(
@@ -83,7 +87,7 @@ class CreateHWScreen extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ),
-                      Gap(20),
+                      Gap(20.h),
                       Expanded(
                         child: MainButtonWidget(
                           borderRadius: BorderRadius.circular(20),
@@ -99,24 +103,10 @@ class CreateHWScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Gap(20),
-                  TitleDividerColumnWidget(
-                    title: "Прошлые упражнения",
-                  ),
+                  Gap(20.h),
                 ],
               ),
-              Gap(10),
-              ListView.separated(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return LastExerciseCardWidget();
-                },
-                separatorBuilder: (context, index) {
-                  return const Gap(10);
-                },
-                itemCount: 4,
-              ),
+              Gap(10.h),
             ],
           ),
         ),

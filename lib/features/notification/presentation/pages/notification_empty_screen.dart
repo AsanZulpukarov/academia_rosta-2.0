@@ -19,7 +19,7 @@ class NotificationEmptyScreen extends StatelessWidget {
             ),
           ),
           const Gap(40),
-          const Text(
+          Text(
             "У вас нет уведомлений!",
             style: AppTextStyles.black20,
           ),

@@ -1,7 +1,13 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/core/platform/network_info.dart';
+import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
+import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/prev_hw_student_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +15,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ListStudentScreen extends StatelessWidget {
-  const ListStudentScreen({Key? key}) : super(key: key);
+  final int idSubject;
+
+  const ListStudentScreen({Key? key, required this.idSubject})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +35,7 @@ class ListStudentScreen extends StatelessWidget {
             itemCount: students.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                 decoration: ShapeDecoration(
                   shadows: [
                     BoxShadow(
@@ -71,7 +81,34 @@ class ListStudentScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BlocProvider(
+                                  create: (context) => HWBloc(
+                                    GetAllHWByStudentIdUseCase(
+                                      GroupRepositoryImpl(
+                                        remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+                                        networkInfo: NetworkInfoImpl(
+                                          connectionChecker: InternetConnectionChecker(),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                    ..add(
+                                      HWEmptyEvent(
+                                        idSubject: idSubject,
+                                        idStudent: students[index].id ?? 0,
+                                      ),
+                                    ),
+                                  child: PrevHWStudentScreen(
+                                    fio: students[index].getFullName(),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
                           child: Image.asset(
                             'assets/icons/home_work_icon.png',
                             width: 24.w,

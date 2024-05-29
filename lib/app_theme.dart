@@ -5,9 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'app_text_styles.dart';
 
 class AppColors {
-  static const Color main = Color.fromRGBO(75, 73, 172, 1); //Color(0xFF3456FB);
-  static const Color customButton = main; // Color(0xffFFB951);
-  static const Color mainColor = main; // Color(0xFFFFB951);
+  static const Color main = Color.fromRGBO(75, 73, 172, 1);
+  static const Color customButton = main;
+  static const Color mainColor = main;
   static const Color secondaryColor = Color.fromRGBO(241, 94, 49, 1);
   static const Color customText = Colors.black;
   static const Color filColor = Color(0xffEDEDEF);
@@ -65,9 +65,13 @@ class AppTheme {
           .copyWith(fontSize: 16.sp, color: AppColors.grey),
     ),
     dialogTheme: const DialogTheme(
-        backgroundColor: AppColors.white,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)))),
+      backgroundColor: AppColors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+    ),
     appBarTheme: AppBarTheme(
       centerTitle: false,
       elevation: 0,

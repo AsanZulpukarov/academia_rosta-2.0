@@ -192,7 +192,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               borderRadius: BorderRadius.circular(20),
                               onPressed: () => Navigator.of(context).pop(false),
                               backgroundColor: AppColors.grey,
-                              child: const Text(
+                              child: Text(
                                 'Остаться',
                                 style: AppTextStyles.black14,
                               ),

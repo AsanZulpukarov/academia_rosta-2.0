@@ -58,7 +58,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14.0),
                       child: Text(
                         "Новый пароль",
@@ -67,7 +67,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     _passwordField(context),
                     const Gap(5),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 14.0),
                       child: Text(
                         "Потверждение пароля",

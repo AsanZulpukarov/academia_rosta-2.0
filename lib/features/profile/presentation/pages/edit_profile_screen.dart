@@ -95,7 +95,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 context: context,
                                 builder: (c) => AlertDialog(
                                   backgroundColor: AppColors.white,
-                                  title: const Text(
+                                  title: Text(
                                     "Выберите фото:",
                                     style: AppTextStyles.black16,
                                   ),

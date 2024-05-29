@@ -27,7 +27,7 @@ class GroupCalendarWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.only(left: 10, bottom: 8),
                   child: Text(
                     "Расписание",

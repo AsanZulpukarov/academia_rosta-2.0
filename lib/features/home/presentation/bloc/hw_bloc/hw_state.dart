@@ -11,6 +11,20 @@ final class HWInitialState extends HWState {}
 
 final class HWLoadingState extends HWState {}
 
-final class HWLoadedState extends HWState {}
+final class HWLoadedState extends HWState {
+  final List<HWEntity> hw;
 
-final class HWErrorState extends HWState {}
+  const HWLoadedState({required this.hw});
+  @override
+  // TODO: implement props
+  List<Object> get props => [hw];
+}
+
+final class HWErrorState extends HWState {
+  final String message;
+
+  const HWErrorState({required this.message});
+  @override
+  // TODO: implement props
+  List<Object> get props => [message];
+}

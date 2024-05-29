@@ -167,7 +167,7 @@ class GroupsScreen extends StatelessWidget {
               },
             );
           }
-          return const Center(
+          return Center(
             child: Text(
               "Нет групп",
               style: AppTextStyles.black14,

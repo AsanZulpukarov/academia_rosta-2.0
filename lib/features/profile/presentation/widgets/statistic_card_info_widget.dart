@@ -28,7 +28,7 @@ class StatisticCardInfoWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Статистика раздела:",
             style: AppTextStyles.black14,
           ),

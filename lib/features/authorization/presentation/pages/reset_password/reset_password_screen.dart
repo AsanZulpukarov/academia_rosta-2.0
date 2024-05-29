@@ -9,6 +9,7 @@ import 'package:academia_rosta_diplom/features/authorization/presentation/widget
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../app_text_styles.dart';
@@ -71,7 +72,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResetPasswordCodeScreen(),
+                  builder: (context) => const ResetPasswordCodeScreen(),
                 ),
               );
             }
@@ -79,26 +80,26 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           builder: (context, state) {
             return Scaffold(
               body: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(20.0.w),
                 child: Stack(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const AppLogoWidget(
-                          width: 140,
+                        AppLogoWidget(
+                          width: 140.w,
                         ),
-                        const Gap(60),
-                        const Text(
+                        Gap(60.h),
+                        Text(
                           "Для сброса пароля напишите свой логин",
                           style: AppTextStyles.black14,
                         ),
-                        Gap(20),
+                        Gap(20.h),
                         Form(
                           key: _formKey,
                           child: _login(),
                         ),
-                        const Gap(30),
+                        Gap(30.h),
                         Builder(builder: (context) {
                           if (state is ResetPasswordLoadingState) {
                             return const Center(

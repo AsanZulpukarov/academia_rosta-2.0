@@ -1,8 +1,10 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/lesson_entity.dart';
 
 import 'package:dartz/dartz.dart';
@@ -64,15 +66,6 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getAllHW() async {
-    try {
-      return Right(await remoteGroupDataSource.getAllHW());
-    } on Exception{
-    return Left(ServerFailure());
-    }
-  }
-
-  @override
   Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id) async {
 
     try {
@@ -116,9 +109,18 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<Either<Failure, void>> getAllHWByStudentId() async {
+  Future<Either<Failure, List<HWEntity>>> getAllHWByStudentId({required int idSubject,required int idStudent}) async {
     try {
-      return Right(await remoteGroupDataSource.getAllHWByStudentId());
+      return Right(await remoteGroupDataSource.getAllHWByStudentId(idStudent: idStudent,idSubject: idSubject));
+    } on Exception{
+    return Left(ServerFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ExerciseEntity>>> getExerciseByHWId(int id) async {
+    try {
+      return Right(await remoteGroupDataSource.getExerciseByHWId(id));
     } on Exception{
     return Left(ServerFailure());
     }

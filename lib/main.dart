@@ -4,6 +4,7 @@ import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -17,7 +18,6 @@ void main() {
   }, (error, stack) {
     print(error);
     print(stack);
-    print(231);
   });
 }
 
@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
     return ScreenUtilInit(
       builder: (context, child) {
         return MaterialApp(
