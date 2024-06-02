@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/mark_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_my_statistic.dart';

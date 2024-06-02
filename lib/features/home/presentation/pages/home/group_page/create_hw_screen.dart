@@ -1,11 +1,9 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/count_example_input_widget.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/last_exercise_card_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_description_row_widget.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/datasources/local/trainer_local_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/datasources/remote/trainer_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/repositories/trainer_repository_impl.dart';

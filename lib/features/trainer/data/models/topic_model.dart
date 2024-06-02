@@ -2,12 +2,13 @@ import 'package:academia_rosta_diplom/features/trainer/domain/entities/topic_ent
 
 class TopicModel extends TopicEntity{
 
-  const TopicModel({required super.name,required super.code,});
+  const TopicModel({required super.name,required super.code,required super.json});
 
   factory TopicModel.fromJson(Map<String, dynamic> json) {
     return TopicModel(
       name: json['name'] as String,
       code: json['code'] as String,
+      json: json['json'] as String,
     );
   }
   Map<String, dynamic> toJson() {

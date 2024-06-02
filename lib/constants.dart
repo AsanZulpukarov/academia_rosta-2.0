@@ -43,110 +43,137 @@ class Constants {
     TopicEntity(
       name: "Простое сложение вычитание",
       code: "ПСВ",
+      json: "trainer.task.PSV.full",
     ),
     TopicEntity(
       name: "Помощь брата +1",
       code: "ПБ+1",
+      json: "trainer.task.PBP1.full",
     ),
     TopicEntity(
       name: "Помощь брата -1",
       code: "ПБ-1",
+      json: "trainer.task.PBM1.full",
     ),
     TopicEntity(
       name: "Помощь брата +2",
       code: "ПБ+2",
+      json: "trainer.task.PBP2.full",
     ),
     TopicEntity(
       name: "Помощь брата -2",
       code: "ПБ-2",
+      json: "trainer.task.PBM2.full",
     ),
     TopicEntity(
       name: "Помощь брата +3",
       code: "ПБ+3",
+      json: "trainer.task.PBP3.full",
     ),
     TopicEntity(
       name: "Помощь брата -3",
       code: "ПБ-3",
+      json: "trainer.task.PBM3.full",
     ),
     TopicEntity(
       name: "Помощь брата +4",
       code: "ПБ+4",
+      json: "trainer.task.PBP4.full",
     ),
     TopicEntity(
       name: "Помощь брата -4",
       code: "ПБ-4",
+      json: "trainer.task.PBM4.full",
     ),
     TopicEntity(
       name: "Помощь друга +1",
       code: "ПД+1",
+      json: "trainer.task.PDP1.full",
     ),
     TopicEntity(
       name: "Помощь друга -1",
       code: "ПД-1",
+      json: "trainer.task.PDM1.full",
     ),
     TopicEntity(
       name: "Помощь друга +2",
       code: "ПД+2",
+      json: "trainer.task.PDP2.full",
     ),
     TopicEntity(
       name: "Помощь друга -2",
       code: "ПД-2",
+      json: "trainer.task.PDM2.full",
     ),
     TopicEntity(
       name: "Помощь друга +3",
       code: "ПД+3",
+      json: "trainer.task.PDP3.full",
     ),
     TopicEntity(
       name: "Помощь друга -3",
       code: "ПД-3",
+      json: "trainer.task.PDM3.full",
     ),
     TopicEntity(
       name: "Помощь друга +4",
       code: "ПД+4",
+      json: "trainer.task.PDP4.full",
     ),
     TopicEntity(
       name: "Помощь друга -4",
       code: "ПД-4",
+      json: "trainer.task.PDM4.full",
     ),
     TopicEntity(
       name: "Помощь друга +5",
       code: "ПД+5",
+      json: "trainer.task.PDP5.full",
     ),
     TopicEntity(
       name: "Помощь друга -5",
       code: "ПД-5",
+      json: "trainer.task.PDM5.full",
     ),
     TopicEntity(
       name: "Помощь друга +6",
       code: "ПД+6",
+      json: "trainer.task.PDP6.full",
     ),
     TopicEntity(
       name: "Помощь друга -6",
       code: "ПД-6",
+      json: "trainer.task.PDM6.full",
     ),
     TopicEntity(
       name: "Помощь друга +7",
       code: "ПД+7",
+      json: "trainer.task.PDP7.full",
     ),
     TopicEntity(
       name: "Помощь друга -7",
       code: "ПД-7",
+      json: "trainer.task.PDM7.full",
     ),
     TopicEntity(
       name: "Помощь друга +8",
       code: "ПД+8",
+      json: "trainer.task.PDP8.full",
     ),
     TopicEntity(
       name: "Помощь друга -8",
       code: "ПД-8",
+      json: "trainer.task.PDM8.full",
     ),
     TopicEntity(
       name: "Помощь друга +9",
       code: "ПД+9",
+      json: "trainer.task.PDP9.full",
     ),
     TopicEntity(
       name: "Помощь друга -9",
       code: "ПД-9",
+      json: "trainer.task.PDM9.full",
     ),
   ];
 }

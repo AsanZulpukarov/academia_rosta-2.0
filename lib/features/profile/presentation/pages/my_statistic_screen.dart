@@ -65,13 +65,12 @@ class MyStatisticScreen extends StatelessWidget {
                 int totalPD3 = 0;
                 int correctPD3 = 0;
                 for (int i = 1; i < Constants.topics.length; i++) {
-                  MarkEntity topicItem = statistics[Constants.topics[i].code] ??
-                      MarkEntity(
-                        topic: Constants.topics[i].code,
-                        correct: 0,
-                        incorrect: 0,
-                        total: 0,
-                      );
+                  MarkEntity topicItem = MarkEntity(
+                    topic: Constants.topics[i].code,
+                    correct: statistics[Constants.topics[i].json]?.correct ?? 0,
+                    incorrect: statistics[Constants.topics[i].json]?.incorrect ?? 0,
+                    total: statistics[Constants.topics[i].json]?.total ?? 0,
+                  );
                   if (i < 9) {
                     pb.add(topicItem);
                     totalPB += topicItem.total ?? 0;
@@ -86,6 +85,15 @@ class MyStatisticScreen extends StatelessWidget {
                     correctPD3 += topicItem.correct ?? 0;
                   }
                 }
+                if(totalPB == 0){
+                  totalPB = 1;
+                }
+                if(totalPD2 == 0){
+                  totalPD2 = 1;
+                }
+                if(totalPD3 == 0){
+                  totalPD3 = 1;
+                }
                 return ListView(
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
@@ -93,15 +101,15 @@ class MyStatisticScreen extends StatelessWidget {
                     StatisticCardInfoWidget(
                       theme: "Простое сложение и вычитание (ПСВ)",
                       level: "Junior 1, Senior 1",
-                      percent: ((statistics[Constants.topics[0].code]?.correct ??
+                      percent: ((statistics[Constants.topics[0].json]?.correct ??
                               0) * 100) /
-                          (statistics[Constants.topics[0].code]?.total ?? 1),
+                          (statistics[Constants.topics[0].json]?.total ?? 1),
                       progressIndicator: [
                         StatisticThemeProgressIndicatorWidget(
                           topic: Constants.topics[0].code,
-                          markEntity: statistics[Constants.topics[0].code] ??
+                          markEntity: statistics[Constants.topics[0].json] ??
                               MarkEntity(
-                                topic: Constants.topics[0].code,
+                                topic: Constants.topics[0].json,
                                 correct: 0,
                                 incorrect: 0,
                                 total: 0,
