@@ -2,6 +2,7 @@ part of 'create_hw_bloc.dart';
 
 sealed class CreateHwEvent extends Equatable {
   const CreateHwEvent();
+
   @override
   // TODO: implement props
   List<Object?> get props => [];

@@ -9,6 +9,7 @@ import 'package:dartz/dartz.dart';
 class TrainerRepositoryImpl extends TrainerRepository {
   final TrainerRemoteDataSource trainerRemoteDataSource;
   final TrainerLocalDataSource trainerLocalDataSource;
+
   TrainerRepositoryImpl({
     required this.trainerRemoteDataSource,
     required this.trainerLocalDataSource,
@@ -24,10 +25,13 @@ class TrainerRepositoryImpl extends TrainerRepository {
   Future<Either<Failure, List<int>>> getNumberArray(
       ExerciseTrainEntity exerciseTrainEntity) async {
     try {
-      return Right(TrainerService().getArray(
+      return Right(
+        TrainerService().getArray(
           exerciseTrainEntity.topic ?? "ПСВ",
           exerciseTrainEntity.digitsCount ?? 1,
-          exerciseTrainEntity.numberCount ?? 1,),);
+          exerciseTrainEntity.numberCount ?? 1,
+        ),
+      );
     } on Exception {
       throw Left(ServerFailure());
     }

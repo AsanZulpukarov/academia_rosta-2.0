@@ -9,7 +9,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SelectHistoryLessonScreen extends StatelessWidget {
   final LessonEntity lesson;
-  SelectHistoryLessonScreen({Key? key,required this.lesson}) : super(key: key);
+
+  const SelectHistoryLessonScreen({Key? key, required this.lesson}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,17 +54,19 @@ class SelectHistoryLessonScreen extends StatelessWidget {
     return [
       DataColumn(
         label: Container(
-            width: 120.w,
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-            alignment: Alignment.centerLeft,
-            child: Text("ФИО"),),
+          width: 120.w,
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+          alignment: Alignment.centerLeft,
+          child: Text("ФИО"),
+        ),
       ),
       DataColumn(
         label: Container(
-            width: 100.w,
-            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
-            alignment: Alignment.centerLeft,
-            child: Text("Был/Не был"),),
+          width: 100.w,
+          padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
+          alignment: Alignment.centerLeft,
+          child: Text("Был/Не был"),
+        ),
       ),
     ];
   }
@@ -73,15 +76,15 @@ class SelectHistoryLessonScreen extends StatelessWidget {
       return DataRow(
         cells: [
           DataCell(
-      Container(
-      padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
-      width: 120.w,
-      alignment: Alignment.centerLeft,
-      child: Text(
-      student.getFullName(),
-      style: AppTextStyles.black14,
-      ),
-      ),
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w),
+              width: 120.w,
+              alignment: Alignment.centerLeft,
+              child: Text(
+                student.getFullName(),
+                style: AppTextStyles.black14,
+              ),
+            ),
           ),
           DataCell(
             _buildDataCell(student.isAttended ?? false, 100.w),
@@ -99,7 +102,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
       child: Text(
         attendance ? "Был" : "Не был",
         style: AppTextStyles.black14.copyWith(
-          color: attendance ? AppColors.green:AppColors.mainRed,
+          color: attendance ? AppColors.green : AppColors.mainRed,
         ),
       ),
     );

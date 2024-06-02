@@ -4,7 +4,6 @@ import 'package:academia_rosta_diplom/features/calendar/presentation/pages/calen
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/groups_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/profile_screen.dart';
-import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_%20screen.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/pages/train_character_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

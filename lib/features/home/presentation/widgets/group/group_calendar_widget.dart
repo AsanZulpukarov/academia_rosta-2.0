@@ -8,14 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class GroupCalendarWidget extends StatelessWidget {
-
   const GroupCalendarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GroupInfoBloc, GroupInfoState>(
       builder: (context, state) {
-        if(state is GroupInfoLoadedState) {
+        if (state is GroupInfoLoadedState) {
           TimetableEntity? timetableEntity = state.group.timetable;
           return Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
@@ -37,13 +36,20 @@ class GroupCalendarWidget extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    _dayNameAndTime(dayName: "ПН", time: timetableEntity?.monday),
-                    _dayNameAndTime(dayName: "ВТ",time: timetableEntity?.tuesday),
-                    _dayNameAndTime(dayName: "СР", time: timetableEntity?.wednesday),
-                    _dayNameAndTime(dayName: "ЧТ",time: timetableEntity?.thursday),
-                    _dayNameAndTime(dayName: "ПТ", time: timetableEntity?.friday),
-                    _dayNameAndTime(dayName: "СБ",time: timetableEntity?.saturday),
-                    _dayNameAndTime(dayName: "ВС",time: timetableEntity?.sunday),
+                    _dayNameAndTime(
+                        dayName: "ПН", time: timetableEntity?.monday),
+                    _dayNameAndTime(
+                        dayName: "ВТ", time: timetableEntity?.tuesday),
+                    _dayNameAndTime(
+                        dayName: "СР", time: timetableEntity?.wednesday),
+                    _dayNameAndTime(
+                        dayName: "ЧТ", time: timetableEntity?.thursday),
+                    _dayNameAndTime(
+                        dayName: "ПТ", time: timetableEntity?.friday),
+                    _dayNameAndTime(
+                        dayName: "СБ", time: timetableEntity?.saturday),
+                    _dayNameAndTime(
+                        dayName: "ВС", time: timetableEntity?.sunday),
                   ],
                 ),
               ],

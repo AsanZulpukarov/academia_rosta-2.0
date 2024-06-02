@@ -1,11 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/core/platform/network_info.dart';
-import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
-import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
-import 'package:academia_rosta_diplom/features/home/domain/usecases/get_exercise_by_hw_id.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/bloc/exercise_bloc/exercise_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/create_hw_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/last_hw_card_widget.dart';
@@ -18,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class PrevHWStudentScreen extends StatelessWidget {
   final String fio;

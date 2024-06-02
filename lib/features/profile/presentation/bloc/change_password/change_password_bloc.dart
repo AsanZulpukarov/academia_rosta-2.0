@@ -5,12 +5,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'change_password_event.dart';
+
 part 'change_password_state.dart';
 
 class ChangePasswordBloc
     extends Bloc<ChangePasswordEvent, ChangePasswordState> {
   bool isVisible = true;
   ChangePasswordUseCase changePasswordUseCase;
+
   ChangePasswordBloc({required this.changePasswordUseCase})
       : super(ChangePasswordInitialsState()) {
     on<ChangePasswordSaveEvent>((event, emit) async {

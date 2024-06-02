@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 
 class NotificationCardWidget extends StatelessWidget {
   final bool isEven;
+
   const NotificationCardWidget({Key? key, required this.isEven})
       : super(key: key);
 
@@ -14,7 +15,7 @@ class NotificationCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => NotificationInfoScreen()));
+            MaterialPageRoute(builder: (context) => const NotificationInfoScreen()));
       },
       child: Stack(
         children: [

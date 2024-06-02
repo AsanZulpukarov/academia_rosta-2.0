@@ -7,11 +7,17 @@ import 'package:dartz/dartz.dart';
 
 abstract class ProfileRepository {
   Future<Either<Failure, UserInfoEntity>> getUserInfo();
+
   Future<Either<Failure, bool>> updateUserInfo(UserInfoEntity userInfoEntity);
+
   Future<Either<Failure, bool>> changePassword(
       EditPasswordEntity editPasswordEntity);
-  Future<Either<Failure,  Map<String,MarkEntity>>> getMyStatistic(int id);
+
+  Future<Either<Failure, Map<String, MarkEntity>>> getMyStatistic(int id);
+
   Future<Either<Failure, List<SubjectEntity>>> getMySubjects();
+
   Future<Either<Failure, void>> logoutAccount();
+
   Future<Either<Failure, void>> changeAvatar(int avatar);
 }

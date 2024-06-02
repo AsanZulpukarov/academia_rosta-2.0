@@ -2,6 +2,7 @@ part of 'trainer_bloc.dart';
 
 sealed class TrainerState extends Equatable {
   final ExerciseTrainEntity exerciseTrainEntity;
+
   const TrainerState({required this.exerciseTrainEntity});
 
   @override
@@ -21,6 +22,7 @@ class TrainerLoadedState extends TrainerState {
 
   const TrainerLoadedState(
       {required this.numbers, required super.exerciseTrainEntity});
+
   @override
   // TODO: implement props
   List<Object> get props => [numbers];
@@ -31,6 +33,7 @@ class TrainerErrorState extends TrainerState {
 
   const TrainerErrorState(
       {required this.message, required super.exerciseTrainEntity});
+
   @override
   // TODO: implement props
   List<Object> get props => [message];

@@ -5,10 +5,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'trainer_event.dart';
+
 part 'trainer_state.dart';
 
 class TrainerBloc extends Bloc<TrainerEvent, TrainerState> {
   final GetNumbersUseCase getNumbersUseCase;
+
   TrainerBloc({required this.getNumbersUseCase})
       : super(
           TrainerInitialState(
@@ -25,9 +27,11 @@ class TrainerBloc extends Bloc<TrainerEvent, TrainerState> {
       final errorOrSuccess =
           await getNumbersUseCase.call(state.exerciseTrainEntity);
       errorOrSuccess.fold(
-          (l) => emit(TrainerErrorState(
-              message: AppUtils.mapFailureToMessage(l),
-              exerciseTrainEntity: state.exerciseTrainEntity),), (r) {
+          (l) => emit(
+                TrainerErrorState(
+                    message: AppUtils.mapFailureToMessage(l),
+                    exerciseTrainEntity: state.exerciseTrainEntity),
+              ), (r) {
         emit(TrainerLoadedState(
             numbers: r, exerciseTrainEntity: state.exerciseTrainEntity));
       });

@@ -8,16 +8,25 @@ import 'package:dartz/dartz.dart';
 
 abstract class GroupRepository {
   Future<Either<Failure, List<GroupInfoEntity>>> getAllGroups();
-  Future<Either<Failure, GroupInfoByIdEntity>> getGroupById(
-      {required int id});
+
+  Future<Either<Failure, GroupInfoByIdEntity>> getGroupById({required int id});
 
   Future<Either<Failure, void>> postAttendanceStudents();
+
   Future<Either<Failure, void>> getLastThreeLessonHistory();
+
   Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id);
+
   Future<Either<Failure, List<ExerciseEntity>>> getExerciseByHWId(int id);
+
   Future<Either<Failure, void>> deleteHWById();
+
   Future<Either<Failure, void>> createHWByStudentId();
-  Future<Either<Failure, List<HWEntity>>> getAllHWByStudentId({required int idSubject,required int idStudent});
+
+  Future<Either<Failure, List<HWEntity>>> getAllHWByStudentId(
+      {required int idSubject, required int idStudent});
+
   Future<Either<Failure, void>> deleteHWByStudentId();
+
   Future<Either<Failure, void>> postGradeByStudentsId();
 }

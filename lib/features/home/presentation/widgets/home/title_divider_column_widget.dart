@@ -9,6 +9,7 @@ class TitleDividerColumnWidget extends StatelessWidget {
   final double heightLine;
   final double thicknessLine;
   final double gap;
+
   const TitleDividerColumnWidget({
     Key? key,
     required this.title,

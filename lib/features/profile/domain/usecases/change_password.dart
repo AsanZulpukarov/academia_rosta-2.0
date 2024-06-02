@@ -8,6 +8,7 @@ class ChangePasswordUseCase extends UseCase<void, EditPasswordEntity> {
   final ProfileRepository profileRepository;
 
   ChangePasswordUseCase(this.profileRepository);
+
   @override
   Future<Either<Failure, void>> call(EditPasswordEntity params) async {
     return await profileRepository.changePassword(params);

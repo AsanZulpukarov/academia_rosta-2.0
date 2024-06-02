@@ -19,6 +19,7 @@ class ChooseCharacterThemeWidget extends StatefulWidget {
 class _ChooseCharacterThemeWidgetState
     extends State<ChooseCharacterThemeWidget> {
   String? _dropdownValue = Constants.topics.first.code;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TrainerBloc, TrainerState>(

@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 
 abstract class TrainerRepository {
   Future<Either<Failure, void>> saveResultTrainer();
+
   Future<Either<Failure, List<int>>> getNumberArray(
       ExerciseTrainEntity exerciseTrainEntity);
 }

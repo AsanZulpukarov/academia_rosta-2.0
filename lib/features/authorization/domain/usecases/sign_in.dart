@@ -10,9 +10,10 @@ class SignInUseCase extends UseCase<UserModel, SignInEntity> {
   final AuthorizationRepository authorizationRepository;
 
   SignInUseCase({required this.authorizationRepository});
+
   @override
   Future<Either<Failure, UserModel>> call(SignInEntity params) async {
-    return await authorizationRepository
-        .signIn(SignInModel(username: params.username, password: params.password));
+    return await authorizationRepository.signIn(
+        SignInModel(username: params.username, password: params.password));
   }
 }

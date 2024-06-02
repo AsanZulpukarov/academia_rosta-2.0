@@ -5,6 +5,7 @@ import '../../../../../app_text_styles.dart';
 
 class ShowTrainNumber extends StatefulWidget {
   final List<int> number;
+
   const ShowTrainNumber({Key? key, required this.number}) : super(key: key);
 
   @override

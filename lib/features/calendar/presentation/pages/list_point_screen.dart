@@ -8,7 +8,11 @@ import 'package:gap/gap.dart';
 
 class ListPointScreen extends StatelessWidget {
   final DateTime selectDate;
-  const ListPointScreen({Key? key,required this.selectDate,}) : super(key: key);
+
+  const ListPointScreen({
+    Key? key,
+    required this.selectDate,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,7 @@ class ListPointScreen extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      Constants.months[selectDate.month-1],
+                      Constants.months[selectDate.month - 1],
                       style: AppTextStyles.black14.copyWith(
                         color: AppColors.main,
                         fontWeight: FontWeight.normal,

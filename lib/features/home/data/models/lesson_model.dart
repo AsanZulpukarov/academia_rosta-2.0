@@ -11,10 +11,12 @@ class LessonModel extends LessonEntity {
   factory LessonModel.fromJson(Map<String, dynamic> json) {
     return LessonModel(
       id: json['id'],
-      createLesson: DateTime.fromMillisecondsSinceEpoch( json['date']),
-      students: json['students']!= null ?(json['students'] as List<dynamic>)
-          .map((studentJson) => StudentModel.fromJson(studentJson))
-          .toList() : null,
+      createLesson: DateTime.fromMillisecondsSinceEpoch(json['date']),
+      students: json['students'] != null
+          ? (json['students'] as List<dynamic>)
+              .map((studentJson) => StudentModel.fromJson(studentJson))
+              .toList()
+          : null,
     );
   }
 

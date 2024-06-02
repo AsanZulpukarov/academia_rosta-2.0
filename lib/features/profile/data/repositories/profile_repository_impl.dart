@@ -9,15 +9,16 @@ import 'package:dartz/dartz.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
   ProfileRemoteDataSource profileRemoteDataSource;
+
   ProfileRepositoryImpl({required this.profileRemoteDataSource});
 
   @override
-  Future<Either<Failure,  Map<String,MarkEntity>>> getMyStatistic(int id) async {
+  Future<Either<Failure, Map<String, MarkEntity>>> getMyStatistic(
+      int id) async {
     try {
       return Right(await profileRemoteDataSource.getMyStatistic(id));
     } on Exception {
-    
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
@@ -26,8 +27,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.getUserInfo());
     } on Exception {
-    
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
@@ -38,21 +38,24 @@ class ProfileRepositoryImpl extends ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> changePassword(EditPasswordEntity editPasswordEntity) async {
+  Future<Either<Failure, bool>> changePassword(
+      EditPasswordEntity editPasswordEntity) async {
     try {
-      return Right(await profileRemoteDataSource.editPassword(editPasswordEntity));
+      return Right(
+          await profileRemoteDataSource.editPassword(editPasswordEntity));
     } on Exception {
-      
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, bool>> updateUserInfo(UserInfoEntity userInfoEntity) async {
+  Future<Either<Failure, bool>> updateUserInfo(
+      UserInfoEntity userInfoEntity) async {
     try {
-      return Right(await profileRemoteDataSource.updateUserInfo(userInfoEntity));
+      return Right(
+          await profileRemoteDataSource.updateUserInfo(userInfoEntity));
     } on Exception {
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
@@ -61,8 +64,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.getMySubjects());
     } on Exception {
-    
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 
@@ -71,8 +73,7 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(await profileRemoteDataSource.changeAvatar(avatar));
     } on Exception {
-    
-    return Left(ServerFailure());
+      return Left(ServerFailure());
     }
   }
 }

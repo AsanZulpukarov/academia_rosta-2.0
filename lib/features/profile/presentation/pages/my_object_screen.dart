@@ -61,7 +61,8 @@ class MyObjectScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => MyStatisticScreen(idSubject: subjects.elementAt(index).id ?? 1),
+                        builder: (context) => MyStatisticScreen(
+                            idSubject: subjects.elementAt(index).id ?? 1),
                       ),
                     );
                   },

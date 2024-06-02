@@ -2,7 +2,6 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
-import 'package:academia_rosta_diplom/features/authorization/domain/usecases/reset_password.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/usecases/send_code.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/reset_password_code_bloc/reset_password_code_bloc.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';

@@ -75,7 +75,6 @@ class LastHWCardWidget extends StatelessWidget {
                 ),
                 const Divider(),
                 TitleDescriptionWhiteColorRowWidget(
-
                   titleStyle: AppTextStyles.black16,
                   descriptionStyle: AppTextStyles.black16,
                   title: 'Дата создания',
@@ -92,7 +91,6 @@ class LastHWCardWidget extends StatelessWidget {
                 ),
                 const Divider(),
                 TitleDescriptionWhiteColorRowWidget(
-
                   titleStyle: AppTextStyles.black16,
                   descriptionStyle: AppTextStyles.black16,
                   title: 'Количество упражнений',

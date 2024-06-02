@@ -1,6 +1,4 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
-import 'package:academia_rosta_diplom/features/authorization/domain/entities/user_entity.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/change_avatar.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_user_info.dart';

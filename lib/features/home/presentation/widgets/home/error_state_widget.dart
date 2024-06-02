@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   final String message;
+
   const ErrorStateWidget({Key? key, required this.message}) : super(key: key);
 
   @override

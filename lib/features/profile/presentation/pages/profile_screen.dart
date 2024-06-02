@@ -38,6 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     ),
   );
+
   @override
   Widget build(BuildContext context) {
     double gap = 10.h;
@@ -170,7 +171,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           Expanded(
                             child: MainButtonWidget(
                               borderRadius: BorderRadius.circular(20),
-                              onPressed: () async{
+                              onPressed: () async {
                                 profileBloc.add(ProfileExitAccountEvent());
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(

@@ -7,9 +7,9 @@ class SendCodeUseCase extends UseCase<void, String> {
   final AuthorizationRepository authorizationRepository;
 
   SendCodeUseCase({required this.authorizationRepository});
+
   @override
   Future<Either<Failure, void>> call(String params) async {
-    return
-      await authorizationRepository.sendCode(params);
+    return await authorizationRepository.sendCode(params);
   }
 }

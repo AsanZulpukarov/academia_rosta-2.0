@@ -14,6 +14,7 @@ class ContainerFrameWidget extends StatelessWidget {
   final double? height;
   final Alignment alignment;
   final double blurRadius;
+
   const ContainerFrameWidget({
     Key? key,
     required this.child,

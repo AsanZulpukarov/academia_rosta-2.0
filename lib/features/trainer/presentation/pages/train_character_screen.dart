@@ -83,7 +83,6 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
                     onPressed: () {
                       BlocProvider.of<TrainerBloc>(context)
                           .add(TrainerSelectThemeEvent());
-
                     },
                   );
                 },

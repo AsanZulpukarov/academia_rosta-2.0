@@ -6,7 +6,10 @@ import 'package:dartz/dartz.dart';
 
 abstract class AuthorizationRepository {
   Future<Either<Failure, UserModel>> signIn(SignInModel signInModel);
+
   Future<Either<Failure, void>> signUp(SignUpModel signUpModel);
+
   Future<Either<Failure, void>> resetPassword(String username);
+
   Future<Either<Failure, void>> sendCode(String code);
 }

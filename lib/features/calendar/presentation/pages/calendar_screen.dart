@@ -34,9 +34,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(20)
-            ),
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(20)),
             child: TableCalendar(
               daysOfWeekStyle: DaysOfWeekStyle(
                 weekdayStyle: AppTextStyles.black14Medium.copyWith(
@@ -89,7 +88,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
             ),
           ),
           const Gap(20),
-          ListPointScreen(selectDate: _selectedDay,),
+          ListPointScreen(
+            selectDate: _selectedDay,
+          ),
         ],
       ),
     );

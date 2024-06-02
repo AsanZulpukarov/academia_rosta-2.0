@@ -13,7 +13,7 @@ class TeacherEntity extends Equatable {
     this.phoneNumber,
   });
 
-  String getFullName(){
+  String getFullName() {
     return "$lastname $firstname";
   }
 

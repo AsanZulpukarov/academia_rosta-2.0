@@ -9,7 +9,9 @@ import 'package:gap/gap.dart';
 
 class LastExerciseCardWidget extends StatelessWidget {
   final ExerciseEntity exercise;
-  const LastExerciseCardWidget({Key? key, required this.exercise}) : super(key: key);
+
+  const LastExerciseCardWidget({Key? key, required this.exercise})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +36,18 @@ class LastExerciseCardWidget extends StatelessWidget {
             title2: "Тема",
             description2: exercise.topic ?? "Пусто",
           ),
-          const Divider(color: AppColors.white,),
+          const Divider(
+            color: AppColors.white,
+          ),
           _row2TitleAnd2Description(
             title1: "Скорость",
             description1: (exercise.speed ?? 0).toString(),
             title2: "Разрядность",
             description2: (exercise.digitsCount ?? 0).toString(),
           ),
-          const Divider(color: AppColors.white,),
+          const Divider(
+            color: AppColors.white,
+          ),
           _row2TitleAnd2Description(
             title1: "Количество\nпеременных",
             description1: (exercise.numbersCount ?? 0).toString(),

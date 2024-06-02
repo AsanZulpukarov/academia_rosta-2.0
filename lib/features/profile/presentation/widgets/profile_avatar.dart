@@ -30,6 +30,7 @@ class ProfileAvatarItem extends StatelessWidget {
   final String image;
   final double radius;
   final Color backgroundColor;
+
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(

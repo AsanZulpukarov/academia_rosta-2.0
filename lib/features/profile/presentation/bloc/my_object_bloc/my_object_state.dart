@@ -15,10 +15,10 @@ final class MySubjectLoadedState extends MySubjectState {
   final List<SubjectEntity> objects;
 
   const MySubjectLoadedState({required this.objects});
+
   @override
   // TODO: implement props
   List<Object> get props => [objects];
-
 }
 
 final class MySubjectErrorState extends MySubjectState {
@@ -29,5 +29,4 @@ final class MySubjectErrorState extends MySubjectState {
   @override
   // TODO: implement props
   List<Object> get props => [message];
-
 }

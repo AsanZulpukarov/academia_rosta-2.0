@@ -5,13 +5,19 @@ class UserEntity {
   RoleType? roleType;
   int? avatar;
 
-  UserEntity({required this.token, required String role,this.avatar,}) {
+  UserEntity({
+    required this.token,
+    required String role,
+    this.avatar,
+  }) {
     roleType = roleType?.fromJson(role);
   }
-  int getAvatar(){
+
+  int getAvatar() {
     return avatar ?? 0;
   }
-  void setAvatar(int index){
+
+  void setAvatar(int index) {
     avatar = index;
   }
 }

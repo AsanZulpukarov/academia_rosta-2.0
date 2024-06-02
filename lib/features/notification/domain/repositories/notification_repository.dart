@@ -4,8 +4,10 @@ import 'package:dartz/dartz.dart';
 
 abstract class NotificationRepository {
   Future<Either<Failure, List<NotificationEntity>>> getAllNotifications();
+
   Future<Either<Failure, void>> postReadNotificationById(
       NotificationEntity notification);
+
   Future<Either<Failure, void>> postReadAllNotification(
       List<NotificationEntity> notificationList);
 }

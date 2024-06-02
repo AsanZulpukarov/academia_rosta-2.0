@@ -15,7 +15,7 @@ class UserInfoEntity extends Equatable {
     required this.phoneNumber,
   });
 
-  String getFIO(){
+  String getFIO() {
     return "$lastname $firstname";
   }
 

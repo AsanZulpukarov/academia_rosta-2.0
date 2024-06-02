@@ -1,7 +1,7 @@
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/subject_entity.dart';
 
 class SubjectModel extends SubjectEntity {
-  SubjectModel({
+  const SubjectModel({
     required id,
     required name,
     required cost,

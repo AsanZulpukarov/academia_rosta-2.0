@@ -22,8 +22,9 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   @override
   Future<bool> editPassword(EditPasswordEntity editPasswordEntity) async {
     EditPasswordModel editPasswordModel = EditPasswordModel(
-        password: editPasswordEntity.password,
-        confirmPassword: editPasswordEntity.confirmPassword,);
+      password: editPasswordEntity.password,
+      confirmPassword: editPasswordEntity.confirmPassword,
+    );
     final url = Uri.parse('${Constants.baseUrl}api/profile/change-password');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
@@ -47,8 +48,9 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   }
 
   @override
-  Future< Map<String,MarkEntity>> getMyStatistic(int id) async {
-    final url = Uri.parse('${Constants.baseUrl}pupil/profile-old/api/full-statistics?subjectId=$id');
+  Future<Map<String, MarkEntity>> getMyStatistic(int id) async {
+    final url = Uri.parse(
+        '${Constants.baseUrl}pupil/profile-old/api/full-statistics?subjectId=$id');
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
@@ -59,10 +61,10 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     final responseBody = utf8.decode(response.bodyBytes);
     print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      Map<String,dynamic> jsonData = jsonDecode(responseBody);
+      Map<String, dynamic> jsonData = jsonDecode(responseBody);
       List<String> keysMap = jsonData.keys.toList();
-      Map<String,MarkEntity> result = {};
-      for(int i=0;i<keysMap.length;i++){
+      Map<String, MarkEntity> result = {};
+      for (int i = 0; i < keysMap.length; i++) {
         result[keysMap[i]] = MarkModel.fromJson(jsonData[keysMap[i]]);
       }
       return result;
@@ -140,7 +142,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     if (response.statusCode == 200 || response.statusCode == 201) {
       final jsonData = jsonDecode(responseBody);
       return (jsonData as List)
-          .map((subject) =>SubjectModel.fromJson(subject))
+          .map((subject) => SubjectModel.fromJson(subject))
           .toList();
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
@@ -150,6 +152,6 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
   @override
   Future<void> changeAvatar(int avatar) {
     Constants.user.setAvatar(avatar);
-    return prefs.setInt(SharedPrefSource.imageKey,avatar);
+    return prefs.setInt(SharedPrefSource.imageKey, avatar);
   }
 }

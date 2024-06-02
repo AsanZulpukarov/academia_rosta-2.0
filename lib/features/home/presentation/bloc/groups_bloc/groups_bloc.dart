@@ -3,11 +3,14 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_groups.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
 part 'groups_event.dart';
+
 part 'groups_state.dart';
 
 class GroupsBloc extends Bloc<GroupsEvent, GroupsState> {
   GetAllGroupsUseCase getAllGroupsUseCase;
+
   GroupsBloc({required this.getAllGroupsUseCase})
       : super(GroupsInitialState()) {
     on<GroupsEmptyEvent>((event, emit) async {

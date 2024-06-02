@@ -11,6 +11,7 @@ class TitleDescriptionBlackColorRowWidget extends StatelessWidget {
   final TextAlign descriptionTextAlign;
   final TextStyle titleStyle;
   final TextStyle descriptionStyle;
+
   const TitleDescriptionBlackColorRowWidget({
     Key? key,
     required this.title,
@@ -54,12 +55,13 @@ class TitleDescriptionWhiteColorRowWidget extends StatelessWidget {
   final TextStyle descriptionStyle;
   final int titleFlex;
   final int descriptionFlex;
+
   const TitleDescriptionWhiteColorRowWidget({
     Key? key,
     required this.title,
     required this.description,
     required this.titleStyle,
-    required this.descriptionStyle ,
+    required this.descriptionStyle,
     this.titleTextAlign = TextAlign.start,
     this.descriptionTextAlign = TextAlign.end,
     this.titleFlex = 5,

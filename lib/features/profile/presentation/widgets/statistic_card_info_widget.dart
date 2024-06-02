@@ -11,6 +11,7 @@ class StatisticCardInfoWidget extends StatelessWidget {
   final String level;
   final double percent;
   final List<Widget> progressIndicator;
+
   const StatisticCardInfoWidget({
     Key? key,
     required this.theme,
@@ -59,7 +60,7 @@ class StatisticCardInfoWidget extends StatelessWidget {
           Center(
             child: CircularPercentIndicator(
               radius: 120.r,
-              percent: percent/100,
+              percent: percent / 100,
               center: Text(
                 "${percent.toStringAsFixed(0)}%",
                 style: AppTextStyles.black26.copyWith(

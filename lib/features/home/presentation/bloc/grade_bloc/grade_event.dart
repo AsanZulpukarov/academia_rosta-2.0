@@ -11,4 +11,4 @@ final class GradeAddStudentEvent extends GradeEvent {}
 
 final class GradeEditStarEvent extends GradeEvent {}
 
-final class GradeSelectType extends GradeEvent{}
+final class GradeSelectType extends GradeEvent {}

@@ -2,7 +2,6 @@ import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AttendanceListWidget extends StatefulWidget {
   const AttendanceListWidget({Key? key}) : super(key: key);
@@ -34,6 +33,7 @@ class _AttendanceListWidgetState extends State<AttendanceListWidget> {
       'isSelect': true,
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return ListView.separated(

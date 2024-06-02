@@ -8,7 +8,6 @@ import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.da
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
-import 'package:academia_rosta_diplom/features/home/domain/usecases/get_group_by_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';

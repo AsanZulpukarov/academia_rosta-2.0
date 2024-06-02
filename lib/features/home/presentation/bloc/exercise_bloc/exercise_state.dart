@@ -21,5 +21,4 @@ final class ExerciseErrorState extends ExerciseState {
   final String message;
 
   const ExerciseErrorState({required this.message});
-
 }

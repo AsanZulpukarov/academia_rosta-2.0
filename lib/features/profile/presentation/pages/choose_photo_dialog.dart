@@ -13,6 +13,7 @@ class ChoosePhotoDialog extends StatefulWidget {
   final double crossAxisSpacing;
   final double radius;
   final Function(int index) onTap;
+
   const ChoosePhotoDialog({
     Key? key,
     required this.currentPhotoIndex,
@@ -31,6 +32,7 @@ class ChoosePhotoDialog extends StatefulWidget {
 
 class _ChoosePhotoDialogState extends State<ChoosePhotoDialog> {
   int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(

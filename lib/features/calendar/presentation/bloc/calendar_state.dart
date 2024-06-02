@@ -8,6 +8,9 @@ sealed class CalendarState extends Equatable {
 }
 
 final class CalendarInitialState extends CalendarState {}
+
 final class CalendarLoadingState extends CalendarState {}
+
 final class CalendarLoadedState extends CalendarState {}
+
 final class CalendarErrorState extends CalendarState {}

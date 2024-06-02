@@ -2,6 +2,7 @@ part of 'change_password_bloc.dart';
 
 sealed class ChangePasswordEvent extends Equatable {
   const ChangePasswordEvent();
+
   @override
   // TODO: implement props
   List<Object?> get props => [];
@@ -9,7 +10,9 @@ sealed class ChangePasswordEvent extends Equatable {
 
 final class ChangePasswordSaveEvent extends ChangePasswordEvent {
   final EditPasswordEntity editPasswordEntity;
+
   const ChangePasswordSaveEvent({required this.editPasswordEntity});
+
   @override
   // TODO: implement props
   List<Object?> get props => [editPasswordEntity];

@@ -13,7 +13,6 @@ import 'package:academia_rosta_diplom/features/authorization/domain/entities/sig
 import 'package:academia_rosta_diplom/main.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
   AuthorizationRemoteDataSourceImpl();

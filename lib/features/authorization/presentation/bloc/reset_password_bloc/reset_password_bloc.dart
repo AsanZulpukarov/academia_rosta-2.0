@@ -4,10 +4,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'reset_password_event.dart';
+
 part 'reset_password_state.dart';
 
 class ResetPasswordBloc extends Bloc<ResetPasswordEvent, ResetPasswordState> {
   ResetPasswordUseCase resetPasswordUseCase;
+
   ResetPasswordBloc({required this.resetPasswordUseCase})
       : super(ResetPasswordInitialState()) {
     on<ResetPasswordButtonTapEvent>((event, emit) async {

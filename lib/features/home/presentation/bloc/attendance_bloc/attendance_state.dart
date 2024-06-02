@@ -17,9 +17,10 @@ class AttendanceSavedState extends AttendanceState {}
 class AttendanceLastThreeLessonLoadedState extends AttendanceState {}
 
 class AttendanceErrorState extends AttendanceState {
-  String message;
+  final String message;
 
   AttendanceErrorState(this.message);
+
   @override
   // TODO: implement props
   List<Object?> get props => [message];

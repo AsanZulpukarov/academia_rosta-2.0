@@ -11,6 +11,7 @@ class CharacterContainerWidget extends StatefulWidget {
   final double? heightContainer;
   final bool isFixDigit;
   final Function(double num) onChange;
+
   const CharacterContainerWidget({
     Key? key,
     required this.title,
@@ -29,6 +30,7 @@ class CharacterContainerWidget extends StatefulWidget {
 
 class _CharacterContainerWidgetState extends State<CharacterContainerWidget> {
   late double _numberCharacter;
+
   @override
   void initState() {
     // TODO: implement initState

@@ -1,7 +1,7 @@
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/teacher_entity.dart';
 
 class TeacherModel extends TeacherEntity {
-  TeacherModel(
+  const TeacherModel(
       {required id,
       required firstname,
       required lastname,

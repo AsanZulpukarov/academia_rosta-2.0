@@ -5,7 +5,7 @@ import 'package:academia_rosta_diplom/features/home/data/models/timetable_model.
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 
 class GroupInfoByIdModel extends GroupInfoByIdEntity {
-  GroupInfoByIdModel({
+  const GroupInfoByIdModel({
     required id,
     required name,
     required teacher,

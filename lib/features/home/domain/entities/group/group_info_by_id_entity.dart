@@ -18,7 +18,7 @@ class GroupInfoByIdEntity extends Equatable {
       this.teacher,
       this.subject,
       this.pupils,
-      this.timetable});
+      this.timetable,});
 
   @override
   // TODO: implement props

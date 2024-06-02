@@ -89,14 +89,15 @@ class ListStudentScreen extends StatelessWidget {
                                   create: (context) => HWBloc(
                                     GetAllHWByStudentIdUseCase(
                                       GroupRepositoryImpl(
-                                        remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+                                        remoteGroupDataSource:
+                                            GroupRemoteDataSourceImpl(),
                                         networkInfo: NetworkInfoImpl(
-                                          connectionChecker: InternetConnectionChecker(),
+                                          connectionChecker:
+                                              InternetConnectionChecker(),
                                         ),
                                       ),
                                     ),
-                                  )
-                                    ..add(
+                                  )..add(
                                       HWEmptyEvent(
                                         idSubject: idSubject,
                                         idStudent: students[index].id ?? 0,

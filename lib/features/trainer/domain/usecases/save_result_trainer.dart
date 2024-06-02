@@ -7,6 +7,7 @@ class SaveResultTrainerUseCase extends UseCase<void, Object> {
   final TrainerRepository trainerRepository;
 
   SaveResultTrainerUseCase(this.trainerRepository);
+
   @override
   Future<Either<Failure, void>> call(Object params) async {
     return await trainerRepository.saveResultTrainer();

@@ -9,7 +9,7 @@ sealed class GradeState extends Equatable {
 
 final class GradeInitialState extends GradeState {}
 
-final class GradeLoadingv extends GradeState {}
+final class GradeLoading extends GradeState {}
 
 final class GradeLoadedState extends GradeState {}
 

@@ -9,9 +9,10 @@ class SignUpUseCase extends UseCase<UserModel, Object> {
   final AuthorizationRepository authorizationRepository;
 
   SignUpUseCase({required this.authorizationRepository});
+
   @override
   Future<Either<Failure, UserModel>> call(Object params) async {
-    return
-      await authorizationRepository.signIn(SignInModel(username: "", password: ""));
+    return await authorizationRepository
+        .signIn(SignInModel(username: "", password: ""));
   }
 }

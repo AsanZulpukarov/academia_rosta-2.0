@@ -14,6 +14,7 @@ import '../../domain/repositories/group_repository.dart';
 class GroupRepositoryImpl extends GroupRepository {
   GroupRemoteDataSource remoteGroupDataSource;
   final NetworkInfo networkInfo;
+
   GroupRepositoryImpl({
     required this.remoteGroupDataSource,
     required this.networkInfo,
@@ -23,7 +24,7 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, List<GroupInfoEntity>>> getAllGroups() async {
     try {
       return Right(await remoteGroupDataSource.getAllGroups());
-    } on Exception{
+    } on Exception {
       return throw Left(ServerFailure());
     }
   }
@@ -33,8 +34,8 @@ class GroupRepositoryImpl extends GroupRepository {
       {required int id}) async {
     try {
       return Right(await remoteGroupDataSource.getGroupById(id));
-    } on Exception{
-    return throw Left(ServerFailure());
+    } on Exception {
+      return throw Left(ServerFailure());
     }
   }
 
@@ -42,8 +43,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> createHWByStudentId() async {
     try {
       return Right(await remoteGroupDataSource.createHWByStudentId());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
@@ -51,8 +52,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> deleteHWById() async {
     try {
       return Right(await remoteGroupDataSource.deleteHWById());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
@@ -60,69 +61,72 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> deleteHWByStudentId() async {
     try {
       return Right(await remoteGroupDataSource.deleteHWByStudentId());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(int id) async {
-
+  Future<Either<Failure, List<LessonEntity>>> getAllLessonHistory(
+      int id) async {
     try {
       return Right(await remoteGroupDataSource.getAllLessonHistory(id));
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
   Future<Either<Failure, void>> getLastThreeLessonHistory() async {
     // TODO: implement getLastThreeLessonHistory
-    
+
     try {
       return Right(await remoteGroupDataSource.getLastThreeLessonHistory());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
   Future<Either<Failure, void>> postAttendanceStudents() async {
     // TODO: implement postAttendanceStudents
-    
+
     try {
       return Right(await remoteGroupDataSource.postAttendanceStudents());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
   Future<Either<Failure, void>> postGradeByStudentsId() async {
     // TODO: implement postGradeByStudentsId
-    
+
     try {
       return Right(await remoteGroupDataSource.postGradeByStudentsId());
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<HWEntity>>> getAllHWByStudentId({required int idSubject,required int idStudent}) async {
+  Future<Either<Failure, List<HWEntity>>> getAllHWByStudentId(
+      {required int idSubject, required int idStudent}) async {
     try {
-      return Right(await remoteGroupDataSource.getAllHWByStudentId(idStudent: idStudent,idSubject: idSubject));
-    } on Exception{
-    return Left(ServerFailure());
+      return Right(await remoteGroupDataSource.getAllHWByStudentId(
+          idStudent: idStudent, idSubject: idSubject));
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<Failure, List<ExerciseEntity>>> getExerciseByHWId(int id) async {
+  Future<Either<Failure, List<ExerciseEntity>>> getExerciseByHWId(
+      int id) async {
     try {
       return Right(await remoteGroupDataSource.getExerciseByHWId(id));
-    } on Exception{
-    return Left(ServerFailure());
+    } on Exception {
+      return Left(ServerFailure());
     }
   }
 }

@@ -1,4 +1,3 @@
-import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/learn_app_screen.dart';
 import 'package:flutter/material.dart';

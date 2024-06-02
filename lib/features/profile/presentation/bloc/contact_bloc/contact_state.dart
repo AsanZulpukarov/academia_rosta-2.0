@@ -8,6 +8,9 @@ sealed class ContactState extends Equatable {
 }
 
 final class ContactInitialState extends ContactState {}
+
 final class ContactLoadingState extends ContactState {}
+
 final class ContactLoadedState extends ContactState {}
+
 final class ContactErrorState extends ContactState {}

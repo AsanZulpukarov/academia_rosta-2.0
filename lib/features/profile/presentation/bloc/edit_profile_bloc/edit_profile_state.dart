@@ -23,7 +23,9 @@ final class EditProfileImageLoadedState extends EditProfileState {}
 
 final class EditProfileErrorState extends EditProfileState {
   final String message;
+
   const EditProfileErrorState({required this.message});
+
   @override
   // TODO: implement props
   List<Object> get props => [message];

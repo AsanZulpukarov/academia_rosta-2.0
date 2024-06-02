@@ -16,6 +16,7 @@ class ResetPasswordCodeErrorState extends ResetPasswordCodeState {
   final String message;
 
   ResetPasswordCodeErrorState({required this.message});
+
   @override
   // TODO: implement props
   List<Object?> get props => [message];

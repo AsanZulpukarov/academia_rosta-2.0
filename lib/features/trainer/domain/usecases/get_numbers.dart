@@ -8,6 +8,7 @@ class GetNumbersUseCase extends UseCase<void, ExerciseTrainEntity> {
   final TrainerRepository trainerRepository;
 
   GetNumbersUseCase(this.trainerRepository);
+
   @override
   Future<Either<Failure, List<int>>> call(ExerciseTrainEntity params) async {
     return await trainerRepository.getNumberArray(params);

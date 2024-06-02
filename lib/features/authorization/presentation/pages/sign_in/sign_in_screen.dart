@@ -34,10 +34,12 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignInBloc(
-          signInUseCase: SignInUseCase(
-              authorizationRepository: AuthorizationRepositoryImpl(
-                authorizationRemoteDataSource: AuthorizationRemoteDataSourceImpl(),
-              ),),),
+        signInUseCase: SignInUseCase(
+          authorizationRepository: AuthorizationRepositoryImpl(
+            authorizationRemoteDataSource: AuthorizationRemoteDataSourceImpl(),
+          ),
+        ),
+      ),
       child: Theme(
         data: ThemeData(
           inputDecorationTheme: InputDecorationTheme(

@@ -18,24 +18,25 @@ class HWItemExercisesScreen extends StatelessWidget {
       appBar: const MyAppBarSecond(title: 'Упражнения'),
       body: BlocBuilder<ExerciseBloc, ExerciseState>(
         builder: (context, state) {
-          if(state is ExerciseErrorState){
+          if (state is ExerciseErrorState) {
             return const LoadingStateWidget();
-          }
-          else if(state is ExerciseErrorState){
+          } else if (state is ExerciseErrorState) {
             return ErrorStateWidget(message: state.message);
-          }
-          else if(state is ExerciseLoadedState){
+          } else if (state is ExerciseLoadedState) {
             final List<ExerciseEntity> exercises = state.exercise;
-          return ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-            itemBuilder: (context, index) {
-              return LastExerciseCardWidget(exercise: exercises[index],);
-            },
-            separatorBuilder: (context, index) {
-              return const Gap(10);
-            },
-            itemCount: exercises.length,
-          );}
+            return ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+              itemBuilder: (context, index) {
+                return LastExerciseCardWidget(
+                  exercise: exercises[index],
+                );
+              },
+              separatorBuilder: (context, index) {
+                return const Gap(10);
+              },
+              itemCount: exercises.length,
+            );
+          }
           return const SizedBox();
         },
       ),

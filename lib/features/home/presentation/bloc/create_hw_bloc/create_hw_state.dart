@@ -2,6 +2,7 @@ part of 'create_hw_bloc.dart';
 
 sealed class CreateHwState extends Equatable {
   const CreateHwState();
+
   @override
   List<Object> get props => [];
 }

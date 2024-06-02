@@ -12,8 +12,8 @@ class HWModel extends HWEntity {
   factory HWModel.fromJson(Map<String, dynamic> json) {
     return HWModel(
       id: json['id'],
-      createDate: DateTime.fromMillisecondsSinceEpoch( json['createDate']),
-      deadline: DateTime.fromMillisecondsSinceEpoch( json['deadline']),
+      createDate: DateTime.fromMillisecondsSinceEpoch(json['createDate']),
+      deadline: DateTime.fromMillisecondsSinceEpoch(json['deadline']),
       exercisesCount: json['exercisesCount'],
     );
   }

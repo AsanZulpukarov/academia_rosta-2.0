@@ -5,10 +5,12 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'sing_in_state.dart';
+
 part 'sign_in_event.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInUseCase signInUseCase;
+
   SignInBloc({required this.signInUseCase}) : super(SignInInitialState()) {
     on<SingInButtonEvent>((event, emit) async {
       emit(SignInLoadingState());

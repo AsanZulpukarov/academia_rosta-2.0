@@ -100,11 +100,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     style: AppTextStyles.black16,
                                   ),
                                   content: ChoosePhotoDialog(
-                                    currentPhotoIndex: Constants.user.avatar ?? 0,
-                                    onTap:(value){
-                                      selectImageIndex = value;
-                                    }
-                                  ),
+                                      currentPhotoIndex:
+                                          Constants.user.avatar ?? 0,
+                                      onTap: (value) {
+                                        selectImageIndex = value;
+                                      }),
                                   actions: [
                                     TextButton(
                                       onPressed: () {
@@ -115,9 +115,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               selectImageIndex),
                                         );
                                         setState(() {
-                                          selectImageIndex = Constants.user.avatar ?? 0;
+                                          selectImageIndex =
+                                              Constants.user.avatar ?? 0;
                                         });
-                                          Navigator.pop(c);
+                                        Navigator.pop(c);
                                       },
                                       child: Text(
                                         "Выбрать",

@@ -9,7 +9,6 @@ import 'package:academia_rosta_diplom/features/home/data/models/group_info_model
 import 'package:academia_rosta_diplom/features/home/data/models/hw_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/lesson_model.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
-import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/lesson_entity.dart';

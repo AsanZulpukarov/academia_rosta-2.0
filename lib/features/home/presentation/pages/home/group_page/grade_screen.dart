@@ -6,7 +6,6 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import 'choose_student_dialog.dart';

@@ -13,7 +13,7 @@ class SignUpLoadingState extends SignUpState {}
 class SignUpLoadedState extends SignUpState {}
 
 class SignUpErrorState extends SignUpState {
-  String message;
+  final String message;
 
   SignUpErrorState({required this.message});
 

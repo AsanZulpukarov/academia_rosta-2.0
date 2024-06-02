@@ -56,7 +56,7 @@ class TrainScreenState extends State<TrainScreen>
                   ? TrainCharacterScreen()
                   : ShowTrainNumberScreen(
                       list: [],
-                speed: 1.0,
+                      speed: 1.0,
                     );
             },
           ),

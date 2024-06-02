@@ -8,6 +8,7 @@ class GetUserInfoUseCase extends UseCase<UserInfoEntity, Object> {
   final ProfileRepository profileRepository;
 
   GetUserInfoUseCase(this.profileRepository);
+
   @override
   Future<Either<Failure, UserInfoEntity>> call(Object params) async {
     return await profileRepository.getUserInfo();

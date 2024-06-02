@@ -9,8 +9,8 @@ abstract class AttendanceEvent extends Equatable {
 class AttendanceTapSaveEvent extends AttendanceEvent {}
 
 class AttendanceStudentCheckboxTapEvent extends AttendanceEvent {
-  int index;
-  bool isSelect;
+  final int index;
+  final bool isSelect;
 
   AttendanceStudentCheckboxTapEvent(this.index, this.isSelect);
 

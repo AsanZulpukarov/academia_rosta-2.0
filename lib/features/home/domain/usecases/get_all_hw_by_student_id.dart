@@ -12,7 +12,8 @@ class GetAllHWByStudentIdUseCase extends UseCase<void, HWParams> {
 
   @override
   Future<Either<Failure, List<HWEntity>>> call(HWParams params) async {
-    return await appRepository.getAllHWByStudentId(idSubject: params.subjectId,idStudent: params.studentId);
+    return await appRepository.getAllHWByStudentId(
+        idSubject: params.subjectId, idStudent: params.studentId);
   }
 }
 
@@ -20,8 +21,11 @@ class HWParams extends Equatable {
   final int subjectId;
   final int studentId;
 
-  const HWParams({required this.subjectId,required this.studentId,});
+  const HWParams({
+    required this.subjectId,
+    required this.studentId,
+  });
 
   @override
-  List<Object> get props => [subjectId,studentId];
+  List<Object> get props => [subjectId, studentId];
 }

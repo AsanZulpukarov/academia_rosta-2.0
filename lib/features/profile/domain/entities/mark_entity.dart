@@ -15,5 +15,10 @@ class MarkEntity extends Equatable {
 
   @override
   // TODO: implement props
-  List<Object?> get props => [topic,correct,incorrect,total,];
+  List<Object?> get props => [
+        topic,
+        correct,
+        incorrect,
+        total,
+      ];
 }

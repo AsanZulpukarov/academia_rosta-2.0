@@ -8,6 +8,7 @@ class UpdateUserInfoUseCase extends UseCase<bool, UserInfoEntity> {
   final ProfileRepository profileRepository;
 
   UpdateUserInfoUseCase(this.profileRepository);
+
   @override
   Future<Either<Failure, bool>> call(UserInfoEntity params) async {
     return await profileRepository.updateUserInfo(params);

@@ -48,7 +48,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
         _currentValue++;
         if (_currentValue == widget.list.length) {
           _stopTimer();
-            isShowNumber = false;
+          isShowNumber = false;
         }
       });
     });

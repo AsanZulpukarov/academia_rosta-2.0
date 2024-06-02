@@ -15,16 +15,18 @@ class ExerciseModel extends ExerciseEntity {
   });
 
   factory ExerciseModel.fromJson(Map<String, dynamic> json) {
-    return ExerciseModel(id : json['id'],
-    topic : json['topic'],
-    questionCount : json['questionCount'],
-    digitsCount : json['digitsCount'],
-    numbersCount : json['numbersCount'],
-    speed : json['speed'],
-    type : json['type'],
-    solved : json['solved'],
-    correct : json['correct'],
-    incorrect : json['incorrect'],);
+    return ExerciseModel(
+      id: json['id'],
+      topic: json['topic'],
+      questionCount: json['questionCount'],
+      digitsCount: json['digitsCount'],
+      numbersCount: json['numbersCount'],
+      speed: json['speed'],
+      type: json['type'],
+      solved: json['solved'],
+      correct: json['correct'],
+      incorrect: json['incorrect'],
+    );
   }
 
   Map<String, dynamic> toJson() {

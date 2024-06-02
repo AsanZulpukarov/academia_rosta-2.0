@@ -1,13 +1,10 @@
-import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/notification/presentation/pages/notification_empty_screen.dart';
 import 'package:academia_rosta_diplom/features/notification/presentation/widgets/notification_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../home/presentation/widgets/home/my_app_bar_second.dart';
-import 'notification_info_screen.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({Key? key}) : super(key: key);
