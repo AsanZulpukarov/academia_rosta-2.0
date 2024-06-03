@@ -1,6 +1,6 @@
-import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/learn_app_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,7 +15,10 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LearnAppScreen()));
+        MaterialPageRoute(
+          builder: (_) => const LearnAppScreen(),
+        ),
+      );
     });
   }
 
@@ -26,16 +29,15 @@ class _SplashScreenState extends State<SplashScreen> {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Stack(
           children: [
             Center(
               child: SizedBox(
-                width: 140,
+                width: 140.r,
                 child: Image.asset('assets/images/logo.png'),
               ),
             ),
-            const BottomAppName(),
           ],
         ),
       ),

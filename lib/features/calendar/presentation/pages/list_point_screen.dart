@@ -24,7 +24,7 @@ class ListPointScreen extends StatelessWidget {
         return ContainerFrameWidget(
           height: 60.h,
           offset: const Offset(4, 4),
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.symmetric(horizontal: 8.w,vertical: 8.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,13 +37,13 @@ class ListPointScreen extends StatelessWidget {
                   children: [
                     Text(
                       selectDate.day.toString(),
-                      style: AppTextStyles.black18Medium.copyWith(
+                      style: AppTextStyles.black16Medium.copyWith(
                         color: AppColors.main,
                       ),
                     ),
                     Text(
                       Constants.months[selectDate.month - 1],
-                      style: AppTextStyles.black14.copyWith(
+                      style: AppTextStyles.black12.copyWith(
                         color: AppColors.main,
                         fontWeight: FontWeight.normal,
                       ),
@@ -81,7 +81,7 @@ class ListPointScreen extends StatelessWidget {
         );
       },
       separatorBuilder: (BuildContext context, int index) {
-        return Gap(10);
+        return Gap(10.h);
       },
     );
   }

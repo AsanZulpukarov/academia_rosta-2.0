@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/lo
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class HistoryLessonScreen extends StatelessWidget {
@@ -28,7 +29,7 @@ class HistoryLessonScreen extends StatelessWidget {
           } else if (state is LessonHistoryLoadedState) {
             List<LessonEntity> lesson = state.lessons;
             return ListView.separated(
-              padding: const EdgeInsets.all(20),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
               itemBuilder: (context, index) {
                 return ContainerFrameWidget(
                   onTap: () {
@@ -41,15 +42,15 @@ class HistoryLessonScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.symmetric(horizontal: 10.w,vertical: 10.h),
                   blurRadius: 8.0,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.access_time_rounded,
                         color: AppColors.black,
-                        size: 30,
+                        size: 30.r,
                       ),
                       Expanded(
                         child: Text(
@@ -67,7 +68,7 @@ class HistoryLessonScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return const Gap(20);
+                return Gap(20.h);
               },
               itemCount: lesson.length,
             );

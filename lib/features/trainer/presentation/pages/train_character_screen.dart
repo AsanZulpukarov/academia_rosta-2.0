@@ -38,7 +38,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
       ),
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -72,7 +72,7 @@ class _TrainCharacterScreenState extends State<TrainCharacterScreen> {
                     return const LoadingStateWidget();
                   }
                   return MainButtonWidget(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     width: 120.w,
                     child: Text(
                       'Начать',

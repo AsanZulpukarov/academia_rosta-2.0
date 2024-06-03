@@ -8,10 +8,10 @@ import 'package:academia_rosta_diplom/features/authorization/domain/usecases/sig
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/sing_in_bloc/sign_in_bloc.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_up/sign_up_screen.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/app_logo_widget.dart';
-import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import '../../../../home/presentation/pages/home/home_screen.dart';
 import '../reset_password/reset_password_screen.dart';
@@ -48,21 +48,21 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             suffixIconColor: AppColors.borderColor,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             border: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
           ),
         ),
@@ -87,22 +87,22 @@ class _SignInScreenState extends State<SignInScreen> {
           builder: (context, state) {
             return Scaffold(
               body: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                 child: Stack(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const AppLogoWidget(
-                          width: 140,
+                        AppLogoWidget(
+                          width: 140.w,
                         ),
-                        const Gap(60),
+                        Gap(50.h),
                         Form(
                           key: _formKey,
                           child: Column(
                             children: [
                               _login(),
-                              const Gap(30),
+                              Gap(24.h),
                               _password(),
                             ],
                           ),
@@ -113,10 +113,11 @@ class _SignInScreenState extends State<SignInScreen> {
                             TextButton(
                               onPressed: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            ResetPasswordScreen()));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ResetPasswordScreen(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 "Забыл пароль?",
@@ -126,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             ),
                           ],
                         ),
-                        const Gap(30),
+                        Gap(20.h),
                         Builder(
                           builder: (context) {
                             if (state is SignInLoadingState) {
@@ -147,7 +148,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                       );
                                 }
                               },
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                               child: Text(
                                 'Войти',
                                 style: AppTextStyles.black16.copyWith(
@@ -157,13 +158,14 @@ class _SignInScreenState extends State<SignInScreen> {
                             );
                           },
                         ),
-                        Gap(20),
+                        Gap(20.h),
                         MainButtonWidget(
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const SignUpScreen()),
+                                builder: (context) => const SignUpScreen(),
+                              ),
                             );
                           },
                           backgroundColor: AppColors.grey,
@@ -177,7 +179,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ],
                     ),
-                    BottomAppName(),
                   ],
                 ),
               ),

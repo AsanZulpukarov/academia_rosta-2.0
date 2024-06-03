@@ -23,7 +23,7 @@ class StatisticCardInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ContainerFrameWidget(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 20),
+      padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
       blurRadius: 8,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

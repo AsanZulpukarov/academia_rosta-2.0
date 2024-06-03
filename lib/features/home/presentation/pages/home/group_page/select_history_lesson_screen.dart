@@ -19,9 +19,9 @@ class SelectHistoryLessonScreen extends StatelessWidget {
         title: "Посещаемость",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: ContainerFrameWidget(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
           child: Column(
             children: [
               Text(
@@ -30,7 +30,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
                   color: AppColors.main,
                 ),
               ),
-              Container(
+              SizedBox(
                 width: double.infinity,
                 child: DataTable(
                   dataTextStyle: AppTextStyles.black12,
@@ -47,10 +47,6 @@ class SelectHistoryLessonScreen extends StatelessWidget {
   }
 
   List<DataColumn> _createColumns() {
-    final double containerWidth = 20.w;
-    final EdgeInsets containerPadding =
-        EdgeInsets.symmetric(vertical: 4.h, horizontal: 4.w);
-
     return [
       DataColumn(
         label: Container(

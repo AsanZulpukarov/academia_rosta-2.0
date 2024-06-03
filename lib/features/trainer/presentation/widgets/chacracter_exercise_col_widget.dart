@@ -3,6 +3,7 @@ import 'package:academia_rosta_diplom/features/trainer/presentation/bloc/trainer
 import 'package:academia_rosta_diplom/features/trainer/presentation/widgets/character_container_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CharacterExerciseWidget extends StatelessWidget {
@@ -32,7 +33,7 @@ class CharacterExerciseWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                Gap(22),
+                Gap(20.h),
                 Expanded(
                   child: CharacterContainerWidget(
                     title: "Разрядность",
@@ -45,7 +46,7 @@ class CharacterExerciseWidget extends StatelessWidget {
                     },
                   ),
                 ),
-                Gap(22),
+                Gap(20.h),
                 Expanded(
                   child: CharacterContainerWidget(
                     title: "Количество\nпеременных",

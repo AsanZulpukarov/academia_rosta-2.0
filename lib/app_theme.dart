@@ -64,11 +64,11 @@ class AppTheme {
       unselectedLabelStyle: AppTextStyles.black18Semibold
           .copyWith(fontSize: 16.sp, color: AppColors.grey),
     ),
-    dialogTheme: const DialogTheme(
+    dialogTheme: DialogTheme(
       backgroundColor: AppColors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
-          Radius.circular(20),
+          Radius.circular(20.r),
         ),
       ),
     ),
@@ -78,9 +78,9 @@ class AppTheme {
       titleTextStyle: AppTextStyles.black18Semibold,
       titleSpacing: 0,
       backgroundColor: Colors.transparent,
-      iconTheme: const IconThemeData(
+      iconTheme: IconThemeData(
         color: AppColors.black,
-        size: 26,
+        size: 26.r,
       ),
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: AppColors.white,
@@ -92,23 +92,23 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.mainColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 15,
+        padding: EdgeInsets.symmetric(
+          horizontal: 8.w,
+          vertical: 8.h,
         ),
         elevation: 0,
       ),
     ),
-    inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.filColor,
       border: OutlineInputBorder(
         borderSide: BorderSide.none,
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: BorderRadius.all(Radius.circular(8.r)),
       ),
       contentPadding: EdgeInsets.symmetric(
-        vertical: 16,
-        horizontal: 20,
+        vertical: 8.h,
+        horizontal: 16.w,
       ),
     ),
     fontFamily: 'Gilroy',

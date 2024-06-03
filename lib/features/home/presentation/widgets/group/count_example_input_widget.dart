@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CountExampleInputWidget extends StatefulWidget {
@@ -20,21 +21,21 @@ class _CountExampleInputWidgetState extends State<CountExampleInputWidget> {
           "Кол.примеров",
           overflow: TextOverflow.ellipsis,
         ),
-        const Gap(10),
+        Gap(10.h),
         TextFormField(
           controller: _numberController,
           decoration: InputDecoration(
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+                EdgeInsets.symmetric(vertical: 14.h, horizontal: 10.w),
             filled: false,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             hintText: "10",
           ),

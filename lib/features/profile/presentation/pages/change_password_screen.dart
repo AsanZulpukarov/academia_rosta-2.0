@@ -8,6 +8,7 @@ import 'package:academia_rosta_diplom/features/profile/domain/usecases/change_pa
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/change_password/change_password_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../../../../../app_text_styles.dart';
@@ -52,30 +53,30 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           },
           builder: (context, state) {
             return SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                      padding: EdgeInsets.symmetric(horizontal: 14.w),
                       child: Text(
                         "Новый пароль",
                         style: AppTextStyles.black14,
                       ),
                     ),
                     _passwordField(context),
-                    const Gap(5),
+                    Gap(5.h),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 14.0),
+                      padding: EdgeInsets.symmetric(horizontal: 14.w),
                       child: Text(
                         "Потверждение пароля",
                         style: AppTextStyles.black14,
                       ),
                     ),
                     _confirmPasswordField(context),
-                    const Gap(20),
+                    Gap(20.h),
                     Builder(
                       builder: (context) {
                         if (state is ChangePasswordLoadingState) {
@@ -96,7 +97,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   );
                             }
                           },
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(20.r),
                           child: Text(
                             'Сохранить',
                             style: AppTextStyles.black16.copyWith(
@@ -123,7 +124,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       validator: (value) => AppUtils.validatePassword(value),
       decoration: InputDecoration(
         suffixIcon: IconButton(
-          splashRadius: 20,
+          splashRadius: 20.r,
           onPressed: () {
             setState(() {
               isVisible = !isVisible;
@@ -135,21 +136,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,
@@ -172,7 +173,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           AppUtils.validateConfirmPassword(value, _newPassword.text),
       decoration: InputDecoration(
         suffixIcon: IconButton(
-          splashRadius: 20,
+          splashRadius: 20.r,
           onPressed: () {
             setState(() {
               isVisible = !isVisible;
@@ -184,21 +185,21 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(20.r),
           borderSide: const BorderSide(
             color: AppColors.main,
             width: 1,

@@ -84,25 +84,25 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
                       hintText: "Напишити ответ",
                       filled: false,
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         borderSide:
                             const BorderSide(color: AppColors.borderColor),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         borderSide:
                             const BorderSide(color: AppColors.borderColor),
                       ),
                       enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(20.r),
                         borderSide:
                             const BorderSide(color: AppColors.borderColor),
                       ),
                     ),
                   ),
-                  const Gap(20),
+                  Gap(20.h),
                   MainButtonWidget(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     child: Text(
                       "Проверить",
                       style: AppTextStyles.black14.copyWith(
@@ -118,7 +118,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   }
 
   Widget _buildNumberContainer(int index) {
-    double height = 180;
+    double height = 180.h;
     if (_isValidIndex(index)) {
       return Container(
         height: height,

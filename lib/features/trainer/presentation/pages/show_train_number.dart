@@ -19,10 +19,10 @@ class _ShowTrainNumberState extends State<ShowTrainNumber> {
     return Container(
       alignment: Alignment.center,
       width: double.infinity,
-      height: 360,
+      height: 360.h,
       decoration: BoxDecoration(
         border: Border.all(),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
       ),
       child: Text(
         number,

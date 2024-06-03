@@ -1,4 +1,3 @@
-import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,7 +46,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Stack(
           children: [
             Column(
@@ -72,13 +71,15 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                         _currentIndex++;
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignInScreen()));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SignInScreen(),
+                          ),
+                        );
                       }
                     });
                   },
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20.0.r),
                   child: Text(
                     'Следующий',
                     style: AppTextStyles.black16.copyWith(
@@ -86,14 +87,18 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                     ),
                   ),
                 ),
-                const Gap(10),
+                Gap(10.h),
                 MainButtonWidget(
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomeScreen(),
+                      ),
+                    );
                   },
                   backgroundColor: AppColors.transparent,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   border: Border.all(color: AppColors.blackOpacity65, width: 2),
                   child: Text(
                     'Пропустить',
@@ -104,7 +109,6 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                 ),
               ],
             ),
-            const BottomAppName(),
           ],
         ),
       ),
@@ -119,7 +123,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
           height: 240.h,
           width: 240.w,
         ),
-        const Gap(10),
+        Gap(10.h),
         Text(
           _appInfo.elementAt(index).label,
           textAlign: TextAlign.center,

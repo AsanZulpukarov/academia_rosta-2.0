@@ -17,7 +17,10 @@ import 'package:gap/gap.dart';
 class PrevHWStudentScreen extends StatelessWidget {
   final String fio;
 
-  const PrevHWStudentScreen({super.key, required this.fio});
+  const PrevHWStudentScreen({
+    super.key,
+    required this.fio,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +106,7 @@ class PrevHWStudentScreen extends StatelessWidget {
                       );
                     },
                     separatorBuilder: (context, index) {
-                      return const Gap(10);
+                      return Gap(10.h);
                     },
                     itemCount: hw.length,
                   );

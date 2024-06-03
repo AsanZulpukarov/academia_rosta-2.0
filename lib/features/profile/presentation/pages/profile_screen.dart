@@ -45,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return BlocProvider.value(
       value: profileBloc..add(ProfileEmptyEvent()),
       child: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           radius: 50.r,
                           backgroundColor: AppColors.white,
                         ),
-                        const Gap(10),
+                        Gap(10.h),
                         Text(
                           user.getFIO(),
                           style: AppTextStyles.black16,
@@ -90,7 +90,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               ),
             ),
-            const Gap(20),
+            Gap(20.h),
             ProfileNavItem(
               icon: Icons.person_outline,
               title: 'Редактировать профиль',
@@ -112,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ChangePasswordScreen()));
+                        builder: (context) => const ChangePasswordScreen(),),);
               },
             ),
             Gap(gap),
@@ -123,7 +123,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MyObjectScreen()));
+                        builder: (context) => const MyObjectScreen(),),);
               },
             ),
             Gap(gap),
@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ContactScreen()));
+                        builder: (context) => const ContactScreen(),),);
               },
             ),
             Gap(gap),
@@ -145,7 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const AboutAppScreen()));
+                        builder: (context) => const AboutAppScreen(),),);
               },
             ),
             Gap(gap),
@@ -170,14 +170,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Expanded(
                             child: MainButtonWidget(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                               onPressed: () async {
                                 profileBloc.add(ProfileExitAccountEvent());
                                 Navigator.of(context).pushAndRemoveUntil(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const SignInScreen()),
-                                    (Route<dynamic> route) => false);
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignInScreen()),
+                                  (Route<dynamic> route) => false,
+                                );
                               },
                               child: Text(
                                 'Выйти',
@@ -187,10 +188,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                             ),
                           ),
-                          const Gap(20),
+                          Gap(20.w),
                           Expanded(
                             child: MainButtonWidget(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(20.r),
                               onPressed: () => Navigator.of(context).pop(false),
                               backgroundColor: AppColors.grey,
                               child: Text(

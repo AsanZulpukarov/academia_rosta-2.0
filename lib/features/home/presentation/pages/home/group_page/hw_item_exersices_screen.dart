@@ -32,7 +32,7 @@ class HWItemExercisesScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (context, index) {
-                return const Gap(10);
+                return Gap(10.h);
               },
               itemCount: exercises.length,
             );

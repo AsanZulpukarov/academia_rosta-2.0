@@ -18,7 +18,7 @@ class LastExerciseCardWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -54,10 +54,10 @@ class LastExerciseCardWidget extends StatelessWidget {
             title2: "Количество\nпримеров",
             description2: (exercise.questionCount ?? 0).toString(),
           ),
-          const Gap(20),
+          Gap(20.h),
           MainButtonWidget(
             backgroundColor: AppColors.secondaryColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             child: Text(
               "Удалить",
               style: AppTextStyles.black14.copyWith(color: AppColors.white),

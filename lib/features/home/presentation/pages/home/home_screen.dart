@@ -27,22 +27,22 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   final List<NavBarItem> _navBarOptions = [
     NavBarItem(
-      screen: GroupsScreen(),
+      screen: const GroupsScreen(),
       icon: Icons.group,
       label: "Группы",
     ),
     NavBarItem(
-      screen: CalendarScreen(),
+      screen: const CalendarScreen(),
       icon: Icons.calendar_month,
       label: "Календарь",
     ),
     NavBarItem(
-      screen: TrainCharacterScreen(),
+      screen: const TrainCharacterScreen(),
       icon: Icons.calculate,
       label: "Тренажер",
     ),
     NavBarItem(
-      screen: ProfileScreen(),
+      screen: const ProfileScreen(),
       icon: Icons.person,
       label: "Профиль",
     ),
@@ -57,15 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarMain(),
+      appBar: const MyAppBarMain(),
       body: _navBarOptions.elementAt(_selectedIndex).screen,
       bottomNavigationBar: Container(
         height: 60.h,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: const BorderRadius.only(
-            topRight: Radius.circular(20),
-            topLeft: Radius.circular(20),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20.r),
+            topLeft: Radius.circular(20.r),
           ),
           border: Border.all(
             color: AppColors.white,
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: index == _selectedIndex
                   ? AppColors.main
                   : AppColors.borderColor,
-              size: 30,
+              size: 30.r,
             ),
             Text(
               _navBarOptions.elementAt(index).label ?? "",

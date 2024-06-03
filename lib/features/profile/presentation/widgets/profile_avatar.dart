@@ -21,12 +21,12 @@ class ProfileAvatar {
 }
 
 class ProfileAvatarItem extends StatelessWidget {
-  const ProfileAvatarItem(
-      {Key? key,
-      required this.image,
-      required this.radius,
-      required this.backgroundColor})
-      : super(key: key);
+  const ProfileAvatarItem({
+    Key? key,
+    required this.image,
+    required this.radius,
+    required this.backgroundColor,
+  }) : super(key: key);
   final String image;
   final double radius;
   final Color backgroundColor;
@@ -34,7 +34,7 @@ class ProfileAvatarItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius + 4,
+      radius: (radius + 4),
       backgroundColor: AppColors.main,
       child: CircleAvatar(
         radius: radius,

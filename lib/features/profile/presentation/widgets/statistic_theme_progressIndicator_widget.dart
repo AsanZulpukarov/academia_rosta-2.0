@@ -41,7 +41,7 @@ class StatisticThemeProgressIndicatorWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 5.h),
           child: LinearPercentIndicator(
-            lineHeight: lineHeight,
+            lineHeight: lineHeight.h,
             percent: markEntity.total == 0
                 ? 0
                 : markEntity.correct! / markEntity.total!,
@@ -49,7 +49,7 @@ class StatisticThemeProgressIndicatorWidget extends StatelessWidget {
             backgroundColor: markEntity.total == 0
                 ? backgroundColor
                 : incorrectProgressColor,
-            barRadius: const Radius.circular(20),
+            barRadius: Radius.circular(20.r),
             leading: Text(
               topic ?? "Пусто",
               style: AppTextStyles.black14Medium,

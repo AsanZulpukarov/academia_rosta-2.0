@@ -1,11 +1,15 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileNavItem extends StatelessWidget {
-  const ProfileNavItem(
-      {Key? key, required this.icon, required this.title, required this.onTap})
-      : super(key: key);
+  const ProfileNavItem({
+    Key? key,
+    required this.icon,
+    required this.title,
+    required this.onTap,
+  }) : super(key: key);
   final IconData icon;
   final String title;
   final Function()? onTap;
@@ -18,7 +22,7 @@ class ProfileNavItem extends StatelessWidget {
         decoration: ShapeDecoration(
           color: Colors.white,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
           ),
           shadows: [
             BoxShadow(
@@ -40,10 +44,10 @@ class ProfileNavItem extends StatelessWidget {
             title,
             style: AppTextStyles.black14,
           ),
-          trailing: const Icon(
+          trailing: Icon(
             Icons.arrow_forward_ios,
             color: AppColors.black,
-            size: 20,
+            size: 20.r,
           ),
         ),
       ),

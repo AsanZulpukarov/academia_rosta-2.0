@@ -53,7 +53,7 @@ class ListStudentScreen extends StatelessWidget {
                     ],
                   ),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
                 ),
                 child: Row(
@@ -140,7 +140,7 @@ class ListStudentScreen extends StatelessWidget {
               );
             },
             separatorBuilder: (BuildContext context, int index) {
-              return const Gap(10);
+              return Gap(10.h);
             },
           );
         } else {

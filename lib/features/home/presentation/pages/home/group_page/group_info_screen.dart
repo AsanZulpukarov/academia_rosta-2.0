@@ -50,7 +50,7 @@ class GroupInfoScreen extends StatelessWidget {
           } else if (state is GroupInfoLoadedState) {
             groupInfoByIdEntity = state.group;
             return SingleChildScrollView(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Column(
                 children: [
                   Column(
@@ -137,7 +137,7 @@ class GroupInfoScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const Gap(10),
+                  Gap(10.h),
                   ListStudentScreen(
                     idSubject: state.group.subject?.id ?? 0,
                   ),
@@ -195,10 +195,10 @@ class GroupInfoScreen extends StatelessWidget {
           nameButton: 'Посещения',
           function: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AttendanceScreen()));
+                MaterialPageRoute(builder: (context) => const AttendanceScreen(),),);
           },
         ),
-        Gap(10),
+        Gap(10.w),
         _actionButtonAndName(
           nameIcon: 'history_lesson_icon.png',
           nameButton: 'Занятия',
@@ -223,13 +223,13 @@ class GroupInfoScreen extends StatelessWidget {
             );
           },
         ),
-        Gap(10.h),
+        Gap(10.w),
         _actionButtonAndName(
           nameIcon: 'grade_icon.png',
           nameButton: 'Оценки',
           function: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => GradeScreen()));
+                MaterialPageRoute(builder: (context) => const GradeScreen(),),);
           },
         ),
       ],
@@ -251,20 +251,20 @@ class GroupInfoScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Gap(8),
-            Container(
-              width: 40,
-              height: 40,
+            Gap(8.h),
+            SizedBox(
+              width: 40.r,
+              height: 40.r,
               child: Image.asset("assets/icons/$nameIcon"),
             ),
-            Gap(8),
+            Gap(8.h),
             Text(
               nameButton,
               textAlign: TextAlign.center,
               style: AppTextStyles.black12Medium,
               overflow: TextOverflow.ellipsis,
             ),
-            Gap(8),
+            Gap(8.h),
           ],
         ),
       ),

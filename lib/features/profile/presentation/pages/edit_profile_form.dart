@@ -6,6 +6,7 @@ import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/edit_profile_bloc/edit_profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class EditProfileForm extends StatefulWidget {
@@ -41,7 +42,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       child: BlocBuilder<EditProfileBloc, EditProfileState>(
         builder: (context, state) {
           return Form(
@@ -55,32 +56,32 @@ class _EditProfileFormState extends State<EditProfileForm> {
                   controller: _lastnameController,
                   validator: AppUtils.validateLastName,
                 ),
-                Gap(5),
+                Gap(5.h),
                 _titleAndField(
                   title: "Имя",
                   controller: _firstnameController,
                   validator: AppUtils.validateFirstName,
                 ),
-                Gap(5),
+                Gap(5.h),
                 _titleAndField(
                     title: "Логин",
                     controller: _usernameController,
                     validator: AppUtils.validateUsername),
-                Gap(5),
+                Gap(5.h),
                 _titleAndField(
                   title: "Email",
                   controller: _emailController,
                   validator: AppUtils.validateEmail,
                   textInputType: TextInputType.emailAddress,
                 ),
-                Gap(5),
+                Gap(5.h),
                 _titleAndField(
                   title: "Телефон номер",
                   controller: _phoneController,
                   validator: AppUtils.validatePhone,
                   textInputType: TextInputType.number,
                 ),
-                const Gap(20),
+                Gap(20.h),
                 Builder(builder: (context) {
                   if (state is EditProfileLoadingState) {
                     return const Center(
@@ -103,7 +104,7 @@ class _EditProfileFormState extends State<EditProfileForm> {
                             );
                       }
                     },
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     child: Text(
                       'Сохранить',
                       style: AppTextStyles.black16.copyWith(
@@ -112,11 +113,11 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     ),
                   );
                 }),
-                Gap(10),
+                Gap(10.h),
                 MainButtonWidget(
                   backgroundColor: AppColors.grey,
                   onPressed: () {},
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                   child: Text(
                     'Отменить изменения',
                     style: AppTextStyles.black16.copyWith(

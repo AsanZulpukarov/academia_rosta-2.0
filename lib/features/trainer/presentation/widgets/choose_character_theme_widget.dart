@@ -3,13 +3,16 @@ import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/features/trainer/presentation/bloc/trainer_bloc/trainer_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ChooseCharacterThemeWidget extends StatefulWidget {
   final double? menuMaxHeight;
 
-  const ChooseCharacterThemeWidget({Key? key, this.menuMaxHeight = 240})
-      : super(key: key);
+  const ChooseCharacterThemeWidget({
+    Key? key,
+    this.menuMaxHeight = 240,
+  }) : super(key: key);
 
   @override
   State<ChooseCharacterThemeWidget> createState() =>
@@ -27,15 +30,15 @@ class _ChooseCharacterThemeWidgetState
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10.0),
-              child: Text("Выбрать тему"),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
+              child: const Text("Выбрать тему"),
             ),
             const Gap(10),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10.w),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
                 border: Border.all(color: AppColors.black),
               ),
               child: DropdownButton(
@@ -58,7 +61,7 @@ class _ChooseCharacterThemeWidgetState
                     ),
                   );
                 }).toList(),
-                menuMaxHeight: 240,
+                menuMaxHeight: widget.menuMaxHeight,
               ),
             ),
           ],

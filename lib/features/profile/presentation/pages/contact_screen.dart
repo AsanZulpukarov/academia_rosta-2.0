@@ -14,16 +14,16 @@ class ContactScreen extends StatelessWidget {
     return Scaffold(
       appBar: MyAppBarSecond(title: "Связатся с нами"),
       body: Padding(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: 200.h,
               width: double.infinity,
               child: Image.asset("assets/images/appInfo_1.png"),
             ),
-            Gap(100.h),
+            Gap(80.h),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,7 +34,7 @@ class ContactScreen extends StatelessWidget {
                     color: AppColors.black,
                   ),
                 ),
-                Gap(10),
+                Gap(10.h),
                 Text(
                   "Наша поддержка проконсультирует Вас\nпо любым возникшим вопросам.",
                   textAlign: TextAlign.center,
@@ -114,20 +114,20 @@ class ContactScreen extends StatelessWidget {
             height: 50.h,
             width: 50.w,
             padding: const EdgeInsets.all(10),
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: AppColors.white,
               boxShadow: [
                 BoxShadow(
                   color: AppColors.main,
-                  blurRadius: 8,
+                  blurRadius: 8.r,
                   blurStyle: BlurStyle.normal,
                 ),
               ],
             ),
             child: Image.asset("assets/icons/$name.png"),
           ),
-          Gap(10),
+          Gap(10.h),
           Text(name),
         ],
       ),

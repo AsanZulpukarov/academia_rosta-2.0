@@ -17,9 +17,9 @@ class GroupCalendarWidget extends StatelessWidget {
         if (state is GroupInfoLoadedState) {
           TimetableEntity? timetableEntity = state.group.timetable;
           return Container(
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 8.w),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               border: Border.all(color: AppColors.main),
             ),
             child: Column(
@@ -27,7 +27,7 @@ class GroupCalendarWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 10, bottom: 8),
+                  padding: EdgeInsets.only(left: 10.w, bottom: 8.h),
                   child: Text(
                     "Расписание",
                     style: AppTextStyles.black16,
@@ -70,8 +70,8 @@ class GroupCalendarWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 30.w,
-            height: 30.h,
+            width: 30.r,
+            height: 30.r,
             decoration: BoxDecoration(
               color: time == null ? AppColors.white : AppColors.main,
               shape: BoxShape.circle,
@@ -85,7 +85,7 @@ class GroupCalendarWidget extends StatelessWidget {
               ),
             ),
           ),
-          Gap(6),
+          Gap(6.h),
           Text(
             time ?? "",
             style: AppTextStyles.black12Medium,

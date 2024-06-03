@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/ma
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -88,21 +89,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             suffixIconColor: AppColors.borderColor,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             border: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
             ),
           ),
         ),
@@ -129,8 +130,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 title: "Анкета",
               ),
               body: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                 child: Stack(
                   children: [
                     Column(
@@ -140,41 +140,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           "Здравствуйте! Добро пожаловать",
                           style: AppTextStyles.black18Medium,
                         ),
-                        const Gap(10),
+                        Gap(10.h),
                         Text(
                           "Заполните анкету и отправьте запрос.",
                           style: AppTextStyles.black14.copyWith(
                             fontWeight: FontWeight.normal,
                           ),
                         ),
-                        const Gap(20),
+                        Gap(20.h),
                         Form(
                           key: _formKey,
                           child: Column(
                             children: [
                               _firstname(),
-                              const Gap(10),
+                              Gap(10.h),
                               _lastname(),
-                              const Gap(10),
+                              Gap(10.h),
                               _phone(),
-                              const Gap(10),
+                              Gap(10.h),
                               _polPerson(),
-                              const Gap(10),
+                              Gap(10.h),
                               _email(),
-                              const Gap(10),
+                              Gap(10.h),
                               _bDay(),
-                              const Gap(10),
+                              Gap(10.h),
                               _login(),
-                              const Gap(10),
+                              Gap(10.h),
                               _password(),
-                              const Gap(10),
+                              Gap(10.h),
                               _confirmPassword(),
-                              const Gap(10),
+                              Gap(10.h),
                               _branch(),
                             ],
                           ),
                         ),
-                        const Gap(30),
+                        Gap(30.h),
                         Row(
                           children: [
                             Expanded(
@@ -190,7 +190,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   _branchController.clear();
                                 },
                                 backgroundColor: AppColors.grey,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(20.r),
                                 child: Text(
                                   'Сбросить',
                                   style: AppTextStyles.black16.copyWith(
@@ -199,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 ),
                               ),
                             ),
-                            const Gap(20),
+                            Gap(20.w),
                             Expanded(
                               child: Builder(
                                 builder: (context) {
@@ -238,7 +238,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                             );
                                       }
                                     },
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(20.r),
                                     child: Text(
                                       'Создать',
                                       style: AppTextStyles.black16.copyWith(
@@ -452,7 +452,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           );
         }).toList(),
-        menuMaxHeight: 160,
+        menuMaxHeight: 160.h,
       ),
     );
   }

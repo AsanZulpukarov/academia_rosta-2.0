@@ -13,7 +13,7 @@ class AboutAppScreen extends StatelessWidget {
     return Scaffold(
       appBar: const MyAppBarSecond(title: "О приложении"),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -22,12 +22,12 @@ class AboutAppScreen extends StatelessWidget {
               padding: const EdgeInsets.all(50),
               child: Image.asset("assets/images/logo.png"),
             ),
-            Gap(20),
+            Gap(20.h),
             Text(
               "Version 1.0.0",
               style: AppTextStyles.black12Medium,
             ),
-            Gap(20),
+            Gap(20.h),
             Text(
               "\t\t\tАкадемия Роста – ведущий центр дополнительного образования для детей с 2015 года. Мы специализируемся в развитии интеллектуальных навыков с использованием уникальных методов, основанных на ментальной арифметике. Наше новое мобильное приложение делает обучение еще более удобным, позволяя детям раскрывать свой потенциал в любом месте."
               "\n\t\t\tС гордостью заявляем, что являемся лидером на местном рынке, имея самую крупную сеть филиалов и расширяясь за пределы Кыргызстана. Присоединяйтесь к Академии Роста – месту, где каждый ребенок находит возможность стать потенциальным гением!",
@@ -35,24 +35,21 @@ class AboutAppScreen extends StatelessWidget {
                 fontSize: 12.sp,
               ),
             ),
-            Gap(20),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Container(
-                    height: 50.h,
-                    width: 150.w,
-                    child:
-                        SvgPicture.asset("assets/images/google_play_logo.svg"),
-                  ),
-                  Container(
-                    height: 50.h,
-                    width: 150.w,
-                    child: SvgPicture.asset("assets/images/app_store_logo.svg"),
-                  ),
-                ],
-              ),
+            Gap(20.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 50.h,
+                  width: 150.w,
+                  child: SvgPicture.asset("assets/images/google_play_logo.svg"),
+                ),
+                SizedBox(
+                  height: 50.h,
+                  width: 150.w,
+                  child: SvgPicture.asset("assets/images/app_store_logo.svg"),
+                ),
+              ],
             ),
           ],
         ),

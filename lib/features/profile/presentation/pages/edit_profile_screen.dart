@@ -75,7 +75,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               return const LoadingStateWidget();
             } else if (state is EditProfileLoadedState) {
               return SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,

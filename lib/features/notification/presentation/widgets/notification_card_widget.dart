@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/notification/presentation/pages/notification_info_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class NotificationCardWidget extends StatelessWidget {
@@ -14,19 +15,21 @@ class NotificationCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const NotificationInfoScreen()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const NotificationInfoScreen()));
       },
       child: Stack(
         children: [
           Align(
             alignment: Alignment.center,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
               decoration: ShapeDecoration(
                 color: AppColors.white,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 shadows: [
                   BoxShadow(
@@ -71,7 +74,7 @@ class NotificationCardWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Gap(10),
+                  Gap(10.h),
                   Row(
                     children: [
                       Expanded(
@@ -89,7 +92,10 @@ class NotificationCardWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
-                      Expanded(flex: 1, child: SizedBox()),
+                      const Expanded(
+                        flex: 1,
+                        child: SizedBox(),
+                      ),
                     ],
                   ),
                 ],
@@ -98,18 +104,18 @@ class NotificationCardWidget extends StatelessWidget {
           ),
           isEven
               ? Positioned(
-                  bottom: 12,
-                  right: 12,
+                  bottom: 12.h,
+                  right: 12.w,
                   child: Container(
-                    width: 10,
-                    height: 10,
+                    width: 10.r,
+                    height: 10.r,
                     decoration: const BoxDecoration(
                       color: AppColors.secondaryColor,
                       shape: BoxShape.circle,
                     ),
                   ),
                 )
-              : SizedBox(),
+              : const SizedBox(),
         ],
       ),
     );

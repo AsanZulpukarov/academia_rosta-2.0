@@ -57,7 +57,7 @@ class GroupsScreen extends StatelessWidget {
               );
             }
             return ListView.separated(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               itemCount: groupList.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
@@ -119,7 +119,7 @@ class GroupsScreen extends StatelessWidget {
                       ),
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(20.r),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(
                           sigmaX: 2,
@@ -128,8 +128,8 @@ class GroupsScreen extends StatelessWidget {
                         child: Container(
                           width: double.infinity,
                           height: double.infinity,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
+                          padding: EdgeInsets.symmetric(
+                              vertical: 10.h, horizontal: 20.w),
                           decoration: BoxDecoration(
                             color: AppColors.black.withOpacity(0.6),
                           ),
@@ -145,7 +145,7 @@ class GroupsScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
-                              const Gap(10),
+                              Gap(10.h),
                               _groupInfoRow(
                                   'Предмет',
                                   groupList.elementAt(index).subject ??
@@ -163,7 +163,7 @@ class GroupsScreen extends StatelessWidget {
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return const Gap(20);
+                return Gap(20.h);
               },
             );
           }

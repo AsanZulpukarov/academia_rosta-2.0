@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AttendanceListWidget extends StatefulWidget {
   const AttendanceListWidget({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class _AttendanceListWidgetState extends State<AttendanceListWidget> {
     return ListView.separated(
       itemBuilder: (context, index) {
         return ListTile(
-          contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0),
           leading: Text((index + 1).toString()),
           title: Text(
             _students.elementAt(index)["name"],

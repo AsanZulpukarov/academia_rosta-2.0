@@ -42,8 +42,8 @@ class _ChoosePhotoDialogState extends State<ChoosePhotoDialog> {
         itemCount: ProfileAvatar.listAvatars.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: widget.crossAxisCount,
-          mainAxisSpacing: widget.mainAxisSpacing,
-          crossAxisSpacing: widget.crossAxisSpacing,
+          mainAxisSpacing: widget.mainAxisSpacing.h,
+          crossAxisSpacing: widget.crossAxisSpacing.w,
         ),
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
@@ -55,14 +55,14 @@ class _ChoosePhotoDialogState extends State<ChoosePhotoDialog> {
             },
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20.r),
                 color: _currentIndex != index
                     ? widget.backgroundColor
                     : widget.selectBackgroundColor,
               ),
               child: ProfileAvatarItem(
                 image: ProfileAvatar.listAvatars.elementAt(index),
-                radius: widget.radius,
+                radius: widget.radius.r,
                 backgroundColor: _currentIndex != index
                     ? widget.backgroundColor
                     : widget.selectBackgroundColor,

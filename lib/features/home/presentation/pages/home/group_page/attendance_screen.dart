@@ -47,7 +47,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         title: "Посещения",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           children: [
             ContainerFrameWidget(
@@ -59,7 +59,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  const Gap(10),
+                  Gap(10.h),
                   ContainerFrameWidget(
                     onTap: () {
                       showDatePicker(
@@ -87,7 +87,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       ],
                     ),
                   ),
-                  Gap(20),
+                  Gap(20.h),
                   Container(
                     width: double.infinity,
                     height: 200.h,
@@ -107,10 +107,10 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       ),
                     ),
                   ),
-                  const Gap(20),
+                  Gap(20.h),
                   MainButtonWidget(
                     onPressed: () {},
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     child: Text(
                       'Сохранить',
                       style: AppTextStyles.black16.copyWith(
@@ -121,12 +121,12 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                 ],
               ),
             ),
-            Gap(50),
+            Gap(40.w),
             Text(
               "Последние посещения",
               style: AppTextStyles.black16Medium,
             ),
-            Gap(20),
+            Gap(20.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -145,7 +145,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     return ContainerFrameWidget(
       height: 90.h,
       width: 100.w,
-      padding: const EdgeInsets.all(8),
+      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
       alignment: Alignment.center,
       onTap: () {
         // Navigator.push(

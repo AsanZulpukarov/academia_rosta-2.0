@@ -6,6 +6,7 @@ import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_divider_column_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import 'choose_student_dialog.dart';
@@ -27,15 +28,15 @@ class _GradeScreenState extends State<GradeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarSecond(
+      appBar: const MyAppBarSecond(
         title: 'Оценки',
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(
           children: [
             ContainerFrameWidget(
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +47,7 @@ class _GradeScreenState extends State<GradeScreen> {
                       color: AppColors.main,
                     ),
                   ),
-                  Gap(10),
+                  Gap(10.h),
                   Text(
                     "Тип оценки",
                     style: AppTextStyles.black16Medium,
@@ -96,10 +97,10 @@ class _GradeScreenState extends State<GradeScreen> {
                 ],
               ),
             ),
-            Gap(20),
+            Gap(20.h),
             MainButtonWidget(
               onPressed: () {},
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(20.r),
               child: Text(
                 'Сохранить',
                 style: AppTextStyles.black16.copyWith(
@@ -107,16 +108,17 @@ class _GradeScreenState extends State<GradeScreen> {
                 ),
               ),
             ),
-            Gap(20),
+            Gap(20.h),
             MainButtonWidget(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.circular(20.r),
               onPressed: () {
                 showDialog(
                   barrierDismissible: false,
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     backgroundColor: AppColors.white,
-                    contentPadding: const EdgeInsets.all(20),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
                     scrollable: true,
                     title: Text(
                       'Выберите студентов',
@@ -152,11 +154,11 @@ class _GradeScreenState extends State<GradeScreen> {
                 ),
               ),
             ),
-            Gap(20),
+            Gap(20.h),
             TitleDividerColumnWidget(
               title: "Выбрано студентов 2",
             ),
-            Gap(10),
+            Gap(10.h),
             ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -164,14 +166,14 @@ class _GradeScreenState extends State<GradeScreen> {
                 double initialRating = 0;
                 return Container(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.w),
                   decoration: BoxDecoration(
                     color: AppColors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     boxShadow: [
                       BoxShadow(
                         color: AppColors.black.withOpacity(0.25),
-                        offset: Offset(0, 0),
+                        offset: const Offset(0, 0),
                         blurRadius: 4,
                       ),
                     ],
@@ -194,7 +196,7 @@ class _GradeScreenState extends State<GradeScreen> {
                                 minRating: 1,
                                 direction: Axis.horizontal,
                                 itemCount: 5,
-                                itemSize: 24,
+                                itemSize: 24.r,
                                 itemBuilder: (context, index) => Icon(
                                   index < initialRating
                                       ? Icons.star
@@ -210,7 +212,7 @@ class _GradeScreenState extends State<GradeScreen> {
                           ),
                         ],
                       ),
-                      Gap(4),
+                      Gap(4.h),
                       TextFormField(
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
@@ -242,7 +244,7 @@ class _GradeScreenState extends State<GradeScreen> {
                 );
               },
               separatorBuilder: (context, index) {
-                return Gap(20);
+                return Gap(20.h);
               },
               itemCount: 4,
             ),

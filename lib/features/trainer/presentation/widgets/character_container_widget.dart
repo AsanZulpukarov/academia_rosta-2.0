@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CharacterContainerWidget extends StatefulWidget {
@@ -44,9 +45,9 @@ class _CharacterContainerWidgetState extends State<CharacterContainerWidget> {
       children: [
         Text(
           widget.title,
-          style: AppTextStyles.black14.copyWith(fontSize: 14),
+          style: AppTextStyles.black14.copyWith(fontSize: 14.sp),
         ),
-        Gap(4),
+        Gap(4.h),
         Container(
           height: widget.heightContainer,
           foregroundDecoration: BoxDecoration(
@@ -75,7 +76,7 @@ class _CharacterContainerWidgetState extends State<CharacterContainerWidget> {
                   height: double.infinity,
                   decoration: BoxDecoration(
                     color: AppColors.main,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(20.r),
                     border: Border.all(
                       width: 1,
                       color: AppColors.black,

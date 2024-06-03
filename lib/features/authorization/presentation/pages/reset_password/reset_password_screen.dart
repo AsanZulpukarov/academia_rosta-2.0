@@ -5,7 +5,6 @@ import 'package:academia_rosta_diplom/features/authorization/domain/usecases/res
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/reset_password_bloc/reset_password_bloc.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/reset_password/reset_password_code_screen.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/app_logo_widget.dart';
-import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,21 +44,21 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             ),
             suffixIconColor: AppColors.borderColor,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             border: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20.r),
             ),
           ),
         ),
@@ -80,7 +79,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
           builder: (context, state) {
             return Scaffold(
               body: Padding(
-                padding: EdgeInsets.all(20.0.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
                 child: Stack(
                   children: [
                     Column(
@@ -89,7 +88,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         AppLogoWidget(
                           width: 140.w,
                         ),
-                        Gap(60.h),
+                        Gap(50.h),
                         Text(
                           "Для сброса пароля напишите свой логин",
                           style: AppTextStyles.black14,
@@ -115,7 +114,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                     );
                               }
                             },
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.r),
                             child: Text(
                               'Отправить',
                               style: AppTextStyles.black16.copyWith(
@@ -136,7 +135,6 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         ),
                       ],
                     ),
-                    const BottomAppName(),
                   ],
                 ),
               ),

@@ -17,7 +17,7 @@ class _ChooseStudentsDialogState extends State<ChooseStudentsDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 360.h,
       width: 300.w,
       child: ListView.separated(

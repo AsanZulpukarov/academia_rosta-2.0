@@ -6,10 +6,10 @@ import 'package:academia_rosta_diplom/features/authorization/domain/usecases/sen
 import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/reset_password_code_bloc/reset_password_code_bloc.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/app_logo_widget.dart';
-import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/bottom_app_name.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class ResetPasswordCodeScreen extends StatefulWidget {
@@ -42,21 +42,20 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
             ),
             suffixIconColor: AppColors.borderColor,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             border: OutlineInputBorder(
-              borderSide:
-                  const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(color: AppColors.borderColor, width: 2),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             focusedBorder: OutlineInputBorder(
               borderSide:
                   const BorderSide(color: AppColors.borderColor, width: 2),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(20.r),
             ),
           ),
         ),
@@ -65,36 +64,37 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
             if (state is ResetPasswordCodeErrorState) {
             } else if (state is ResetPasswordCodeLoadedState) {
               Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignInScreen(),
-                  ),
-                  (route) => false);
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SignInScreen(),
+                ),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {
             return Scaffold(
               body: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 16.h),
                 child: Stack(
                   children: [
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const AppLogoWidget(
-                          width: 140,
+                        AppLogoWidget(
+                          width: 140.w,
                         ),
-                        const Gap(60),
+                        Gap(50.h),
                         Text(
                           "Введите код отправленный на ваш email",
                           style: AppTextStyles.black14,
                         ),
-                        Gap(20),
+                        Gap(20.h),
                         Form(
                           key: _formKey,
                           child: _code(),
                         ),
-                        const Gap(30),
+                        Gap(30.h),
                         Builder(builder: (context) {
                           if (state is ResetPasswordCodeLoadingState) {
                             return const Center(
@@ -108,12 +108,12 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) =>
-                                        ResetPasswordCodeScreen(),
+                                        const ResetPasswordCodeScreen(),
                                   ),
                                 );
                               }
                             },
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(20.r),
                             child: Text(
                               'Отправить',
                               style: AppTextStyles.black16.copyWith(
@@ -134,7 +134,6 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
                         ),
                       ],
                     ),
-                    const BottomAppName(),
                   ],
                 ),
               ),

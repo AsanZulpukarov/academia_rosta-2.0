@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/calendar/presentation/pages/list_point_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -27,15 +28,16 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
       physics: const ScrollPhysics(),
       child: Column(
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
             decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(20)),
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(20.r),
+            ),
             child: TableCalendar(
               daysOfWeekStyle: DaysOfWeekStyle(
                 weekdayStyle: AppTextStyles.black14Medium.copyWith(
@@ -45,7 +47,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   color: AppColors.mainColor.withOpacity(0.5),
                 ),
               ),
-              daysOfWeekHeight: 30,
+              daysOfWeekHeight: 26.h,
               calendarStyle: CalendarStyle(
                 todayDecoration: BoxDecoration(
                   color: AppColors.main.withOpacity(0.5),
@@ -87,7 +89,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               },
             ),
           ),
-          const Gap(20),
+          Gap(20.h),
           ListPointScreen(
             selectDate: _selectedDay,
           ),

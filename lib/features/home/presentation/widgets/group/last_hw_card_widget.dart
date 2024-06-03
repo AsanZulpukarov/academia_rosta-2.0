@@ -32,7 +32,7 @@ class LastHWCardWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         gradient: LinearGradient(
           begin: Alignment.bottomRight,
           end: Alignment.topLeft,
@@ -96,13 +96,13 @@ class LastHWCardWidget extends StatelessWidget {
                   title: 'Количество упражнений',
                   description: (hw.exercisesCount ?? 1).toString(),
                 ),
-                const Gap(10),
+                Gap(10.h),
               ],
             ),
           ),
           MainButtonWidget(
             backgroundColor: AppColors.secondaryColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(20.r),
             child: Text(
               "Удалить",
               style: AppTextStyles.black14.copyWith(color: AppColors.white),
