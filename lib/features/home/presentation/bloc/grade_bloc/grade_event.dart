@@ -7,8 +7,8 @@ sealed class GradeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GradeAddStudentEvent extends GradeEvent {}
+final class GradeAddStudentEvent extends GradeEvent {
+  final List<StudentEntity> studentEntity;
 
-final class GradeEditStarEvent extends GradeEvent {}
-
-final class GradeSelectType extends GradeEvent {}
+  const GradeAddStudentEvent({required this.studentEntity});
+}

@@ -7,12 +7,18 @@ sealed class GradeState extends Equatable {
   List<Object> get props => [];
 }
 
-final class GradeInitialState extends GradeState {}
+final class GradeInitialState extends GradeState {
+  const GradeInitialState();
+}
 
-final class GradeLoading extends GradeState {}
+final class GradeLoadingState extends GradeState {
+  const GradeLoadingState();
+}
 
-final class GradeLoadedState extends GradeState {}
-
-final class GradeTypeSelectState extends GradeState {}
-
-final class GradeEditStarState extends GradeState {}
+final class GradeLoadedStudentsState extends GradeState {
+  final List<StudentEntity> students;
+  const GradeLoadedStudentsState({required this.students,});
+  @override
+  // TODO: implement props
+  List<Object> get props => [students];
+}

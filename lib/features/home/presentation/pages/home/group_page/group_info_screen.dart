@@ -7,6 +7,7 @@ import 'package:academia_rosta_diplom/features/home/data/models/subject_model.da
 import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
@@ -26,16 +27,23 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
 import 'history_lesson_screen.dart';
 
-class GroupInfoScreen extends StatelessWidget {
+class GroupInfoScreen extends StatefulWidget {
   final String groupName;
 
   const GroupInfoScreen({Key? key, required this.groupName}) : super(key: key);
 
   @override
+  State<GroupInfoScreen> createState() => _GroupInfoScreenState();
+}
+
+class _GroupInfoScreenState extends State<GroupInfoScreen> {
+  GroupInfoByIdEntity? groupInfoByIdEntity;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBarSecond(
-        title: groupName,
+        title: widget.groupName,
       ),
       body: BlocConsumer<GroupInfoBloc, GroupInfoState>(
         listener: (context, state) {
@@ -44,7 +52,6 @@ class GroupInfoScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          GroupInfoByIdEntity groupInfoByIdEntity;
           if (state is GroupInfoLoadingState) {
             return const LoadingStateWidget();
           } else if (state is GroupInfoLoadedState) {
@@ -57,15 +64,15 @@ class GroupInfoScreen extends StatelessWidget {
                     children: [
                       _row2Text(
                         title: "Предмет:",
-                        subtitle: groupInfoByIdEntity.subject?.name ??
+                        subtitle: groupInfoByIdEntity?.subject?.name ??
                             "Название предмета",
                         function: () {
                           showBottomWindowSubject(
                             context,
                             SubjectModel(
-                              id: groupInfoByIdEntity.subject?.id,
-                              name: groupInfoByIdEntity.subject?.name,
-                              cost: groupInfoByIdEntity.subject?.cost,
+                              id: groupInfoByIdEntity?.subject?.id,
+                              name: groupInfoByIdEntity?.subject?.name,
+                              cost: groupInfoByIdEntity?.subject?.cost,
                             ),
                           );
                         },
@@ -73,27 +80,27 @@ class GroupInfoScreen extends StatelessWidget {
                       Gap(5.h),
                       _row2Text(
                         title: "Учитель:",
-                        subtitle: groupInfoByIdEntity.teacher?.getFullName() ??
+                        subtitle: groupInfoByIdEntity?.teacher?.getFullName() ??
                             "Пусто",
                         function: () {
                           showBottomWindowTeacher(
                             context,
                             TeacherModel(
-                              id: groupInfoByIdEntity.teacher?.id,
+                              id: groupInfoByIdEntity?.teacher?.id,
                               firstname:
-                                  groupInfoByIdEntity.teacher?.firstname ??
+                                  groupInfoByIdEntity?.teacher?.firstname ??
                                       "Пусто",
-                              lastname: groupInfoByIdEntity.teacher?.lastname ??
+                              lastname: groupInfoByIdEntity?.teacher?.lastname ??
                                   "Пусто",
                               phoneNumber:
-                                  groupInfoByIdEntity.teacher?.phoneNumber ??
+                                  groupInfoByIdEntity?.teacher?.phoneNumber ??
                                       "Пусто",
                             ),
                           );
                         },
                       ),
                       Gap(16.h),
-                      _actionButton(context, groupInfoByIdEntity.id ?? 1),
+                      _actionButton(context),
                       Gap(16.h),
                       GroupCalendarWidget(),
                     ],
@@ -187,15 +194,21 @@ class GroupInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _actionButton(BuildContext context, int id) {
+  Widget _actionButton(BuildContext context) {
     return Row(
       children: [
         _actionButtonAndName(
           nameIcon: 'attendance_icon.png',
           nameButton: 'Посещения',
           function: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AttendanceScreen(),),);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AttendanceScreen(
+                  students: groupInfoByIdEntity?.pupils ?? [],
+                ),
+              ),
+            );
           },
         ),
         Gap(10.w),
@@ -216,7 +229,7 @@ class GroupInfoScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )..add(LessonHistoryEmptyEvent(id: id)),
+                  )..add(LessonHistoryEmptyEvent(id: groupInfoByIdEntity?.id ?? 0)),
                   child: const HistoryLessonScreen(),
                 ),
               ),
@@ -228,8 +241,14 @@ class GroupInfoScreen extends StatelessWidget {
           nameIcon: 'grade_icon.png',
           nameButton: 'Оценки',
           function: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const GradeScreen(),),);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GradeScreen(
+                  students: groupInfoByIdEntity?.pupils ?? [],
+                ),
+              ),
+            );
           },
         ),
       ],
@@ -246,7 +265,7 @@ class GroupInfoScreen extends StatelessWidget {
         onTap: function,
         offset: const Offset(2, 2),
         blurRadius: 2.0,
-        padding: const EdgeInsets.all(4),
+        padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

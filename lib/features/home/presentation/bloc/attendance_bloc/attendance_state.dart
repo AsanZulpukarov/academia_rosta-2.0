@@ -10,11 +10,7 @@ class AttendanceInitialState extends AttendanceState {}
 
 class AttendanceLoadingState extends AttendanceState {}
 
-class AttendanceStudentCheckboxState extends AttendanceState {}
-
 class AttendanceSavedState extends AttendanceState {}
-
-class AttendanceLastThreeLessonLoadedState extends AttendanceState {}
 
 class AttendanceErrorState extends AttendanceState {
   final String message;

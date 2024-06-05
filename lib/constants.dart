@@ -1,9 +1,7 @@
 import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/user_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/user_entity.dart';
-import 'package:academia_rosta_diplom/features/authorization/domain/enums/role_enum.dart';
 import 'package:academia_rosta_diplom/features/trainer/domain/entities/topic_entity.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 
 import 'main.dart';
 
@@ -14,7 +12,7 @@ class Constants {
 
   static const String _ip = "192.168.50.84";
   static const String _host = "http";
-  static const String _port = "8080";
+  static const String _port = "8081";
   static const baseUrl = "$_host://$_ip:$_port/";
   static UserEntity user = UserModel.fromJson(
     {
