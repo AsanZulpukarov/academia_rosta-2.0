@@ -4,6 +4,7 @@ import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/notification/presentation/pages/notification_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBarMain({Key? key}) : super(key: key);
@@ -43,44 +44,44 @@ class MyAppBarMain extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      actions: [
-        Stack(
-          children: [
-            Align(
-              alignment: Alignment.center,
-              child: IconButton(
-                splashRadius: 20,
-                icon: Icon(
-                  Icons.notifications_outlined,
-                  color: AppColors.blackOpacity65,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => NotificationScreen(),
-                      ));
-                },
-              ),
-            ),
-            Positioned(
-              right: 13,
-              top: 17,
-              child: Container(
-                width: 10,
-                height: 10,
-                decoration: const BoxDecoration(
-                  color: AppColors.secondaryColor,
-                  shape: BoxShape.circle,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ],
+      // actions: [
+      //   Stack(
+      //     children: [
+      //       Align(
+      //         alignment: Alignment.center,
+      //         child: IconButton(
+      //           splashRadius: 20,
+      //           icon: Icon(
+      //             Icons.notifications_outlined,
+      //             color: AppColors.blackOpacity65,
+      //           ),
+      //           onPressed: () {
+      //             Navigator.push(
+      //                 context,
+      //                 MaterialPageRoute(
+      //                   builder: (context) => NotificationScreen(),
+      //                 ));
+      //           },
+      //         ),
+      //       ),
+      //       Positioned(
+      //         right: 13,
+      //         top: 17,
+      //         child: Container(
+      //           width: 10,
+      //           height: 10,
+      //           decoration: const BoxDecoration(
+      //             color: AppColors.secondaryColor,
+      //             shape: BoxShape.circle,
+      //           ),
+      //         ),
+      //       ),
+      //     ],
+      //   ),
+      // ],
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(60.0);
+  Size get preferredSize => Size.fromHeight(56.h);
 }

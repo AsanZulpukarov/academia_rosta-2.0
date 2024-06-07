@@ -1,6 +1,5 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/features/calendar/presentation/pages/calendar_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/groups_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_main.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/profile_screen.dart';
@@ -31,11 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
       icon: Icons.group,
       label: "Группы",
     ),
-    NavBarItem(
-      screen: const CalendarScreen(),
-      icon: Icons.calendar_month,
-      label: "Календарь",
-    ),
+    // NavBarItem(
+    //   screen: const CalendarScreen(),
+    //   icon: Icons.calendar_month,
+    //   label: "Календарь",
+    // ),
     NavBarItem(
       screen: const TrainCharacterScreen(),
       icon: Icons.calculate,
@@ -82,12 +81,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            _navBarButton(0),
-            _navBarButton(1),
-            _navBarButton(2),
-            _navBarButton(3),
-          ],
+          children: List.generate(
+            _navBarOptions.length,
+            (index) => _navBarButton(index),
+          ),
         ),
       ),
     );

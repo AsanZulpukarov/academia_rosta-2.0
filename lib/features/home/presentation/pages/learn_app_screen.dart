@@ -6,7 +6,6 @@ import 'package:gap/gap.dart';
 import '../../../../app_text_styles.dart';
 import '../../../../app_theme.dart';
 import '../../../authorization/presentation/pages/sign_in/sign_in_screen.dart';
-import 'home/home_screen.dart';
 
 class AppInfo {
   String image = "";
@@ -93,7 +92,7 @@ class _LearnAppScreenState extends State<LearnAppScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => const SignInScreen(),
                       ),
                     );
                   },
