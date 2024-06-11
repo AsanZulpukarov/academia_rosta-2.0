@@ -17,8 +17,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
       int id) async {
     try {
       return Right(await profileRemoteDataSource.getMyStatistic(id));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -26,8 +26,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<Either<Failure, UserInfoEntity>> getUserInfo() async {
     try {
       return Right(await profileRemoteDataSource.getUserInfo());
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -43,8 +43,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(
           await profileRemoteDataSource.editPassword(editPasswordEntity));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -54,8 +54,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
     try {
       return Right(
           await profileRemoteDataSource.updateUserInfo(userInfoEntity));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -63,8 +63,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<Either<Failure, List<SubjectModel>>> getMySubjects() async {
     try {
       return Right(await profileRemoteDataSource.getMySubjects());
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -72,8 +72,8 @@ class ProfileRepositoryImpl extends ProfileRepository {
   Future<Either<Failure, void>> changeAvatar(int avatar) async {
     try {
       return Right(await profileRemoteDataSource.changeAvatar(avatar));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

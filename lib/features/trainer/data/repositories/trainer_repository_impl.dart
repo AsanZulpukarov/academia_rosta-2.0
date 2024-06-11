@@ -25,15 +25,15 @@ class TrainerRepositoryImpl extends TrainerRepository {
   Future<Either<Failure, List<int>>> getNumberArray(
       ExerciseTrainEntity exerciseTrainEntity) async {
     try {
-      return Right(
-        TrainerService().getArray(
-          exerciseTrainEntity.topic ?? "ПСВ",
-          exerciseTrainEntity.digitsCount ?? 1,
-          exerciseTrainEntity.numberCount ?? 1,
-        ),
-      );
-    } on Exception {
-      throw Left(ServerFailure());
+        return Right(
+          TrainerService().getArray(
+            exerciseTrainEntity.topic ?? "ПСВ",
+            exerciseTrainEntity.digitsCount ?? 1,
+            exerciseTrainEntity.numberCount ?? 1,
+          ),
+        );
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

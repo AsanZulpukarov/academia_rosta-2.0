@@ -1,6 +1,7 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/repositories/authorization_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/sign_in_entity.dart';
@@ -9,6 +10,7 @@ import 'package:academia_rosta_diplom/features/authorization/presentation/bloc/s
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_up/sign_up_screen.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/widgets/app_logo_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
+import 'package:academia_rosta_diplom/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,6 +31,12 @@ class _SignInScreenState extends State<SignInScreen> {
   bool _isVisible = true;
 
   final _formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    prefs.setBool(SharedPrefSource.isOpenKey, true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         child: BlocConsumer<SignInBloc, SignInState>(
           listener: (context, state) {
+            print(state);
             if (state is SignInLoadedState) {
               Navigator.pushAndRemoveUntil(
                 context,
@@ -115,7 +124,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => ResetPasswordScreen(),
+                                    builder: (context) => const ResetPasswordScreen(),
                                   ),
                                 );
                               },

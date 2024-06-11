@@ -8,14 +8,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ChooseStudentsDialog extends StatefulWidget {
   final List<StudentEntity> students;
-  const ChooseStudentsDialog({Key? key, required this.students}) : super(key: key);
+
+  const ChooseStudentsDialog({Key? key, required this.students})
+      : super(key: key);
 
   @override
   State<ChooseStudentsDialog> createState() => _ChooseStudentsDialogState();
 }
 
 class _ChooseStudentsDialogState extends State<ChooseStudentsDialog> {
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GradeBloc, GradeState>(
@@ -25,13 +26,13 @@ class _ChooseStudentsDialogState extends State<ChooseStudentsDialog> {
           width: 300.w,
           child: ListView.separated(
             shrinkWrap: true,
-            itemCount: 10,
+            itemCount: widget.students.length,
             itemBuilder: (context, index) {
-              bool isSelect = widget.students[index].isAttended ?? false;
               return GestureDetector(
                 onTap: () {
                   setState(() {
-                    isSelect = !isSelect;
+                    widget.students[index].isAttended =
+                        !(widget.students[index].isAttended ?? false);
                   });
                 },
                 child: ListTile(
@@ -41,7 +42,9 @@ class _ChooseStudentsDialogState extends State<ChooseStudentsDialog> {
                   ),
                   trailing: Icon(
                     Icons.check_circle,
-                    color: isSelect == true ? AppColors.blue : AppColors.grey,
+                    color: widget.students[index].isAttended == true
+                        ? AppColors.blue
+                        : AppColors.grey,
                   ),
                 ),
               );

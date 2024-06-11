@@ -7,10 +7,12 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/studen
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/prev_hw_student_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,7 +37,8 @@ class ListStudentScreen extends StatelessWidget {
             itemCount: students.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
+                alignment: Alignment.center,
                 decoration: ShapeDecoration(
                   shadows: [
                     BoxShadow(
@@ -56,84 +59,145 @@ class ListStudentScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.r),
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                child: Stack(
                   children: [
-                    Text(
-                      (index + 1).toString(),
-                      style: AppTextStyles.black16Regular.copyWith(
-                        color: AppColors.white,
-                      ),
-                    ),
-                    Gap(10.w),
-                    Expanded(
-                      child: Text(
-                        students.elementAt(index).getFullName(),
-                        style: AppTextStyles.black16Regular.copyWith(
-                          color: AppColors.white,
-                        ),
-                      ),
-                    ),
-                    Gap(10.w),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => BlocProvider(
-                                  create: (context) => HWBloc(
-                                    GetAllHWByStudentIdUseCase(
-                                      GroupRepositoryImpl(
-                                        remoteGroupDataSource:
-                                            GroupRemoteDataSourceImpl(),
-                                        networkInfo: NetworkInfoImpl(
-                                          connectionChecker:
-                                              InternetConnectionChecker(),
-                                        ),
-                                      ),
-                                    ),
-                                  )..add(
-                                      HWEmptyEvent(
-                                        idSubject: idSubject,
-                                        idStudent: students[index].id ?? 0,
-                                      ),
-                                    ),
-                                  child: PrevHWStudentScreen(
-                                    fio: students[index].getFullName(),
+                    Positioned.fill(
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const StudentInfoScreen(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          color: AppColors.transparent,
+                          width: double.infinity,
+                          height: double.infinity,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                (index + 1).toString(),
+                                style: AppTextStyles.black16Regular.copyWith(
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              Gap(10.w),
+                              Expanded(
+                                child: Text(
+                                  students.elementAt(index).getFullName(),
+                                  style: AppTextStyles.black16Regular.copyWith(
+                                    color: AppColors.white,
                                   ),
                                 ),
                               ),
-                            );
-                          },
-                          child: Image.asset(
-                            'assets/icons/home_work_icon.png',
-                            width: 24.w,
-                            height: 24.h,
-                            color: AppColors.white,
+                            ],
                           ),
                         ),
-                        Gap(10.w),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const StudentInfoScreen(),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          PopupMenuButton(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20.r),
+                            ),
+                            icon: Icon(
+                              Icons.more_vert,
+                              color: AppColors.white,
+                              size: 24.w,
+                            ),
+                            itemBuilder: (context) => [
+                              PopupMenuItem(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => BlocProvider(
+                                        create: (context) => HWBloc(
+                                          GetAllHWByStudentIdUseCase(
+                                            GroupRepositoryImpl(
+                                              remoteGroupDataSource:
+                                                  GroupRemoteDataSourceImpl(),
+                                              networkInfo: NetworkInfoImpl(
+                                                connectionChecker:
+                                                    InternetConnectionChecker(),
+                                              ),
+                                            ),
+                                          ),
+                                        )..add(
+                                            HWEmptyEvent(
+                                              idSubject: idSubject,
+                                              idStudent:
+                                                  students[index].id ?? 0,
+                                            ),
+                                          ),
+                                        child: PrevHWStudentScreen(
+                                          fio: students[index].getFullName(),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/home_work_icon.png',
+                                      width: 24.w,
+                                      height: 24.h,
+                                      color: AppColors.black,
+                                    ),
+                                    Gap(10.w),
+                                    Text(
+                                      "ДЗ",
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.black12Medium,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            );
-                          },
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: AppColors.white,
-                            size: 24.w,
+                              PopupMenuItem(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => GradeScreen(
+                                        student: students.elementAt(index),
+                                        idSubject: idSubject,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Image.asset(
+                                      'assets/icons/grade_icon.png',
+                                      width: 24.w,
+                                      height: 24.h,
+                                      color: AppColors.black,
+                                    ),
+                                    Gap(10.w),
+                                    Text(
+                                      "Оценка",
+                                      textAlign: TextAlign.center,
+                                      style: AppTextStyles.black12Medium,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

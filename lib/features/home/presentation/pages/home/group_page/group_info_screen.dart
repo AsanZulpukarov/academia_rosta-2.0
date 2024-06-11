@@ -206,6 +206,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
               MaterialPageRoute(
                 builder: (context) => AttendanceScreen(
                   students: groupInfoByIdEntity?.pupils ?? [],
+                  idGroups: groupInfoByIdEntity?.id ?? 0,
                 ),
               ),
             );
@@ -231,21 +232,6 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     ),
                   )..add(LessonHistoryEmptyEvent(id: groupInfoByIdEntity?.id ?? 0)),
                   child: const HistoryLessonScreen(),
-                ),
-              ),
-            );
-          },
-        ),
-        Gap(10.w),
-        _actionButtonAndName(
-          nameIcon: 'grade_icon.png',
-          nameButton: 'Оценки',
-          function: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => GradeScreen(
-                  students: groupInfoByIdEntity?.pupils ?? [],
                 ),
               ),
             );

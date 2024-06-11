@@ -4,8 +4,10 @@ import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/post_attendance_students.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_event.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_state.dart';
@@ -26,10 +28,12 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class AttendanceScreen extends StatefulWidget {
   final List<StudentEntity> students;
+  final int idGroups;
 
   const AttendanceScreen({
     Key? key,
     required this.students,
+    required this.idGroups,
   }) : super(key: key);
 
   @override
@@ -38,7 +42,16 @@ class AttendanceScreen extends StatefulWidget {
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
   DateTime _selectDate = DateTime.now();
-  AttendanceBloc bloc = AttendanceBloc();
+  AttendanceBloc bloc = AttendanceBloc(
+    PostAttendanceUseCase(
+      GroupRepositoryImpl(
+        remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+        networkInfo: NetworkInfoImpl(
+          connectionChecker: InternetConnectionChecker(),
+        ),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +134,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                       listener: (context, state) {
                         if (state is AttendanceErrorState) {
                           AppUtils.showSnackBar(
-                              context: context, description: state.message);
+                            context: context,
+                            description: state.message,
+                          );
                         } else if (state is AttendanceSavedState) {
                           AppUtils.showSnackBar(
                             context: context,
@@ -139,7 +154,22 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                             }
                             return MainButtonWidget(
                               onPressed: () {
-                                bloc.add(AttendanceTapSaveEvent());
+                                Map<int, bool> attendanceMap = {};
+                                for (int i = 0;
+                                    i < widget.students.length;
+                                    i++) {
+                                  attendanceMap[widget.students[i].id ?? 0] =
+                                      widget.students[i].isAttended ?? false;
+                                }
+                                bloc.add(
+                                  AttendanceTapSaveEvent(
+                                    attendanceEntity: AttendanceEntity(
+                                      idGroup: widget.idGroups,
+                                      selectDate: _selectDate,
+                                      attendance: attendanceMap,
+                                    ),
+                                  ),
+                                );
                               },
                               borderRadius: BorderRadius.circular(20.r),
                               child: Text(

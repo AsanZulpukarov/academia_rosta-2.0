@@ -1,15 +1,16 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:academia_rosta_diplom/core/usecases/usecase.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/repositories/group_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class PostAttendanceUseCase extends UseCase<void, Object> {
+class PostAttendanceUseCase extends UseCase<void, AttendanceEntity> {
   final GroupRepository appRepository;
 
   PostAttendanceUseCase(this.appRepository);
 
   @override
-  Future<Either<Failure, void>> call(Object params) async {
-    return await appRepository.postAttendanceStudents();
+  Future<Either<Failure, void>> call(AttendanceEntity params) async {
+    return await appRepository.postAttendanceStudents(params);
   }
 }

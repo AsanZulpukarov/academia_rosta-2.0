@@ -1,3 +1,5 @@
+import 'package:academia_rosta_diplom/features/home/domain/entities/grade_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
@@ -9,9 +11,7 @@ abstract class GroupRemoteDataSource {
 
   Future<GroupInfoByIdEntity> getGroupById(int id);
 
-  Future<void> postAttendanceStudents();
-
-  Future<void> getLastThreeLessonHistory();
+  Future<void> postAttendanceStudents(AttendanceEntity attendanceEntity);
 
   Future<List<LessonEntity>> getAllLessonHistory(int id);
 
@@ -26,5 +26,5 @@ abstract class GroupRemoteDataSource {
 
   Future<void> deleteHWByStudentId();
 
-  Future<void> postGradeByStudentsId();
+  Future<void> postGradeByStudentsId(GradeEntity gradeEntity);
 }

@@ -15,10 +15,14 @@ final class GradeLoadingState extends GradeState {
   const GradeLoadingState();
 }
 
-final class GradeLoadedStudentsState extends GradeState {
-  final List<StudentEntity> students;
-  const GradeLoadedStudentsState({required this.students,});
+final class GradeLoadedState extends GradeState {
+  const GradeLoadedState();
+}
+
+final class GradeErrorState extends GradeState {
+  final String message;
+  const GradeErrorState({required this.message});
   @override
   // TODO: implement props
-  List<Object> get props => [students];
+  List<Object> get props => [message];
 }

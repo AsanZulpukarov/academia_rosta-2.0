@@ -28,7 +28,7 @@ class AppUtils {
     String title = "Ошибка",
     required String description,
     Duration duration = const Duration(seconds: 2),
-    Color backgroundColor = AppColors.mainColor,
+    Color backgroundColor = AppColors.mainRed,
   }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -66,7 +66,7 @@ class AppUtils {
   static String mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return "Ошибка сервера";
+        return (failure as ServerFailure).toString();
       case InternetFailure:
         return "Интернет не работает";
       default:

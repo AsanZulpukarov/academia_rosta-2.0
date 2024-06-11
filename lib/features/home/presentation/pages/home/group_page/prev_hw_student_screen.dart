@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/create_hw_screen.dart';
@@ -14,7 +15,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class PrevHWStudentScreen extends StatelessWidget {
+class PrevHWStudentScreen extends StatefulWidget {
   final String fio;
 
   const PrevHWStudentScreen({
@@ -23,9 +24,16 @@ class PrevHWStudentScreen extends StatelessWidget {
   });
 
   @override
+  State<PrevHWStudentScreen> createState() => _PrevHWStudentScreenState();
+}
+
+class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
+  DateTime selectDate = DateTime.now();
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const MyAppBarSecond(title: "Прошлые домашние занятия"),
+      appBar: const MyAppBarSecond(title: "Домашние задания"),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -45,8 +53,8 @@ class PrevHWStudentScreen extends StatelessWidget {
                       firstDate: DateTime.now(),
                       lastDate: DateTime(
                           DateTime.now().year, DateTime.now().month + 2),
-                      locale: Locale("ru"),
-                    );
+                      locale: const Locale("ru"),
+                    ).then((value) => selectDate = value ?? selectDate);
                   },
                   width: 180.w,
                   offset: const Offset(4, 4),
@@ -59,7 +67,7 @@ class PrevHWStudentScreen extends StatelessWidget {
                         color: AppColors.black,
                       ),
                       Text(
-                        "09.06.2001",
+                        AppUtils.parseDateToString(selectDate),
                         style: AppTextStyles.black16Regular,
                       ),
                     ],
@@ -79,7 +87,10 @@ class PrevHWStudentScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CreateHWScreen(),
+                        builder: (context) => CreateHWScreen(
+                          selectDate: selectDate,
+                          fio: widget.fio,
+                        ),
                       ),
                     );
                   },
@@ -102,7 +113,7 @@ class PrevHWStudentScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return LastHWCardWidget(
                         hw: hw[index],
-                        fio: fio,
+                        fio: widget.fio,
                       );
                     },
                     separatorBuilder: (context, index) {

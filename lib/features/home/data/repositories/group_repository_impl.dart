@@ -1,6 +1,8 @@
 import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/grade_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
@@ -24,8 +26,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, List<GroupInfoEntity>>> getAllGroups() async {
     try {
       return Right(await remoteGroupDataSource.getAllGroups());
-    } on Exception {
-      return throw Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -34,8 +36,8 @@ class GroupRepositoryImpl extends GroupRepository {
       {required int id}) async {
     try {
       return Right(await remoteGroupDataSource.getGroupById(id));
-    } on Exception {
-      return throw Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -43,8 +45,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> createHWByStudentId() async {
     try {
       return Right(await remoteGroupDataSource.createHWByStudentId());
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      throw Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -52,8 +54,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> deleteHWById() async {
     try {
       return Right(await remoteGroupDataSource.deleteHWById());
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      throw Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -61,8 +63,8 @@ class GroupRepositoryImpl extends GroupRepository {
   Future<Either<Failure, void>> deleteHWByStudentId() async {
     try {
       return Right(await remoteGroupDataSource.deleteHWByStudentId());
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -71,41 +73,28 @@ class GroupRepositoryImpl extends GroupRepository {
       int id) async {
     try {
       return Right(await remoteGroupDataSource.getAllLessonHistory(id));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> getLastThreeLessonHistory() async {
-    // TODO: implement getLastThreeLessonHistory
-
+  Future<Either<Failure, void>> postAttendanceStudents(AttendanceEntity attendanceEntity) async {
     try {
-      return Right(await remoteGroupDataSource.getLastThreeLessonHistory());
-    } on Exception {
-      return Left(ServerFailure());
+      return Right(await remoteGroupDataSource.postAttendanceStudents(attendanceEntity));
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> postAttendanceStudents() async {
-    // TODO: implement postAttendanceStudents
-
-    try {
-      return Right(await remoteGroupDataSource.postAttendanceStudents());
-    } on Exception {
-      return Left(ServerFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> postGradeByStudentsId() async {
+  Future<Either<Failure, void>> postGradeByStudentsId(GradeEntity gradeEntity) async {
     // TODO: implement postGradeByStudentsId
 
     try {
-      return Right(await remoteGroupDataSource.postGradeByStudentsId());
-    } on Exception {
-      return Left(ServerFailure());
+      return Right(await remoteGroupDataSource.postGradeByStudentsId(gradeEntity));
+    } on Failure catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -115,8 +104,8 @@ class GroupRepositoryImpl extends GroupRepository {
     try {
       return Right(await remoteGroupDataSource.getAllHWByStudentId(
           idStudent: idStudent, idSubject: idSubject));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
@@ -125,8 +114,8 @@ class GroupRepositoryImpl extends GroupRepository {
       int id) async {
     try {
       return Right(await remoteGroupDataSource.getExerciseByHWId(id));
-    } on Exception {
-      return Left(ServerFailure());
+    } on Exception catch (e){
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 }

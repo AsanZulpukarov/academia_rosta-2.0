@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/count_example_input_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
@@ -17,7 +18,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 class CreateHWScreen extends StatelessWidget {
-  const CreateHWScreen({Key? key}) : super(key: key);
+  final DateTime selectDate;
+  final String fio;
+
+  const CreateHWScreen({
+    Key? key,
+    required this.selectDate,
+    required this.fio,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +52,14 @@ class CreateHWScreen extends StatelessWidget {
                     titleStyle: AppTextStyles.black16,
                     descriptionStyle: AppTextStyles.black16,
                     title: "ФИО",
-                    description: "Асан Зулпукаров",
+                    description: fio,
                   ),
                   Gap(20.h),
                   TitleDescriptionBlackColorRowWidget(
                     titleStyle: AppTextStyles.black16,
                     descriptionStyle: AppTextStyles.black16,
                     title: "Дата завершения",
-                    description: "07.04.2002",
+                    description: AppUtils.parseDateToString(selectDate),
                   ),
                   Gap(20.h),
                   const CharacterExerciseWidget(),

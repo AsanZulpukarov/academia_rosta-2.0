@@ -77,8 +77,9 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       HttpHeaders.acceptCharsetHeader: 'utf-8',
     };
     final body = jsonEncode(signInModel.toJson());
-
+    print(url);
     final response = await http.post(url, headers: headers, body: body);
+    print(response.statusCode);
 
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
