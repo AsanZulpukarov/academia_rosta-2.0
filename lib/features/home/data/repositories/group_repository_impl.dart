@@ -3,6 +3,7 @@ import 'package:academia_rosta_diplom/core/platform/network_info.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/grade_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/create_hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
@@ -42,20 +43,20 @@ class GroupRepositoryImpl extends GroupRepository {
   }
 
   @override
-  Future<Either<Failure, void>> createHWByStudentId() async {
+  Future<Either<Failure, HWEntity>> createHWByStudentId(CreateHWEntity createHWEntity) async {
     try {
-      return Right(await remoteGroupDataSource.createHWByStudentId());
+      return Right(await remoteGroupDataSource.createHWByStudentId(createHWEntity));
     } on Exception catch (e){
-      throw Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 
   @override
-  Future<Either<Failure, void>> deleteHWById() async {
+  Future<Either<Failure, void>> deleteHWById(int idHW) async {
     try {
-      return Right(await remoteGroupDataSource.deleteHWById());
+      return Right(await remoteGroupDataSource.deleteHWById(idHW));
     } on Exception catch (e){
-      throw Left(ServerFailure(message: e.toString()));
+      return Left(ServerFailure(message: e.toString()));
     }
   }
 

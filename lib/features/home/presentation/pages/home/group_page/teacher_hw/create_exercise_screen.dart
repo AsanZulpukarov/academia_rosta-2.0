@@ -1,10 +1,8 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/count_example_input_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_description_row_widget.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/datasources/local/trainer_local_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/datasources/remote/trainer_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/repositories/trainer_repository_impl.dart';
@@ -17,21 +15,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
-class CreateHWScreen extends StatelessWidget {
-  final DateTime selectDate;
-  final String fio;
+class CreateExerciseScreen extends StatelessWidget {
 
-  const CreateHWScreen({
+  const CreateExerciseScreen({
     Key? key,
-    required this.selectDate,
-    required this.fio,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const MyAppBarSecond(
-        title: "Создание Д/З",
+        title: "Добавить упражнение",
       ),
       body: BlocProvider(
         create: (context) => TrainerBloc(
@@ -48,20 +42,6 @@ class CreateHWScreen extends StatelessWidget {
             children: [
               Column(
                 children: [
-                  TitleDescriptionBlackColorRowWidget(
-                    titleStyle: AppTextStyles.black16,
-                    descriptionStyle: AppTextStyles.black16,
-                    title: "ФИО",
-                    description: fio,
-                  ),
-                  Gap(20.h),
-                  TitleDescriptionBlackColorRowWidget(
-                    titleStyle: AppTextStyles.black16,
-                    descriptionStyle: AppTextStyles.black16,
-                    title: "Дата завершения",
-                    description: AppUtils.parseDateToString(selectDate),
-                  ),
-                  Gap(20.h),
                   const CharacterExerciseWidget(),
                   Gap(20.h),
                   Row(

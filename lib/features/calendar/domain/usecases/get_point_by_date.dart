@@ -10,6 +10,6 @@ class GetPointByDateUseCase extends UseCase<void, Object> {
 
   @override
   Future<Either<Failure, void>> call(Object params) async {
-    return Right(await calendarRepository.getPointByDate());
+    return calendarRepository.getPointByDate();
   }
 }

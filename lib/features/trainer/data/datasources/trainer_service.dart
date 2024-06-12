@@ -58,7 +58,6 @@ class TrainerService {
   }
 
   Generatable getTask(String taskName) {
-    print(taskName);
     switch (taskName) {
       case "ПСВ":
         return PSV();

@@ -1,7 +1,7 @@
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/timetable_entity.dart';
 
 class TimetableModel extends TimetableEntity {
-  TimetableModel({
+  const TimetableModel({
     required monday,
     required tuesday,
     required wednesday,

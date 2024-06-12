@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/models/user_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/domain/entities/user_entity.dart';
@@ -16,12 +18,11 @@ class Constants {
   static const baseUrl = "$_host://$_ip:$_port/";
   static UserEntity user = UserModel.fromJson(
     {
-      'token': prefs.getString(SharedPrefSource.tokenKey),
-      'role': prefs.getString(SharedPrefSource.roleKey),
-      'avatar': prefs.getString(SharedPrefSource.imageKey),
+      "token": prefs.getString(SharedPrefSource.tokenKey),
+      "role": prefs.getString(SharedPrefSource.roleKey),
+      "avatar": prefs.getInt(SharedPrefSource.imageKey),
     },
   );
-
   static final List<String> months = [
     'Январь',
     'Февраль',

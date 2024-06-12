@@ -12,7 +12,6 @@ class AttendanceBloc extends Bloc<AttendanceEvent, AttendanceState> {
       emit(AttendanceLoadingState());
       final errorOrSuccess =
           await postAttendanceUseCase.call(event.attendanceEntity);
-      print(errorOrSuccess);
       errorOrSuccess.fold(
         (l) => emit(
           AttendanceErrorState(

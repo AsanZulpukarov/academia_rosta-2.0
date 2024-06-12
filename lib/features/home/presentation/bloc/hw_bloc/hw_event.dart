@@ -14,5 +14,3 @@ final class HWEmptyEvent extends HWEvent {
 
   const HWEmptyEvent({required this.idSubject, required this.idStudent});
 }
-
-final class HWDeleteEvent extends HWEvent {}

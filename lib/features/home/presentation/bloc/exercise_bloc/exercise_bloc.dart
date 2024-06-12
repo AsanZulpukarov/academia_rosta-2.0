@@ -1,8 +1,8 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_exercise_by_hw_id.dart';
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'exercise_event.dart';
 

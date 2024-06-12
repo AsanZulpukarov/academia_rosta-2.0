@@ -36,7 +36,6 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       final jsonData = jsonDecode(responseBody);
       // return UserModel.fromJson(jsonData);
     } else {
-      print("Asan --> ${response.statusCode} ${responseBody}");
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
   }
@@ -60,7 +59,6 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       final jsonData = jsonDecode(responseBody);
       // return UserModel.fromJson(jsonData);
     } else {
-      print("Asan --> ${response.statusCode} ${responseBody}");
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
   }
@@ -77,9 +75,7 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       HttpHeaders.acceptCharsetHeader: 'utf-8',
     };
     final body = jsonEncode(signInModel.toJson());
-    print(url);
     final response = await http.post(url, headers: headers, body: body);
-    print(response.statusCode);
 
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
@@ -89,17 +85,16 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       Constants.user = UserModel.fromJson(jsonData);
       return UserModel.fromJson(jsonData);
     } else {
-      final jsonData = jsonDecode(responseBody);
-      throw ServerException(jsonData["message"]);
+      throw ServerException(jsonDecode(responseBody)['message']);
     }
   }
 
   void setToken(String value) async {
-    prefs.setString(SharedPrefSource.tokenKey, value);
+    await prefs.setString(SharedPrefSource.tokenKey, value);
   }
 
   void setRole(String value) async {
-    prefs.setString(SharedPrefSource.roleKey, value);
+    await prefs.setString(SharedPrefSource.roleKey, value);
   }
 
   @override
@@ -130,7 +125,6 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       final jsonData = jsonDecode(responseBody);
       // return UserModel.fromJson(jsonData);
     } else {
-      print("Asan --> ${response.statusCode} $responseBody");
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
   }

@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/delete_hw_by_id.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,7 +12,8 @@ part 'hw_state.dart';
 class HWBloc extends Bloc<HWEvent, HWState> {
   GetAllHWByStudentIdUseCase getAllHWByStudentIdUseCase;
 
-  HWBloc(this.getAllHWByStudentIdUseCase) : super(HWInitialState()) {
+  HWBloc(this.getAllHWByStudentIdUseCase)
+      : super(HWInitialState()) {
     on<HWEmptyEvent>((event, emit) async {
       emit(HWLoadingState());
       final errorOrSuccess = await getAllHWByStudentIdUseCase.call(

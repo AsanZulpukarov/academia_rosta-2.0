@@ -15,7 +15,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     on<SingInButtonEvent>((event, emit) async {
       emit(SignInLoadingState());
       final errorOrSuccess = await signInUseCase.call(event.signInEntity);
-      print(errorOrSuccess);
       errorOrSuccess.fold(
           (error) => emit(
                 SignInErrorState(

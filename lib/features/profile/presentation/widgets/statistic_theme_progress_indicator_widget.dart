@@ -51,7 +51,7 @@ class StatisticThemeProgressIndicatorWidget extends StatelessWidget {
                 : incorrectProgressColor,
             barRadius: Radius.circular(20.r),
             leading: Text(
-              topic ?? "Пусто",
+              topic,
               style: AppTextStyles.black14Medium,
             ),
           ),

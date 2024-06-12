@@ -22,7 +22,6 @@ class TrainerBloc extends Bloc<TrainerEvent, TrainerState> {
           ),
         ) {
     on<TrainerEvent>((event, emit) async {
-      print(state.exerciseTrainEntity);
       emit(TrainerLoadingState(exerciseTrainEntity: state.exerciseTrainEntity));
       final errorOrSuccess =
           await getNumbersUseCase.call(state.exerciseTrainEntity);

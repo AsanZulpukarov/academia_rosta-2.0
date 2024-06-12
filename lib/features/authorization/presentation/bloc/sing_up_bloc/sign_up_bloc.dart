@@ -12,9 +12,9 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   SignUpUseCase signUpUseCase;
 
   SignUpBloc({required this.signUpUseCase}) : super(SignUpInitialState()) {
-    on<SingInButtonEvent>(event, emit) async {
+    on<SingUpButtonEvent>((event, emit) async {
       emit(SignUpLoadingState());
-      final errorOrSuccess = await signUpUseCase.call(event.signInEntity);
+      final errorOrSuccess = await signUpUseCase.call(event.signUpEntity);
       errorOrSuccess.fold(
           (error) => emit(
                 SignUpErrorState(
@@ -24,5 +24,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         emit(SignUpLoadedState());
       });
     }
+    );
   }
 }

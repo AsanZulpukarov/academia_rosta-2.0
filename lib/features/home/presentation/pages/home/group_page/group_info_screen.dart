@@ -1,19 +1,20 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/core/platform/network_info.dart';
+import 'package:academia_rosta_diplom/features/authorization/domain/enums/role_enum.dart';
 import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/subject_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/teacher_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_by_id_entity.dart';
-import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/attendance/attendance_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/list_student_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_hw/all_hw_student_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/group_calendar_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/show_bottom_window.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
@@ -25,7 +26,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import '../../../widgets/home/my_app_bar_second.dart';
-import 'history_lesson_screen.dart';
+import 'lessons/history_lesson_screen.dart';
 
 class GroupInfoScreen extends StatefulWidget {
   final String groupName;
@@ -102,7 +103,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                       Gap(16.h),
                       _actionButton(context),
                       Gap(16.h),
-                      GroupCalendarWidget(),
+                      const GroupCalendarWidget(),
                     ],
                   ),
                   Gap(20.h),
@@ -147,6 +148,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   Gap(10.h),
                   ListStudentScreen(
                     idSubject: state.group.subject?.id ?? 0,
+                    idGroup : state.group.id ?? 0,
                   ),
                 ],
               ),
@@ -197,7 +199,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
   Widget _actionButton(BuildContext context) {
     return Row(
       children: [
-        _actionButtonAndName(
+        Constants.user.roleType == RoleType.student ? const SizedBox():_actionButtonAndName(
           nameIcon: 'attendance_icon.png',
           nameButton: 'Посещения',
           function: () {
@@ -235,6 +237,15 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                 ),
               ),
             );
+          },
+        ),
+        Gap(10.w),
+        Constants.user.roleType == RoleType.teacher ?const SizedBox(): _actionButtonAndName(
+          nameIcon: 'home_work_icon.png',
+          nameButton: 'Д/З',
+          function: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const AllHWStudentScreen(),),);
           },
         ),
       ],

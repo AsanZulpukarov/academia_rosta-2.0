@@ -76,7 +76,6 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         child: BlocConsumer<SignInBloc, SignInState>(
           listener: (context, state) {
-            print(state);
             if (state is SignInLoadedState) {
               Navigator.pushAndRemoveUntil(
                 context,

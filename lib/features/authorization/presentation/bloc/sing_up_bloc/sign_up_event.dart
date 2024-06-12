@@ -6,10 +6,10 @@ abstract class SignUpEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-class SingInButtonEvent extends SignUpEvent {
+class SingUpButtonEvent extends SignUpEvent {
   final SignUpEntity signUpEntity;
 
-  SingInButtonEvent({required this.signUpEntity});
+  SingUpButtonEvent({required this.signUpEntity});
 
   @override
   // TODO: implement props

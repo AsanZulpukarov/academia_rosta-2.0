@@ -1,15 +1,12 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
-import 'package:academia_rosta_diplom/core/platform/network_info.dart';
-import 'package:academia_rosta_diplom/features/home/data/datasources/remote/group_remote_data_source_impl.dart';
-import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
+import 'package:academia_rosta_diplom/constants.dart';
+import 'package:academia_rosta_diplom/features/authorization/domain/enums/role_enum.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
-import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/prev_hw_student_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade/grade_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/teacher_hw/prev_hw_student_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -21,9 +18,13 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class ListStudentScreen extends StatelessWidget {
   final int idSubject;
+  final int idGroup;
 
-  const ListStudentScreen({Key? key, required this.idSubject})
-      : super(key: key);
+  const ListStudentScreen({
+    Key? key,
+    required this.idSubject,
+    required this.idGroup,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +39,7 @@ class ListStudentScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               return Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
+                height: 42.h,
                 alignment: Alignment.center,
                 decoration: ShapeDecoration(
                   shadows: [
@@ -99,7 +101,7 @@ class ListStudentScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Align(
+                    Constants.user.roleType == RoleType.student ? Container() : Align(
                       alignment: Alignment.centerRight,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -120,29 +122,12 @@ class ListStudentScreen extends StatelessWidget {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => BlocProvider(
-                                        create: (context) => HWBloc(
-                                          GetAllHWByStudentIdUseCase(
-                                            GroupRepositoryImpl(
-                                              remoteGroupDataSource:
-                                                  GroupRemoteDataSourceImpl(),
-                                              networkInfo: NetworkInfoImpl(
-                                                connectionChecker:
-                                                    InternetConnectionChecker(),
-                                              ),
-                                            ),
-                                          ),
-                                        )..add(
-                                            HWEmptyEvent(
-                                              idSubject: idSubject,
-                                              idStudent:
-                                                  students[index].id ?? 0,
-                                            ),
-                                          ),
-                                        child: PrevHWStudentScreen(
+                                      builder: (context) => PrevHWStudentScreen(
                                           fio: students[index].getFullName(),
+                                          idGroup: idGroup,
+                                          idStudent: students[index].id ?? 0,
+                                          idSubject: idSubject,
                                         ),
-                                      ),
                                     ),
                                   );
                                 },

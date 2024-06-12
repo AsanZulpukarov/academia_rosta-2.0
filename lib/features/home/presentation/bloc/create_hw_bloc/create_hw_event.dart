@@ -8,8 +8,11 @@ sealed class CreateHwEvent extends Equatable {
   List<Object?> get props => [];
 }
 
-final class CreateHWAsTestEvent extends CreateHwEvent {}
+final class CreateHWSaveEvent extends CreateHwEvent {
+  final CreateHWEntity createHWEntity;
 
-final class CreateHWAsTrainerEvent extends CreateHwEvent {}
-
-final class CreateHWDeleteHWStudentEvent extends CreateHwEvent {}
+  const CreateHWSaveEvent({required this.createHWEntity});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [createHWEntity];
+}

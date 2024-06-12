@@ -56,7 +56,7 @@ class GroupCalendarWidget extends StatelessWidget {
             ),
           );
         }
-        return SizedBox();
+        return const SizedBox();
       },
     );
   }

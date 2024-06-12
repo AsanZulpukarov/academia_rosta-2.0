@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class TimetableEntity extends Equatable{
+class TimetableEntity extends Equatable {
   final String? monday;
   final String? tuesday;
   final String? wednesday;
@@ -21,5 +21,13 @@ class TimetableEntity extends Equatable{
 
   @override
   // TODO: implement props
-  List<Object?> get props => [];
+  List<Object?> get props => [
+        monday,
+        tuesday,
+        wednesday,
+        thursday,
+        friday,
+        saturday,
+        sunday,
+      ];
 }

@@ -2,6 +2,7 @@ import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/error/failure.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:intl/intl.dart';
 
@@ -35,9 +36,9 @@ class AppUtils {
         duration: duration,
         backgroundColor: backgroundColor,
         behavior: SnackBarBehavior.floating,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(8.w),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(20.r),
         ),
         content: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -47,14 +48,14 @@ class AppUtils {
               title,
               style: AppTextStyles.black14Extrabold.copyWith(
                 color: AppColors.white,
-                fontSize: 20,
+                fontSize: 16.sp,
               ),
               textAlign: TextAlign.center,
             ),
             Text(
               description,
               style:
-                  AppTextStyles.black16Regular.copyWith(color: AppColors.white),
+                  AppTextStyles.black12.copyWith(color: AppColors.white),
               textAlign: TextAlign.center,
             ),
           ],
@@ -66,7 +67,7 @@ class AppUtils {
   static String mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return (failure as ServerFailure).toString();
+        return (failure as ServerFailure).message;
       case InternetFailure:
         return "Интернет не работает";
       default:
@@ -104,7 +105,7 @@ class AppUtils {
     if (value == null || value.isEmpty) {
       return 'Введите E-mail';
     }
-    final RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+    final RegExp emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
     if (!emailRegex.hasMatch(value)) {
       return 'Введите корректный E-mail';
     }

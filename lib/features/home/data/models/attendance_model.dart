@@ -1,4 +1,3 @@
-import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:intl/intl.dart';
 

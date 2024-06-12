@@ -6,15 +6,11 @@ import 'package:academia_rosta_diplom/features/home/data/datasources/remote/grou
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
-import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_lesson_history.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/post_attendance_students.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_event.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/attendance_bloc/attendance_state.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/history_lesson_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';

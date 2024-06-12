@@ -213,7 +213,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     onPressed: () async {
                                       if (_formKey.currentState!.validate()) {
                                         context.read<SignUpBloc>().add(
-                                              SingInButtonEvent(
+                                          SingUpButtonEvent(
                                                 signUpEntity: SignUpEntity(
                                                   username:
                                                       _usernameController.text,

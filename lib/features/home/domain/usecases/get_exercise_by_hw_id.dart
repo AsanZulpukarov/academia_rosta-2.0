@@ -3,7 +3,6 @@ import 'package:academia_rosta_diplom/core/usecases/usecase.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/repositories/group_repository.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 
 class GetExerciseByHWIdUseCase extends UseCase<List<ExerciseEntity>, int> {
   final GroupRepository appRepository;

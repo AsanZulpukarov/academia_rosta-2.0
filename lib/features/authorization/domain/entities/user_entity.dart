@@ -7,11 +7,9 @@ class UserEntity {
 
   UserEntity({
     required this.token,
-    required String role,
+    required this.roleType,
     this.avatar,
-  }) {
-    roleType = roleType?.fromJson(role);
-  }
+  });
 
   int getAvatar() {
     return avatar ?? 0;

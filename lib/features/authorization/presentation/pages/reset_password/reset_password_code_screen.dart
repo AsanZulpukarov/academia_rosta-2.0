@@ -44,7 +44,7 @@ class _ResetPasswordCodeScreenState extends State<ResetPasswordCodeScreen> {
             contentPadding:
                 EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
             border: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColors.borderColor, width: 2),
+              borderSide: const BorderSide(color: AppColors.borderColor, width: 2),
               borderRadius: BorderRadius.circular(20.r),
             ),
             enabledBorder: OutlineInputBorder(

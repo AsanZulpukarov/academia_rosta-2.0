@@ -1,6 +1,5 @@
 import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
-import 'package:academia_rosta_diplom/features/authorization/data/models/user_model.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/home_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/learn_app_screen.dart';
@@ -30,13 +29,6 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           );
         } else {
-          // Constants.user = UserModel.fromJson(
-          //   {
-          //     'token': prefs.getString(SharedPrefSource.tokenKey),
-          //     'role': prefs.getString(SharedPrefSource.roleKey),
-          //     'avatar': prefs.getString(SharedPrefSource.imageKey),
-          //   },
-          // );
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
               builder: (_) => const HomeScreen(),

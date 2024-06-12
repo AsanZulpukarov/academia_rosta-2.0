@@ -3,18 +3,11 @@ enum RoleType {
   teacher;
 
   RoleType fromJson(String role) {
-    if (role == "teacher") {
+    print(role);
+    if (role == "ROLE_TEACHER") {
       return RoleType.teacher;
     } else {
       return RoleType.student;
-    }
-  }
-
-  String toJson(RoleType roleType) {
-    if (roleType == RoleType.student) {
-      return "student";
-    } else {
-      return "teacher";
     }
   }
 }

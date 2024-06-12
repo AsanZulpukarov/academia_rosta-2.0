@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/constants.dart';
+import 'package:academia_rosta_diplom/features/authorization/domain/enums/role_enum.dart';
 import 'package:academia_rosta_diplom/features/authorization/presentation/pages/sign_in/sign_in_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
@@ -110,31 +111,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Изменить пароль',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ChangePasswordScreen(),),);
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChangePasswordScreen(),
+                  ),
+                );
               },
             ),
-            Gap(gap),
-            ProfileNavItem(
-              icon: Icons.bar_chart_outlined,
-              title: 'Моя статистика',
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyObjectScreen(),),);
-              },
-            ),
+            Constants.user.roleType == RoleType.teacher
+                ? const SizedBox()
+                : Column(
+                    children: [
+                      Gap(gap),
+                      ProfileNavItem(
+                        icon: Icons.bar_chart_outlined,
+                        title: 'Моя статистика',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MyObjectScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
             Gap(gap),
             ProfileNavItem(
               icon: Icons.email_outlined,
               title: 'Связаться с нами',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ContactScreen(),),);
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ContactScreen(),
+                  ),
+                );
               },
             ),
             Gap(gap),
@@ -143,9 +156,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'О приложении',
               onTap: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AboutAppScreen(),),);
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutAppScreen(),
+                  ),
+                );
               },
             ),
             Gap(gap),
@@ -176,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const SignInScreen()),
+                                          const SignInScreen(),),
                                   (Route<dynamic> route) => false,
                                 );
                               },

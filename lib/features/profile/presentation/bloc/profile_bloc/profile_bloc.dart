@@ -1,4 +1,5 @@
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
+import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info_entity.dart';
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_user_info.dart';
 import 'package:academia_rosta_diplom/main.dart';
@@ -23,8 +24,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         (r) => emit(ProfileLoadedState(r)),
       );
     });
-    on<ProfileExitAccountEvent>((event, emit) {
-      prefs.clear();
+    on<ProfileExitAccountEvent>((event, emit) async {
+      print(prefs.get(SharedPrefSource.tokenKey));
+      await prefs.clear();
+      print(prefs.get(SharedPrefSource.tokenKey));
     });
   }
 }

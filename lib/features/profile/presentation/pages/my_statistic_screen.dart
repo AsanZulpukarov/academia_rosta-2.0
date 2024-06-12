@@ -8,7 +8,7 @@ import 'package:academia_rosta_diplom/features/profile/domain/entities/mark_enti
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_my_statistic.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/my_statistic_bloc/my_statistic_bloc.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/statistic_card_info_widget.dart';
-import 'package:academia_rosta_diplom/features/profile/presentation/widgets/statistic_theme_progressIndicator_widget.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/widgets/statistic_theme_progress_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -53,8 +53,8 @@ class TrainScreenState extends State<TrainScreen>
             animation: _animation,
             builder: (context, child) {
               return _isFrontVisible
-                  ? TrainCharacterScreen()
-                  : ShowTrainNumberScreen(
+                  ? const TrainCharacterScreen()
+                  : const ShowTrainNumberScreen(
                       list: [],
                       speed: 1.0,
                     );

@@ -41,8 +41,6 @@ class AuthorizationRepositoryImpl extends AuthorizationRepository {
   @override
   Future<Either<Failure, UserModel>> signIn(SignInModel signInModel) async {
     try {
-      print(signInModel.username);
-      print(signInModel.password);
       return Right(await authorizationRemoteDataSource.signIn(signInModel));
     } on Exception catch (e){
       return Left(ServerFailure(message: e.toString()));

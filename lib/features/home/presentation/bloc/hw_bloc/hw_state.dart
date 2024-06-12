@@ -10,6 +10,7 @@ sealed class HWState extends Equatable {
 final class HWInitialState extends HWState {}
 
 final class HWLoadingState extends HWState {}
+final class HWDeleteSuccessState extends HWState {}
 
 final class HWLoadedState extends HWState {
   final List<HWEntity> hw;

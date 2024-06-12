@@ -1,5 +1,5 @@
 import 'package:academia_rosta_diplom/features/home/domain/entities/grade_entity.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade/grade_screen.dart';
 
 class GradeModel extends GradeEntity {
   const GradeModel({

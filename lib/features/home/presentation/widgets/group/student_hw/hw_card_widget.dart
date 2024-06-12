@@ -6,8 +6,11 @@ import 'package:academia_rosta_diplom/features/home/data/datasources/remote/grou
 import 'package:academia_rosta_diplom/features/home/data/repositories/group_repository_impl.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_exercise_by_hw_id.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/delete_hw_bloc/delete_hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/exercise_bloc/exercise_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/hw_item_exersices_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_hw/all_exercise_student_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/teacher_hw/hw_item_exersices_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/main_button_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/title_description_row_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,14 +20,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-class LastHWCardWidget extends StatelessWidget {
+class StudentHWCardWidget extends StatelessWidget {
   final HWEntity hw;
   final String fio;
+  final Function() onDelete;
 
-  const LastHWCardWidget({
+  const StudentHWCardWidget({
     Key? key,
     required this.hw,
     required this.fio,
+    required this.onDelete,
   }) : super(key: key);
 
   @override
@@ -49,19 +54,7 @@ class LastHWCardWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => BlocProvider(
-                    create: (context) => ExerciseBloc(
-                      GetExerciseByHWIdUseCase(
-                        GroupRepositoryImpl(
-                          remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-                          networkInfo: NetworkInfoImpl(
-                            connectionChecker: InternetConnectionChecker(),
-                          ),
-                        ),
-                      ),
-                    )..add(ExerciseGetEvent(id: hw.id ?? 0)),
-                    child: const HWItemExercisesScreen(),
-                  ),
+                  builder: (context) => const AllExerciseStudentScreen(),
                 ),
               );
             },
@@ -101,13 +94,20 @@ class LastHWCardWidget extends StatelessWidget {
             ),
           ),
           MainButtonWidget(
-            backgroundColor: AppColors.secondaryColor,
+            backgroundColor: AppColors.green,
             borderRadius: BorderRadius.circular(20.r),
             child: Text(
-              "Удалить",
+              "Открыть",
               style: AppTextStyles.black14.copyWith(color: AppColors.white),
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AllExerciseStudentScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:academia_rosta_diplom/features/profile/data/models/user_info_model.dart';
 import 'package:academia_rosta_diplom/features/trainer/data/models/exercise_train_model.dart';
 import 'package:academia_rosta_diplom/features/trainer/domain/entities/mental_hw_entity.dart';

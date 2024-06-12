@@ -3,7 +3,7 @@ import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/lesson_entity.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/lesson_history_bloc/lesson_history_bloc.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/select_history_lesson_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/lessons/select_history_lesson_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/loading_state_widget.dart';

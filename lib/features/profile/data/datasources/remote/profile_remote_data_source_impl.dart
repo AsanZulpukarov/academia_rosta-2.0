@@ -38,7 +38,6 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       headers: headers,
       body: jsonEncode(editPasswordModel.toJson()),
     );
-    print(response.statusCode);
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
@@ -59,7 +58,6 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
 
     final response = await http.get(url, headers: headers);
     final responseBody = utf8.decode(response.bodyBytes);
-    print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> jsonData = jsonDecode(responseBody);
       List<String> keysMap = jsonData.keys.toList();
@@ -118,7 +116,6 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
         phoneNumber: userInfoEntity.phoneNumber,
       ).toJson()),
     );
-    print(response.statusCode);
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;

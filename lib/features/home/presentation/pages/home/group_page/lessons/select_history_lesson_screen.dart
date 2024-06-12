@@ -15,7 +15,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarSecond(
+      appBar: const MyAppBarSecond(
         title: "Посещаемость",
       ),
       body: SingleChildScrollView(
@@ -53,7 +53,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
           width: 120.w,
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           alignment: Alignment.centerLeft,
-          child: Text("ФИО"),
+          child: const Text("ФИО"),
         ),
       ),
       DataColumn(
@@ -61,7 +61,7 @@ class SelectHistoryLessonScreen extends StatelessWidget {
           width: 100.w,
           padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
           alignment: Alignment.centerLeft,
-          child: Text("Был/Не был"),
+          child: const Text("Был/Не был"),
         ),
       ),
     ];

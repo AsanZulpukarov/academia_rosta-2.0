@@ -12,7 +12,7 @@ class ContactScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarSecond(title: "Связатся с нами"),
+      appBar: const MyAppBarSecond(title: "Связатся с нами"),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         child: Column(

@@ -44,7 +44,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
               },
               itemCount: 5,
             )
-          : NotificationEmptyScreen(),
+          : const NotificationEmptyScreen(),
     );
   }
 }

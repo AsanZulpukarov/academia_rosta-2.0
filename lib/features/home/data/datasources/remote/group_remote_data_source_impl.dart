@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:academia_rosta_diplom/core/error/exception.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/attendance_model.dart';
+import 'package:academia_rosta_diplom/features/home/data/models/create_hw_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/exercise_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/grade_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/group_info_by_id_model.dart';
@@ -12,6 +13,7 @@ import 'package:academia_rosta_diplom/features/home/data/models/hw_model.dart';
 import 'package:academia_rosta_diplom/features/home/data/models/lesson_model.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/grade_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/attendance_entity.dart';
+import 'package:academia_rosta_diplom/features/home/domain/entities/group/create_hw_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/exercise_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_entity.dart';
@@ -69,15 +71,54 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
   }
 
   @override
-  createHWByStudentId() {
-    // TODO: implement createHWByStudentId
-    throw UnimplementedError();
+  Future<HWEntity> createHWByStudentId(CreateHWEntity createHWEntity) async {
+    CreateHWModel hwModel = CreateHWModel(
+      pupilId: createHWEntity.pupilId,
+      groupId: createHWEntity.groupId,
+      deadline: createHWEntity.deadline,
+    );
+    final url = Uri.parse('${Constants.baseUrl}api/homeworks/create');
+
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
+    };
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: jsonEncode(
+        hwModel.toJson(),
+      ),
+    );
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonData = jsonDecode(responseBody);
+      return HWModel.fromJson(jsonData);
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
   }
 
   @override
-  deleteHWById() {
-    // TODO: implement deleteHWById
-    throw UnimplementedError();
+  Future<void> deleteHWById(int idHW) async {
+    final url = Uri.parse('${Constants.baseUrl}api/homeworks/delete');
+    var request = http.MultipartRequest('POST', url);
+    request.fields.addAll({'homeworkId': idHW.toString()});
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
+    };
+
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      // final jsonData = jsonDecode(responseBody);
+    } else {
+      throw ServerException(await response.stream.bytesToString());
+    }
   }
 
   @override
@@ -99,7 +140,6 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
 
     final response = await http.get(url, headers: headers);
     final responseBody = utf8.decode(response.bodyBytes);
-    print(response.statusCode);
     if (response.statusCode == 200 || response.statusCode == 201) {
       final jsonData = jsonDecode(responseBody);
       return (jsonData as List).map((hw) => HWModel.fromJson(hw)).toList();
@@ -151,9 +191,8 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
     );
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final jsonData = jsonDecode(responseBody);
+      // final jsonData = jsonDecode(responseBody);
     } else {
-      print(jsonDecode(responseBody)["error"]);
       throw ServerException(jsonDecode(responseBody)["error"]);
     }
   }
@@ -168,12 +207,12 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
       comment: gradeEntity.comment,
     );
     final url = Uri.parse('${Constants.baseUrl}api/marks/create');
+
     final headers = <String, String>{
       HttpHeaders.contentTypeHeader: 'application/json',
       HttpHeaders.acceptCharsetHeader: 'utf-8',
       HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
     };
-
     final response = await http.post(
       url,
       headers: headers,
@@ -183,7 +222,7 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
     );
     final responseBody = utf8.decode(response.bodyBytes);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      final jsonData = jsonDecode(responseBody);
+      // final jsonData = jsonDecode(responseBody);
     } else {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
