@@ -38,8 +38,8 @@ class ListStudentScreen extends StatelessWidget {
             itemCount: students.length,
             itemBuilder: (context, index) {
               return Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
-                height: 42.h,
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                height: 48.h,
                 alignment: Alignment.center,
                 decoration: ShapeDecoration(
                   shadows: [

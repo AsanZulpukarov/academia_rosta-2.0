@@ -1,9 +1,13 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
+import 'package:academia_rosta_diplom/app_theme.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/my_app_bar_second.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutAppScreen extends StatelessWidget {
   const AboutAppScreen({Key? key}) : super(key: key);
@@ -39,15 +43,38 @@ class AboutAppScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
-                  height: 50.h,
-                  width: 150.w,
-                  child: SvgPicture.asset("assets/images/google_play_logo.svg"),
+                GestureDetector(
+                  onTap: () async {
+                    const url = 'https://play.google.com/store/games?device=phone';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  child: Container(
+                    color: AppColors.transparent,
+                    height: 50.h,
+                    width: 150.w,
+                    child:
+                        SvgPicture.asset("assets/images/google_play_logo.svg"),
+                  ),
                 ),
-                SizedBox(
-                  height: 50.h,
-                  width: 150.w,
-                  child: SvgPicture.asset("assets/images/app_store_logo.svg"),
+                GestureDetector(
+                  onTap: () async {
+                    const url = 'https://www.apple.com/app-store/';
+                    if (await canLaunchUrl(Uri.parse(url))) {
+                      await launchUrl(Uri.parse(url));
+                    } else {
+                      throw 'Could not launch $url';
+                    }
+                  },
+                  child: Container(
+                    color: AppColors.transparent,
+                    height: 50.h,
+                    width: 150.w,
+                    child: SvgPicture.asset("assets/images/app_store_logo.svg"),
+                  ),
                 ),
               ],
             ),

@@ -66,8 +66,8 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
   @override
   Future<UserModel> signIn(SignInEntity signInEntity) async {
     SignInModel signInModel = SignInModel(
-      username: signInEntity.username,
-      password: signInEntity.password,
+      username: signInEntity.username?.trim(),
+      password: signInEntity.password?.trim(),
     );
     final url = Uri.parse('${Constants.baseUrl}auth/sign-in');
     final headers = <String, String>{
@@ -84,8 +84,11 @@ class AuthorizationRemoteDataSourceImpl extends AuthorizationRemoteDataSource {
       setRole(jsonData['role']);
       Constants.user = UserModel.fromJson(jsonData);
       return UserModel.fromJson(jsonData);
-    } else {
-      throw ServerException(jsonDecode(responseBody)['message']);
+    } else if(response.statusCode == 401){
+      throw ServerException("Данные введены неправильно");
+    }
+    else{
+      throw ServerException("Неизвестная");
     }
   }
 

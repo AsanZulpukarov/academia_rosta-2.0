@@ -9,9 +9,12 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/hw_ent
 import 'package:academia_rosta_diplom/features/home/domain/usecases/create_hw.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/delete_hw_by_id.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_exercise_by_hw_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/create_hw_bloc/create_hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/delete_hw_bloc/delete_hw_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/bloc/exercise_bloc/exercise_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/hw_bloc/hw_bloc.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/teacher_hw/hw_item_exersices_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/group/teacher_hw/last_hw_card_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/container_frame_widget.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/widgets/home/error_state_widget.dart';
@@ -206,17 +209,42 @@ class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
                               ),
                             ),
                           ),
-                          child: LastHWCardWidget(
-                            hw: hw[index],
-                            fio: widget.fio,
-                            onDelete: () {
-                              BlocProvider.of<HWBloc>(context).add(
-                                HWEmptyEvent(
-                                  idSubject: widget.idSubject,
-                                  idStudent: widget.idStudent,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BlocProvider(
+                                    create: (context) => ExerciseBloc(
+                                      GetExerciseByHWIdUseCase(
+                                        GroupRepositoryImpl(
+                                          remoteGroupDataSource:
+                                              GroupRemoteDataSourceImpl(),
+                                          networkInfo: NetworkInfoImpl(
+                                            connectionChecker:
+                                                InternetConnectionChecker(),
+                                          ),
+                                        ),
+                                      ),
+                                    )..add(ExerciseGetEvent(
+                                        id: hw[index].id ?? 0)),
+                                    child: const HWItemExercisesScreen(),
+                                  ),
                                 ),
                               );
                             },
+                            child: LastHWCardWidget(
+                              hw: hw[index],
+                              fio: widget.fio,
+                              onDelete: () {
+                                BlocProvider.of<HWBloc>(context).add(
+                                  HWEmptyEvent(
+                                    idSubject: widget.idSubject,
+                                    idStudent: widget.idStudent,
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         );
                       },
