@@ -1,18 +1,22 @@
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 
 class GroupInfoModel extends GroupInfoEntity {
-  const GroupInfoModel({
-    required id,
-    required name,
-    required teacher,
-    required subject,
-    required String image,
-  }) : super(
+  const GroupInfoModel(
+      {required int id,
+      required String name,
+      required String teacher,
+      required String subject,
+      required String image,
+      required int subjectId,
+      required bool isMentalGroups})
+      : super(
           id: id,
           name: name,
           teacher: teacher,
           subject: subject,
           image: image,
+          subjectId: subjectId,
+          isMentalGroup: isMentalGroups,
         );
 
   factory GroupInfoModel.fromJson(Map<String, dynamic> json) {
@@ -22,6 +26,8 @@ class GroupInfoModel extends GroupInfoEntity {
       teacher: json['teacher'],
       subject: json['subject'],
       image: json['photo'],
+      subjectId: json['subjectId'],
+      isMentalGroups: json['isMental'],
     );
   }
 

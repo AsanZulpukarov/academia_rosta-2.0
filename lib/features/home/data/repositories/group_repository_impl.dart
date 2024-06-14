@@ -16,11 +16,9 @@ import '../../domain/repositories/group_repository.dart';
 
 class GroupRepositoryImpl extends GroupRepository {
   GroupRemoteDataSource remoteGroupDataSource;
-  final NetworkInfo networkInfo;
 
   GroupRepositoryImpl({
     required this.remoteGroupDataSource,
-    required this.networkInfo,
   });
 
   @override
@@ -117,6 +115,24 @@ class GroupRepositoryImpl extends GroupRepository {
       return Right(await remoteGroupDataSource.getExerciseByHWId(id));
     } on Exception catch (e){
       return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<GroupInfoEntity>>> getGroupsStudentId(int id) async {
+    try {
+      return Right(await remoteGroupDataSource.getGroupsStudentId(id));
+    } on Exception catch (e){
+    return Left(ServerFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<HWEntity>>> getHWStudent({required int idSubject}) async {
+    try {
+      return Right(await remoteGroupDataSource.getHWStudent(idSubject: idSubject));
+    } on Exception catch (e){
+    return Left(ServerFailure(message: e.toString()));
     }
   }
 }

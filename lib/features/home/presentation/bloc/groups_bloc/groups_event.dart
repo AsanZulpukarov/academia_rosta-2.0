@@ -7,3 +7,11 @@ abstract class GroupsEvent extends Equatable {
 }
 
 class GroupsEmptyEvent extends GroupsEvent {}
+class GetGroupsStudentIdEvent extends GroupsEvent {
+  final int id;
+
+  GetGroupsStudentIdEvent({required this.id});
+  @override
+  // TODO: implement props
+  List<Object?> get props => [id];
+}

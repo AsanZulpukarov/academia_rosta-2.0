@@ -31,6 +31,8 @@ class LessonModel extends LessonEntity {
               lastname: student.lastname,
               id: student.id,
               phoneNumber: student.phoneNumber,
+              birthday: student.birthday,
+              email: student.email,
             ),
           )
           .toList(),

@@ -2,13 +2,15 @@ import 'package:academia_rosta_diplom/features/home/domain/entities/group/subjec
 
 class SubjectModel extends SubjectEntity {
   const SubjectModel({
-    required id,
-    required name,
-    required cost,
+    required int id,
+    required String name,
+    required int cost,
+    required bool isMental,
   }) : super(
           id: id,
           name: name,
           cost: cost,
+    isMental: isMental,
         );
 
   factory SubjectModel.fromJson(Map<String, dynamic> json) {
@@ -16,6 +18,7 @@ class SubjectModel extends SubjectEntity {
       id: json['id'],
       name: json['name'],
       cost: json['cost'],
+      isMental: json['isMental'],
     );
   }
 
@@ -24,6 +27,7 @@ class SubjectModel extends SubjectEntity {
     data['id'] = id;
     data['name'] = name;
     data['cost'] = cost;
+    data['isMental'] = isMental;
     return data;
   }
 }

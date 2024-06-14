@@ -151,4 +151,31 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     Constants.user.setAvatar(avatar);
     return prefs.setInt(SharedPrefSource.imageKey, avatar);
   }
+
+  @override
+  Future<Map<String, MarkEntity>> getStudentStatistic(
+      int subjectId, int studentId) async {
+    final url = Uri.parse(
+        '${Constants.baseUrl}api/statistics/by-pupil?subjectId=$subjectId&userId=$studentId');
+    print(url);
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
+    };
+
+    final response = await http.get(url, headers: headers);
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> jsonData = jsonDecode(responseBody);
+      List<String> keysMap = jsonData.keys.toList();
+      Map<String, MarkEntity> result = {};
+      for (int i = 0; i < keysMap.length; i++) {
+        result[keysMap[i]] = MarkModel.fromJson(jsonData[keysMap[i]]);
+      }
+      return result;
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
+  }
 }

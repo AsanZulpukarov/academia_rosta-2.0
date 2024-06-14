@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/home/data/repositories/group_repo
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/group_info_entity.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_groups.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_group_by_id.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_groups_student_id.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/groups_bloc/groups_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/group_info_screen.dart';
@@ -31,9 +32,13 @@ class GroupsScreen extends StatelessWidget {
         getAllGroupsUseCase: GetAllGroupsUseCase(
           GroupRepositoryImpl(
             remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-            networkInfo: NetworkInfoImpl(
-              connectionChecker: InternetConnectionChecker(),
-            ),
+
+          ),
+        ),
+        getGroupsStudentIdUseCase: GetGroupsStudentIdUseCase(
+          GroupRepositoryImpl(
+            remoteGroupDataSource: GroupRemoteDataSourceImpl(),
+
           ),
         ),
       )..add(GroupsEmptyEvent()),
@@ -71,10 +76,7 @@ class GroupsScreen extends StatelessWidget {
                               GroupRepositoryImpl(
                                 remoteGroupDataSource:
                                     GroupRemoteDataSourceImpl(),
-                                networkInfo: NetworkInfoImpl(
-                                  connectionChecker:
-                                      InternetConnectionChecker(),
-                                ),
+
                               ),
                             ),
                           )..add(GroupInfoEmptyEvent(groupList[index].id ?? 1)),

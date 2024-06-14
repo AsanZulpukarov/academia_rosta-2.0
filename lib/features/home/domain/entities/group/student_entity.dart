@@ -5,6 +5,8 @@ class StudentEntity extends Equatable {
   final String? firstname;
   final String? lastname;
   final String? phoneNumber;
+  final String? email;
+  final DateTime? birthday;
   bool? isAttended;
 
   StudentEntity({
@@ -12,6 +14,8 @@ class StudentEntity extends Equatable {
     this.firstname,
     this.lastname,
     this.phoneNumber,
+    this.birthday,
+    this.email,
     this.isAttended = false,
   });
 

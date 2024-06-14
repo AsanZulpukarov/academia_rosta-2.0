@@ -11,7 +11,7 @@ import 'package:academia_rosta_diplom/features/profile/domain/entities/user_info
 import 'package:academia_rosta_diplom/features/profile/domain/usecases/get_user_info.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/bloc/profile_bloc/profile_bloc.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/pages/change_password_screen.dart';
-import 'package:academia_rosta_diplom/features/profile/presentation/pages/my_object_screen.dart';
+import 'package:academia_rosta_diplom/features/profile/presentation/pages/my_subjects_screen.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_avatar.dart';
 import 'package:academia_rosta_diplom/features/profile/presentation/widgets/profile_nav_item.dart';
 import 'package:flutter/material.dart';

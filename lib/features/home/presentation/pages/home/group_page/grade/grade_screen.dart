@@ -44,9 +44,6 @@ class _GradeScreenState extends State<GradeScreen> {
     PostGradeByStudentIdUseCase(
       GroupRepositoryImpl(
         remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-        networkInfo: NetworkInfoImpl(
-          connectionChecker: InternetConnectionChecker(),
-        ),
       ),
     ),
   );

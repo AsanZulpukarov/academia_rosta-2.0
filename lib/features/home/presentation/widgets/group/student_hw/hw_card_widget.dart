@@ -22,7 +22,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class StudentHWCardWidget extends StatelessWidget {
   final HWEntity hw;
-  final String fio;
+  final String? fio;
   final Function() onDelete;
 
   const StudentHWCardWidget({
@@ -54,19 +54,25 @@ class StudentHWCardWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AllExerciseStudentScreen(),
+                  builder: (context) => AllExerciseStudentScreen(id: hw.id ?? 0,),
                 ),
               );
             },
             child: Column(
               children: [
-                TitleDescriptionWhiteColorRowWidget(
-                  titleStyle: AppTextStyles.black16,
-                  descriptionStyle: AppTextStyles.black16,
-                  title: 'ФИО',
-                  description: fio,
-                ),
-                const Divider(),
+                fio == null
+                    ? const SizedBox()
+                    : Column(
+                        children: [
+                          TitleDescriptionWhiteColorRowWidget(
+                            titleStyle: AppTextStyles.black16,
+                            descriptionStyle: AppTextStyles.black16,
+                            title: 'ФИО',
+                            description: fio!,
+                          ),
+                          const Divider(),
+                        ],
+                      ),
                 TitleDescriptionWhiteColorRowWidget(
                   titleStyle: AppTextStyles.black16,
                   descriptionStyle: AppTextStyles.black16,
@@ -104,7 +110,7 @@ class StudentHWCardWidget extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const AllExerciseStudentScreen(),
+                  builder: (context) => AllExerciseStudentScreen(id: hw.id ?? 0,),
                 ),
               );
             },

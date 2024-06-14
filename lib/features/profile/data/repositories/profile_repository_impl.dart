@@ -76,4 +76,13 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return Left(ServerFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, Map<String, MarkEntity>>> getStudentStatistic(int subjectId, int studentId) async {
+    try {
+      return Right(await profileRemoteDataSource.getStudentStatistic(subjectId,studentId));
+    } on Exception catch (e){
+    return Left(ServerFailure(message: e.toString()));
+    }
+  }
 }

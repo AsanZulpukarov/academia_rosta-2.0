@@ -5,7 +5,7 @@ import 'package:academia_rosta_diplom/features/authorization/domain/enums/role_e
 import 'package:academia_rosta_diplom/features/home/domain/entities/group/student_entity.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/group_info_bloc/group_info_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/grade/grade_screen.dart';
-import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info_screen.dart';
+import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/student_info/student_info_screen.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/pages/home/group_page/teacher_hw/prev_hw_student_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +69,9 @@ class ListStudentScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const StudentInfoScreen(),
+                              builder: (context) => StudentInfoScreen(
+                                studentEntity: students.elementAt(index),
+                              ),
                             ),
                           );
                         },
@@ -101,89 +103,97 @@ class ListStudentScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Constants.user.roleType == RoleType.student ? Container() : Align(
-                      alignment: Alignment.centerRight,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          PopupMenuButton(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.r),
-                            ),
-                            icon: Icon(
-                              Icons.more_vert,
-                              color: AppColors.white,
-                              size: 24.w,
-                            ),
-                            itemBuilder: (context) => [
-                              PopupMenuItem(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PrevHWStudentScreen(
-                                          fio: students[index].getFullName(),
-                                          idGroup: idGroup,
-                                          idStudent: students[index].id ?? 0,
-                                          idSubject: idSubject,
-                                        ),
-                                    ),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Image.asset(
-                                      'assets/icons/home_work_icon.png',
-                                      width: 24.w,
-                                      height: 24.h,
-                                      color: AppColors.black,
-                                    ),
-                                    Gap(10.w),
-                                    Text(
-                                      "ДЗ",
-                                      textAlign: TextAlign.center,
-                                      style: AppTextStyles.black12Medium,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              PopupMenuItem(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => GradeScreen(
-                                        student: students.elementAt(index),
-                                        idSubject: idSubject,
+                    Constants.user.roleType == RoleType.student
+                        ? Container()
+                        : Align(
+                            alignment: Alignment.centerRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                PopupMenuButton(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.r),
+                                  ),
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: AppColors.white,
+                                    size: 24.w,
+                                  ),
+                                  itemBuilder: (context) => [
+                                    PopupMenuItem(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PrevHWStudentScreen(
+                                              fio:
+                                                  students[index].getFullName(),
+                                              idGroup: idGroup,
+                                              idStudent:
+                                                  students[index].id ?? 0,
+                                              idSubject: idSubject,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Image.asset(
+                                            'assets/icons/home_work_icon.png',
+                                            width: 24.w,
+                                            height: 24.h,
+                                            color: AppColors.black,
+                                          ),
+                                          Gap(10.w),
+                                          Text(
+                                            "ДЗ",
+                                            textAlign: TextAlign.center,
+                                            style: AppTextStyles.black12Medium,
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  );
-                                },
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Image.asset(
-                                      'assets/icons/grade_icon.png',
-                                      width: 24.w,
-                                      height: 24.h,
-                                      color: AppColors.black,
-                                    ),
-                                    Gap(10.w),
-                                    Text(
-                                      "Оценка",
-                                      textAlign: TextAlign.center,
-                                      style: AppTextStyles.black12Medium,
+                                    PopupMenuItem(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => GradeScreen(
+                                              student:
+                                                  students.elementAt(index),
+                                              idSubject: idSubject,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Image.asset(
+                                            'assets/icons/grade_icon.png',
+                                            width: 24.w,
+                                            height: 24.h,
+                                            color: AppColors.black,
+                                          ),
+                                          Gap(10.w),
+                                          Text(
+                                            "Оценка",
+                                            textAlign: TextAlign.center,
+                                            style: AppTextStyles.black12Medium,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               );

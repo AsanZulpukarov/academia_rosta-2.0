@@ -5,6 +5,8 @@ class GroupInfoEntity extends Equatable {
   final String? name;
   final String? teacher;
   final String? subject;
+  final int? subjectId;
+  final bool? isMentalGroup;
   final String? image;
 
   const GroupInfoEntity({
@@ -13,6 +15,8 @@ class GroupInfoEntity extends Equatable {
     this.teacher,
     this.subject,
     this.image,
+    this.subjectId,
+    this.isMentalGroup,
   });
 
   @override
@@ -22,5 +26,8 @@ class GroupInfoEntity extends Equatable {
         name,
         teacher,
         subject,
+    image,
+    subjectId,
+    isMentalGroup,
       ];
 }

@@ -42,9 +42,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     PostAttendanceUseCase(
       GroupRepositoryImpl(
         remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-        networkInfo: NetworkInfoImpl(
-          connectionChecker: InternetConnectionChecker(),
-        ),
+
       ),
     ),
   );
@@ -239,8 +237,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
   }
 
   List<DataRow> _createRows() {
-    return widget.students.map((student) {
       int i = 1;
+    return widget.students.map((student) {
       final bool isSelected = student.isAttended == true;
       return DataRow(
         cells: [

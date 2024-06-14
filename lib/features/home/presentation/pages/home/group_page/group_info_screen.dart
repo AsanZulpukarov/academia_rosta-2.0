@@ -71,9 +71,13 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                           showBottomWindowSubject(
                             context,
                             SubjectModel(
-                              id: groupInfoByIdEntity?.subject?.id,
-                              name: groupInfoByIdEntity?.subject?.name,
-                              cost: groupInfoByIdEntity?.subject?.cost,
+                              id: groupInfoByIdEntity?.subject?.id ?? 0,
+                              name:
+                                  groupInfoByIdEntity?.subject?.name ?? "Пусто",
+                              cost: groupInfoByIdEntity?.subject?.cost ?? 0,
+                              isMental:
+                                  groupInfoByIdEntity?.subject?.isMental ??
+                                      false,
                             ),
                           );
                         },
@@ -91,8 +95,9 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                               firstname:
                                   groupInfoByIdEntity?.teacher?.firstname ??
                                       "Пусто",
-                              lastname: groupInfoByIdEntity?.teacher?.lastname ??
-                                  "Пусто",
+                              lastname:
+                                  groupInfoByIdEntity?.teacher?.lastname ??
+                                      "Пусто",
                               phoneNumber:
                                   groupInfoByIdEntity?.teacher?.phoneNumber ??
                                       "Пусто",
@@ -148,7 +153,7 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                   Gap(10.h),
                   ListStudentScreen(
                     idSubject: state.group.subject?.id ?? 0,
-                    idGroup : state.group.id ?? 0,
+                    idGroup: state.group.id ?? 0,
                   ),
                 ],
               ),
@@ -199,21 +204,23 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
   Widget _actionButton(BuildContext context) {
     return Row(
       children: [
-        Constants.user.roleType == RoleType.student ? const SizedBox():_actionButtonAndName(
-          nameIcon: 'attendance_icon.png',
-          nameButton: 'Посещения',
-          function: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AttendanceScreen(
-                  students: groupInfoByIdEntity?.pupils ?? [],
-                  idGroups: groupInfoByIdEntity?.id ?? 0,
-                ),
+        Constants.user.roleType == RoleType.student
+            ? const SizedBox()
+            : _actionButtonAndName(
+                nameIcon: 'attendance_icon.png',
+                nameButton: 'Посещения',
+                function: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AttendanceScreen(
+                        students: groupInfoByIdEntity?.pupils ?? [],
+                        idGroups: groupInfoByIdEntity?.id ?? 0,
+                      ),
+                    ),
+                  );
+                },
               ),
-            );
-          },
-        ),
         Gap(10.w),
         _actionButtonAndName(
           nameIcon: 'history_lesson_icon.png',
@@ -227,12 +234,10 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
                     GetAllLessonHistoryUseCase(
                       GroupRepositoryImpl(
                         remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-                        networkInfo: NetworkInfoImpl(
-                          connectionChecker: InternetConnectionChecker(),
-                        ),
                       ),
                     ),
-                  )..add(LessonHistoryEmptyEvent(id: groupInfoByIdEntity?.id ?? 0)),
+                  )..add(LessonHistoryEmptyEvent(
+                      id: groupInfoByIdEntity?.id ?? 0)),
                   child: const HistoryLessonScreen(),
                 ),
               ),
@@ -240,14 +245,22 @@ class _GroupInfoScreenState extends State<GroupInfoScreen> {
           },
         ),
         Gap(10.w),
-        Constants.user.roleType == RoleType.teacher ?const SizedBox(): _actionButtonAndName(
-          nameIcon: 'home_work_icon.png',
-          nameButton: 'Д/З',
-          function: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const AllHWStudentScreen(),),);
-          },
-        ),
+        Constants.user.roleType == RoleType.teacher
+            ? const SizedBox()
+            : _actionButtonAndName(
+                nameIcon: 'home_work_icon.png',
+                nameButton: 'Д/З',
+                function: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => AllHWStudentScreen(
+                        subjectId: groupInfoByIdEntity?.subject?.id ?? 0,
+                      ),
+                    ),
+                  );
+                },
+              ),
       ],
     );
   }

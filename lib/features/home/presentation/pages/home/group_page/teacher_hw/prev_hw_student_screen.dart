@@ -10,6 +10,7 @@ import 'package:academia_rosta_diplom/features/home/domain/usecases/create_hw.da
 import 'package:academia_rosta_diplom/features/home/domain/usecases/delete_hw_by_id.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_all_hw_by_student_id.dart';
 import 'package:academia_rosta_diplom/features/home/domain/usecases/get_exercise_by_hw_id.dart';
+import 'package:academia_rosta_diplom/features/home/domain/usecases/get_hw_student.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/create_hw_bloc/create_hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/delete_hw_bloc/delete_hw_bloc.dart';
 import 'package:academia_rosta_diplom/features/home/presentation/bloc/exercise_bloc/exercise_bloc.dart';
@@ -57,9 +58,11 @@ class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
             GetAllHWByStudentIdUseCase(
               GroupRepositoryImpl(
                 remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-                networkInfo: NetworkInfoImpl(
-                  connectionChecker: InternetConnectionChecker(),
-                ),
+              ),
+            ),
+            GetHWStudentUseCase(
+              GroupRepositoryImpl(
+                remoteGroupDataSource: GroupRemoteDataSourceImpl(),
               ),
             ),
           )..add(
@@ -74,9 +77,6 @@ class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
             CreateHWUseCase(
               GroupRepositoryImpl(
                 remoteGroupDataSource: GroupRemoteDataSourceImpl(),
-                networkInfo: NetworkInfoImpl(
-                  connectionChecker: InternetConnectionChecker(),
-                ),
               ),
             ),
           ),
@@ -202,10 +202,6 @@ class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
                               GroupRepositoryImpl(
                                 remoteGroupDataSource:
                                     GroupRemoteDataSourceImpl(),
-                                networkInfo: NetworkInfoImpl(
-                                  connectionChecker:
-                                      InternetConnectionChecker(),
-                                ),
                               ),
                             ),
                           ),
@@ -220,10 +216,6 @@ class _PrevHWStudentScreenState extends State<PrevHWStudentScreen> {
                                         GroupRepositoryImpl(
                                           remoteGroupDataSource:
                                               GroupRemoteDataSourceImpl(),
-                                          networkInfo: NetworkInfoImpl(
-                                            connectionChecker:
-                                                InternetConnectionChecker(),
-                                          ),
                                         ),
                                       ),
                                     )..add(ExerciseGetEvent(

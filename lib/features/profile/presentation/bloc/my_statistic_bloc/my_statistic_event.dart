@@ -17,3 +17,18 @@ final class MyStatisticEmptyEvent extends MyStatisticEvent {
   // TODO: implement props
   List<Object?> get props => [id];
 }
+
+final class StudentGroupStatisticEvent extends MyStatisticEvent {
+  final int subjectId;
+  final int studentId;
+
+  const StudentGroupStatisticEvent(
+      {required this.subjectId, required this.studentId});
+
+  @override
+  // TODO: implement props
+  List<Object?> get props => [
+        subjectId,
+        studentId,
+      ];
+}

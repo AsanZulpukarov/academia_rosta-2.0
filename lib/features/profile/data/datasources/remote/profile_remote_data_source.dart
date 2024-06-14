@@ -12,6 +12,7 @@ abstract class ProfileRemoteDataSource {
   Future<bool> editPassword(EditPasswordEntity editPasswordEntity);
 
   Future<Map<String, MarkEntity>> getMyStatistic(int id);
+  Future<Map<String, MarkEntity>> getStudentStatistic(int subjectId,int studentId);
 
   Future<List<SubjectModel>> getMySubjects();
 

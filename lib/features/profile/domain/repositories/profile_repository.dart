@@ -14,6 +14,7 @@ abstract class ProfileRepository {
       EditPasswordEntity editPasswordEntity);
 
   Future<Either<Failure, Map<String, MarkEntity>>> getMyStatistic(int id);
+  Future<Either<Failure, Map<String, MarkEntity>>> getStudentStatistic(int subjectId,int studentId,);
 
   Future<Either<Failure, List<SubjectEntity>>> getMySubjects();
 

@@ -249,4 +249,46 @@ class GroupRemoteDataSourceImpl extends GroupRemoteDataSource {
       throw ServerException(jsonDecode(responseBody)["message"]);
     }
   }
+
+  @override
+  Future<List<GroupInfoEntity>> getGroupsStudentId(int id) async {
+    final url = Uri.parse('${Constants.baseUrl}api/groups/by-pupil/$id');
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
+    };
+
+    final response = await http.get(url, headers: headers);
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonData = jsonDecode(responseBody);
+
+      return (jsonData as List)
+          .map((group) => GroupInfoModel.fromJson(group))
+          .toList();
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
+  }
+
+  @override
+  Future<List<HWEntity>> getHWStudent({required int idSubject}) async {
+    final url = Uri.parse(
+        '${Constants.baseUrl}api/homeworks/my-homeworks');
+    final headers = <String, String>{
+      HttpHeaders.contentTypeHeader: 'application/json',
+      HttpHeaders.acceptCharsetHeader: 'utf-8',
+      HttpHeaders.authorizationHeader: "Bearer ${Constants.user.token}",
+    };
+
+    final response = await http.get(url, headers: headers);
+    final responseBody = utf8.decode(response.bodyBytes);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      final jsonData = jsonDecode(responseBody);
+      return (jsonData as List).map((hw) => HWModel.fromJson(hw)).toList();
+    } else {
+      throw ServerException(jsonDecode(responseBody)["message"]);
+    }
+  }
 }
