@@ -85,8 +85,6 @@ class AppUtils {
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Введите пароль';
-    } else if (value.length < 5) {
-      return "Пароль должен быть не менее 6 символов";
     }
     return null;
   }

@@ -26,6 +26,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
   late int answer;
   bool isShowNumber = true;
   final TextEditingController _answerController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -76,27 +77,30 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextFormField(
-                    controller: _answerController,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                      hintText: "Напишити ответ",
-                      filled: false,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide:
-                            const BorderSide(color: AppColors.borderColor),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide:
-                            const BorderSide(color: AppColors.borderColor),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(20.r),
-                        borderSide:
-                            const BorderSide(color: AppColors.borderColor),
+                  Form(
+                    key: _formKey,
+                    child: TextFormField(
+                      controller: _answerController,
+                      keyboardType: TextInputType.number,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        hintText: "Напишити ответ",
+                        filled: false,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:
+                              const BorderSide(color: AppColors.borderColor),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:
+                              const BorderSide(color: AppColors.borderColor),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.r),
+                          borderSide:
+                              const BorderSide(color: AppColors.borderColor),
+                        ),
                       ),
                     ),
                   ),
@@ -109,7 +113,130 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
                         color: AppColors.white,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        if (int.parse(_answerController.text) ==
+                            widget.list.last) {
+                          await showDialog(
+                              context: context,
+                              builder: (_) {
+                                return Scaffold(
+                                  backgroundColor: AppColors.transparent,
+                                  body: Center(
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 16.w),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w, vertical: 16.h),
+                                      height: 200.h,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(20.r),
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.check_box,
+                                            color: AppColors.green,
+                                            size: 50.r,
+                                          ),
+                                          Gap(10.h),
+                                          Text(
+                                            "Правильно",
+                                            style: AppTextStyles.black16Medium
+                                                .copyWith(
+                                              color: AppColors.green,
+                                            ),
+                                          ),
+                                          Gap(10.h),
+                                          Text("Правильный ответ: ${widget.list.last}",style: AppTextStyles.black16Medium,),
+                                          Gap(20.h),
+                                          MainButtonWidget(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.r),
+                                              child: Text(
+                                                'Закрыть',
+                                                style: AppTextStyles.black16
+                                                    .copyWith(
+                                                  color: AppColors.white,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              }),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                        } else {
+                          await showDialog(
+                              context: context,
+                              builder: (_) {
+                                return Scaffold(
+                                  backgroundColor: AppColors.transparent,
+                                  body: Center(
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 16.w),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 16.w, vertical: 16.h),
+                                      height: 200.h,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(20.r),
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.check_box,
+                                            color: AppColors.mainRed,
+                                            size: 50.r,
+                                          ),
+                                          Gap(10.h),
+                                          Text(
+                                            "Неправильно",
+                                            style: AppTextStyles.black16Medium
+                                                .copyWith(
+                                              color: AppColors.mainRed,
+                                            ),
+                                          ),
+                                          Gap(10.h),
+                                          Text("Правильный ответ: ${widget.list.last}",style: AppTextStyles.black16Medium,),
+                                          Gap(20.h),
+                                          MainButtonWidget(
+                                              borderRadius:
+                                                  BorderRadius.circular(20.r),
+                                              child: Text(
+                                                'Закрыть',
+                                                style: AppTextStyles.black16
+                                                    .copyWith(
+                                                  color: AppColors.white,
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              }),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              });
+                        }
+                          Navigator.pop(context);
+                      }
+                    },
                   ),
                 ],
               ),

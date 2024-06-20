@@ -1,5 +1,6 @@
 import 'package:academia_rosta_diplom/app_text_styles.dart';
 import 'package:academia_rosta_diplom/app_theme.dart';
+import 'package:academia_rosta_diplom/constants.dart';
 import 'package:academia_rosta_diplom/core/app_utils/app_utils.dart';
 import 'package:academia_rosta_diplom/core/shared/shared_pref_source.dart';
 import 'package:academia_rosta_diplom/features/authorization/data/datasources/remote/authorization_remote_data_source_impl.dart';
@@ -15,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../home/presentation/pages/home/home_screen.dart';
 import '../reset_password/reset_password_screen.dart';
 
@@ -119,13 +121,13 @@ class _SignInScreenState extends State<SignInScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ResetPasswordScreen(),
-                                  ),
-                                );
+                              onPressed: () async {
+                                const url = '${Constants.baseUrl}auth/password-reset';
+                                if (await canLaunchUrl(Uri.parse(url))) {
+                                await launchUrl(Uri.parse(url));
+                                } else {
+                                throw 'Could not launch $url';
+                                }
                               },
                               child: Text(
                                 "Забыл пароль?",
@@ -168,13 +170,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                         Gap(20.h),
                         MainButtonWidget(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen(),
-                              ),
-                            );
+                          onPressed: () async {
+                            const url = '${Constants.baseUrl}auth/sign-up';
+                            if (await canLaunchUrl(Uri.parse(url))) {
+                            await launchUrl(Uri.parse(url));
+                            } else {
+                            throw 'Could not launch $url';
+                            }
                           },
                           backgroundColor: AppColors.grey,
                           borderRadius: BorderRadius.circular(20),

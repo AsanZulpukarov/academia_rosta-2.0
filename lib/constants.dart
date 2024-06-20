@@ -8,14 +8,14 @@ import 'package:academia_rosta_diplom/features/trainer/domain/entities/topic_ent
 import 'main.dart';
 
 class Constants {
-  // static const String _ip = "mental-academia.ru";
-  // static const String _host = "https";
-  // static const baseUrl = "$_host://$_ip/";
+  static const String _ip = "mental-academia.ru";
+  static const String _host = "https";
+  static const baseUrl = "$_host://$_ip/";
 
-  static const String _ip = "192.168.128.88";
-  static const String _host = "http";
-  static const String _port = "8081";
-  static const baseUrl = "$_host://$_ip:$_port/";
+  // static const String _ip = "192.168.50.84";
+  // static const String _host = "http";
+  // static const String _port = "8081";
+  // static const baseUrl = "$_host://$_ip:$_port/";
   static UserEntity user = UserModel.fromJson(
     {
       "token": prefs.getString(SharedPrefSource.tokenKey),
