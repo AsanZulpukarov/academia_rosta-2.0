@@ -116,7 +116,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         if (int.parse(_answerController.text) ==
-                            widget.list.last) {
+                            answer) {
                           await showDialog(
                               context: context,
                               builder: (_) {
@@ -153,7 +153,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
                                             ),
                                           ),
                                           Gap(10.h),
-                                          Text("Правильный ответ: ${widget.list.last}",style: AppTextStyles.black16Medium,),
+                                          Text("Правильный ответ: $answer",style: AppTextStyles.black16Medium,),
                                           Gap(20.h),
                                           MainButtonWidget(
                                               borderRadius:
@@ -212,7 +212,7 @@ class _ShowTrainNumberScreenState extends State<ShowTrainNumberScreen> {
                                             ),
                                           ),
                                           Gap(10.h),
-                                          Text("Правильный ответ: ${widget.list.last}",style: AppTextStyles.black16Medium,),
+                                          Text("Правильный ответ: $answer",style: AppTextStyles.black16Medium,),
                                           Gap(20.h),
                                           MainButtonWidget(
                                               borderRadius:
